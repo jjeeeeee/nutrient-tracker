@@ -6,6 +6,7 @@
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "font-awesome": "^4.7.0",
+    "mongodb": "^6.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.28.1",
@@ -16,9 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +40,5 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
-
   "homepage": "https://jjeeeeee.github.io/nutrient-tracker"
 }
