@@ -28,7 +28,7 @@ const AddFoodForm = () => {
 
     // POST request to insert into the database
     axios
-    .post("http://localhost:5000/foods", foodData)
+    .post("https://nutrient-tracker-backend-c0o9.onrender.com/foods", foodData)
     .then((response) => {
       setNotification({
         message: "Food added successfully!",

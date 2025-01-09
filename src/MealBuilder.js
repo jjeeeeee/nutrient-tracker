@@ -15,7 +15,7 @@ const MealBuilder = () => {
   // Fetch ingredients from the backend
   useEffect(() => {
     axios
-      .get("http://localhost:5000/foods")
+      .get("https://nutrient-tracker-backend-c0o9.onrender.com/foods")
       .then((response) => setIngredients(response.data))
       .catch((error) => console.error("Error fetching ingredients:", error));
   }, []);
@@ -68,7 +68,7 @@ const MealBuilder = () => {
   // Calculate total nutrients
   const calculateNutrients = () => {
     axios
-      .post("http://localhost:5000/calculate", { ingredients: meal })
+      .post("https://nutrient-tracker-backend-c0o9.onrender.com/calculate", { ingredients: meal })
       .then((response) => {
         setTotalNutrients(response.data);
         setOriginalNutrients(response.data); // Save original totals
