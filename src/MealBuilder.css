@@ -8,6 +8,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
 .add-ingredient select,
@@ -15,7 +16,10 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  flex: 1;
+  flex: 1; /* Flex-grow: share remaining space */
+  min-width: 120px; /* Prevents elements from shrinking too small */
+  max-width: 40%; /* Limits their maximum width */
+  box-sizing: border-box; /* Ensures padding is included in width calculations */
 }
 
 .add-ingredient button {
@@ -25,10 +29,30 @@
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
+  flex: 0 0 auto; /* Keeps the button width fixed */
+  min-width: 50px; /* Sets a minimum button width */
+  box-sizing: border-box; /* Ensures padding is included */
 }
 
 .add-ingredient button:hover {
   background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .add-ingredient {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 15px; /* Increase spacing for stacked items */
+  }
+
+  .add-ingredient select,
+  .add-ingredient input {
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
+
+  .add-ingredient button {
+    align-self: stretch; /* Button fills the width if needed */
+  }
 }
 
 .meal-list {
