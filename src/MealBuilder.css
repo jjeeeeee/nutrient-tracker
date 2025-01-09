@@ -46,10 +46,7 @@
   }
 
   .add-ingredient select,
-  .add-ingredient input {
-    max-width: 100%; /* Allow full width on smaller screens */
-  }
-
+  .add-ingredient input,
   .add-ingredient button {
     align-self: stretch; /* Button fills the width if needed */
   }
