@@ -4,7 +4,7 @@ import "./AddFoodForm.css";
 
 const AddFoodForm = () => {
   const [name, setName] = useState("");
-  const [servingAmount, setServingAmount] = useState("");
+  const [serving_amount, setServingAmount] = useState("");
   const [measurementUnit, setMeasurementUnit] = useState("");
   const [calories, setCalories] = useState("");
   const [carbs, setCarbs] = useState("");
@@ -18,7 +18,7 @@ const AddFoodForm = () => {
 
     const foodData = {
       name,
-      servingAmount: parseFloat(servingAmount),
+      serving_amount: parseFloat(serving_amount),
       measurementUnit, 
       calories: parseFloat(calories),
       carbs: parseFloat(carbs),
