@@ -46,9 +46,15 @@
   }
 
   .add-ingredient select,
-  .add-ingredient input,
+  .add-ingredient input {
+    flex: none; /* Prevents flex behavior */
+    width: 100%; /* Make them take the full width */
+    max-width: none; /* Remove the max-width restriction */
+  }
+
   .add-ingredient button {
     align-self: stretch; /* Button fills the width if needed */
+    width: 100%; /* Ensure button takes full width */
   }
 }
 
