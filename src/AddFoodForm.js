@@ -4,8 +4,8 @@ import "./AddFoodForm.css";
 
 const AddFoodForm = () => {
   const [name, setName] = useState("");
-  const [serving_amount, setServingAmount] = useState("");
-  const [measurementUnit, setMeasurementUnit] = useState("");
+  const [serving_amount, setServing_amount] = useState("");
+  const [measurement_unit, setMeasurement_unit] = useState("");
   const [calories, setCalories] = useState("");
   const [carbs, setCarbs] = useState("");
   const [fat, setFat] = useState("");
@@ -19,7 +19,7 @@ const AddFoodForm = () => {
     const foodData = {
       name,
       serving_amount: parseFloat(serving_amount),
-      measurementUnit, 
+      measurement_unit, 
       calories: parseFloat(calories),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),
@@ -36,8 +36,8 @@ const AddFoodForm = () => {
       });
       // Reset form fields
       setName("");
-      setServingAmount("");
-      setMeasurementUnit("");
+      setServing_amount("");
+      setMeasurement_unit("");
       setCalories("");
       setCarbs("");
       setFat("");
@@ -71,15 +71,15 @@ const AddFoodForm = () => {
         <input
           type="number"
           placeholder="Serving Amount"
-          value={servingAmount}
-          onChange={(e) => setServingAmount(e.target.value)}
+          value={serving_amount}
+          onChange={(e) => setServing_amount(e.target.value)}
           required
         />
         <input
           type="text"
           placeholder="Measurement Unit"
-          value={measurementUnit}
-          onChange={(e) => setMeasurementUnit(e.target.value)}
+          value={measurement_unit}
+          onChange={(e) => setMeasurement_unit(e.target.value)}
           required
         />
         <input
