@@ -57,6 +57,9 @@ const App = () => {
           <Link to="/add-food" onClick={() => setIsMenuOpen(false)}>
             Add Food
           </Link>
+          <Link to="meals" onClick={() => setIsMenuOpen(false)}>
+            Meals
+          </Link>
         </div>
       </div>
 
