@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
+import Meals from "./Meals"; // Meal display
 import "./App.css"; // Import your styles
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MealBuilder />} />
         <Route path="/add-food" element={<AddFoodForm />} />
+        <Route path="meals" element={<Meals />} />
       </Routes>
     </Router>
   );

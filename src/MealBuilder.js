@@ -101,6 +101,27 @@ const MealBuilder = () => {
     setErrorMessage(""); // Clear any error messages
   };
 
+  // Add Save Meal Function
+  const saveMeal = () => {
+    const mealName = prompt("Enter a name for this meal:");
+    if (!mealName) return;
+
+    axios
+      .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
+        name: mealName,
+        ingredients: meal.map((item) => ({
+          ingredientName: item.name,
+          amount: item.weight,
+        })),
+      })
+      .then(() => {
+        alert("Meal saved successfully!");
+        clearAll();
+      })
+      .catch((error) => console.error("Error saving meal:", error));
+  };
+
+
   return (
     <div className="app-container">
       <h1>Food Nutrient Calculator</h1>
@@ -157,6 +178,11 @@ const MealBuilder = () => {
             Divide by Portions
           </button>
         </div>
+
+        <button className="save-meal-button" onClick={saveMeal}>
+          Save Meal
+        </button>
+
 
         <button className="calculate-button" onClick={calculateNutrients}>
           Calculate Nutrients

@@ -127,6 +127,22 @@
   background-color: #45a049;
 }
 
+.save-meal-button {
+  width: 100%;
+  margin-top: 1em;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-meal-button:hover {
+  background-color: #1e88e5;
+}
+
 .total-nutrients {
   text-align: center;
   background-color: #f1f1f1;
