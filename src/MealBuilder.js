@@ -110,7 +110,7 @@ const MealBuilder = () => {
       .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
         name: mealName,
         ingredients: meal.map((item) => ({
-          ingredientName: item.name,
+          ingredient_name: item.name,
           amount: item.weight,
         })),
       })
