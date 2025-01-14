@@ -24,14 +24,18 @@ const Meals = () => {
             <div key={meal.id} className="meal-item">
               <span>{meal.name}</span>
               <ul>
-                {meal.ingredients.map((ingredient, index) => (
-                  <li key={index}>
-                    {ingredient.name}: {ingredient.amount} {ingredient.unit}
-                  </li>
-                ))}
+                {Array.isArray(meal.ingredients) ? (
+                  meal.ingredients.map((ingredient, index) => (
+                    <li key={index}>
+                      {ingredient.name}: {ingredient.amount} {ingredient.unit}
+                    </li>
+                  ))
+                ) : (
+                  <li>No ingredients available</li>
+                )}
               </ul>
             </div>
-          ))
+          ))          
         )}
       </div>
     </div>
