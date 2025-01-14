@@ -24,16 +24,15 @@ const Meals = () => {
             <div key={meal.id} className="meal-item">
               <span>{meal.name}</span>
               <ul>
-              {meal.ingredients && typeof meal.ingredients === 'object' ? (
-                Object.entries(meal.ingredients).map(([key, ingredient]) => (
-                  <li key={key}>
-                    {ingredient.name}: {ingredient.amount} {ingredient.unit}
-                  </li>
-                ))
-              ) : (
-                <li>No ingredients available</li>
-              )}
-
+                {Array.isArray(meal.MealIngredients) && meal.MealIngredients.length > 0 ? (
+                  meal.MealIngredients.map((ingredient, index) => (
+                    <li key={index}>
+                      {ingredient.ingredient_name}: {ingredient.amount}
+                    </li>
+                  ))
+                ) : (
+                  <li>No ingredients available</li>
+                )}
               </ul>
             </div>
           ))          
