@@ -27,7 +27,7 @@ const Meals = () => {
                 {Array.isArray(meal.MealIngredients) && meal.MealIngredients.length > 0 ? (
                   meal.MealIngredients.map((ingredient, index) => (
                     <li key={index}>
-                      {ingredient.ingredient_name}: {ingredient.amount}
+                      {ingredient.ingredient_name}: {ingredient.amount} {ingredient.Food.measurement_unit}
                     </li>
                   ))
                 ) : (
