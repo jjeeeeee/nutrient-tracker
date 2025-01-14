@@ -11,7 +11,6 @@
   flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
-.add-ingredient select,
 .add-ingredient input {
   padding: 8px;
   border: 1px solid #ccc;
@@ -21,6 +20,20 @@
   max-width: 40%; /* Limits their maximum width */
   box-sizing: border-box; /* Ensures padding is included in width calculations */
 }
+
+.add-ingredient select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1; /* Flex-grow: share remaining space */
+  min-width: 120px; /* Prevents elements from shrinking too small */
+  max-width: 40%; /* Limits their maximum width */
+  box-sizing: border-box; /* Ensures padding is included in width calculations */
+
+  max-height: 250px; /* Adjust to your desired maximum height */
+  overflow-y: auto; /* Enable scrolling for overflowing content */
+}
+
 
 .add-ingredient button {
   background-color: #4caf50;
