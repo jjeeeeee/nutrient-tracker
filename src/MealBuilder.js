@@ -11,10 +11,10 @@ const MealBuilder = () => {
   const [originalNutrients, setOriginalNutrients] = useState(null); // Original calculated nutrient totals
   const [portions, setPortions] = useState(1); // Number of portions
   const [errorMessage, setErrorMessage] = useState(""); // Error message for duplicate ingredients
-  const [storedMeals, setStoredMeals] = useState([]); // Stored meals fetched from the backend
-  const [selectedMealId, setSelectedMealId] = useState(""); // Selected meal ID from dropdown
+  const [storedMeals, setStoredMeals] = useState([]);
+  const [selectedMealId, setSelectedMealId] = useState(1);
 
-  // Fetch ingredients and stored meals from the backend
+  // Fetch ingredients from the backend
   useEffect(() => {
     axios
       .get("https://nutrient-tracker-backend-c0o9.onrender.com/foods")
@@ -24,33 +24,150 @@ const MealBuilder = () => {
     axios
       .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
       .then((response) => setStoredMeals(response.data))
-      .catch((error) => console.error("Error fetching stored meals:", error));
+      .catch((error) => console.error("Error fetching meals:", error));
   }, []);
 
-  // Import a stored meal and display its information
   const importMeal = () => {
     if (!selectedMealId) {
       alert("Please select a meal to import.");
       return;
     }
 
-    const mealToImport = storedMeals.find((meal) => meal.id === parseInt(selectedMealId));
+    const mealToImport = storedMeals.find(meal => meal.id === parseInt(selectedMealId));
 
     if (mealToImport) {
-      setMeal(
-        mealToImport.MealIngredients.map((item) => ({
-          name: item.ingredient_name,
-          weight: parseFloat(item.amount),
-          unit: ingredients.find((ing) => ing.name === item.ingredient_name)?.measurement_unit || "",
-        }))
-      );
-      setTotalNutrients(null); // Clear nutrient calculation when a new meal is imported
+      mealToImport.MealIngredients.forEach((item) => {
+        const existingIngredient = meal.find((ingredient) => ingredient.name === item.ingredient_name);
+  
+        if (existingIngredient) {
+          setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
+          return;
+        }
+  
+        const ingredient = ingredients.find((ing) => ing.name === item.ingredient_name);
+  
+        if (ingredient) {
+          setMeal((prevMeal) => [
+            ...prevMeal,
+            {
+              id: ingredient.id,
+              name: ingredient.name,
+              weight: parseFloat(item.amount),
+              unit: ingredient.measurement_unit || "", // Store the measurement unit
+            },
+          ]);
+        } else {
+          console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
+        }
+      });
+  
+      setErrorMessage(""); // Clear any error messages
     } else {
       alert("Selected meal could not be found.");
     }
+  }
+
+  // Add an ingredient to the meal
+  const addIngredient = () => {
+    if (!selectedIngredient || !weight) {
+      setErrorMessage("Please select an ingredient and enter a valid weight.");
+      return;
+    }
+
+    const existingIngredient = meal.find((item) => item.name === selectedIngredient);
+
+    if (existingIngredient) {
+      setErrorMessage("This ingredient has already been added to the meal.");
+      return;
+    }
+
+    const ingredient = ingredients.find((item) => item.name === selectedIngredient);
+
+    setMeal([
+      ...meal,
+      {
+        id: ingredient.id,
+        name: ingredient.name,
+        weight: parseFloat(weight),
+        unit: ingredient.measurement_unit, // Store the measurement unit from the ingredient
+      },
+    ]);
+
+    setSelectedIngredient("");
+    setWeight("");
+    setErrorMessage(""); // Clear error message
   };
 
-  // Existing functions (addIngredient, updateWeight, removeIngredient, etc.) remain unchanged
+  // Update the weight of an ingredient
+  const updateWeight = (index, newWeight) => {
+    const updatedMeal = [...meal];
+    updatedMeal[index].weight = parseFloat(newWeight) || 0;
+    setMeal(updatedMeal);
+  };
+
+  // Remove an ingredient from the meal
+  const removeIngredient = (index) => {
+    const updatedMeal = [...meal];
+    updatedMeal.splice(index, 1);
+    setMeal(updatedMeal);
+  };
+
+  // Calculate total nutrients
+  const calculateNutrients = () => {
+    axios
+      .post("https://nutrient-tracker-backend-c0o9.onrender.com/calculate", { ingredients: meal })
+      .then((response) => {
+        setTotalNutrients(response.data);
+        setOriginalNutrients(response.data); // Save original totals
+      })
+      .catch((error) => console.error("Error calculating total nutrients:", error));
+  };
+
+  // Divide amounts by portions
+  const divideByPortions = () => {
+    if (portions <= 0) {
+      alert("Please enter a valid number of portions (greater than 0).");
+      return;
+    }
+
+    if (originalNutrients) {
+      setTotalNutrients({
+        calories: originalNutrients.calories / portions,
+        carbs: originalNutrients.carbs / portions,
+        fat: originalNutrients.fat / portions,
+        protein: originalNutrients.protein / portions,
+      });
+    }
+  };
+
+  // Clear all ingredients and reset calculations
+  const clearAll = () => {
+    setMeal([]);
+    setTotalNutrients(null);
+    setPortions(1);
+    setErrorMessage(""); // Clear any error messages
+  };
+
+  // Add Save Meal Function
+  const saveMeal = () => {
+    const mealName = prompt("Enter a name for this meal:");
+    if (!mealName) return;
+
+    axios
+      .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
+        name: mealName,
+        ingredients: meal.map((item) => ({
+          ingredientame: item.name,
+          amount: item.weight,
+        })),
+      })
+      .then(() => {
+        alert("Meal saved successfully!");
+        clearAll();
+      })
+      .catch((error) => console.error("Error saving meal:", error));
+  };
+
 
   return (
     <div className="app-container">
@@ -61,7 +178,6 @@ const MealBuilder = () => {
         {/* Error Message */}
         {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-        {/* Import Meal Section */}
         <div className="import-meal">
           <select
             value={selectedMealId}
@@ -128,6 +244,7 @@ const MealBuilder = () => {
         <button className="save-meal-button" onClick={saveMeal}>
           Save Meal
         </button>
+
 
         <button className="calculate-button" onClick={calculateNutrients}>
           Calculate Nutrients
