@@ -36,35 +36,34 @@ const MealBuilder = () => {
     const mealToImport = storedMeals.find(meal => meal.id === parseInt(selectedMealId));
 
     if (mealToImport) {
-      clearAll();
-      setTimeout(() => {
-        mealToImport.MealIngredients.forEach((item) => {
-          const existingIngredient = meal.find((ingredient) => ingredient.name === item.ingredient_name);
-    
-          if (existingIngredient) {
-            setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
-            return;
-          }
-    
-          const ingredient = ingredients.find((ing) => ing.name === item.ingredient_name);
-    
-          if (ingredient) {
-            setMeal((prevMeal) => [
-              ...prevMeal,
-              {
-                id: ingredient.id,
-                name: ingredient.name,
-                amount: parseFloat(item.amount),
-                unit: ingredient.measurement_unit || "", // Store the measurement unit
-              },
-            ]);
-          } else {
-            console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
-          }
-        });
-    
-        setErrorMessage(""); // Clear any error messages
-      }, 500);
+      setMeal([]); // Clearing ingredients before importing
+
+      mealToImport.MealIngredients.forEach((item) => {
+        const existingIngredient = meal.find((ingredient) => ingredient.name === item.ingredient_name);
+  
+        if (existingIngredient) {
+          setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
+          return;
+        }
+  
+        const ingredient = ingredients.find((ing) => ing.name === item.ingredient_name);
+  
+        if (ingredient) {
+          setMeal((prevMeal) => [
+            ...prevMeal,
+            {
+              id: ingredient.id,
+              name: ingredient.name,
+              amount: parseFloat(item.amount),
+              unit: ingredient.measurement_unit || "", // Store the measurement unit
+            },
+          ]);
+        } else {
+          console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
+        }
+      });
+  
+      setErrorMessage(""); // Clear any error messages
     } else {
       alert("Selected meal could not be found.");
     }
