@@ -36,6 +36,8 @@ const MealBuilder = () => {
     const mealToImport = storedMeals.find(meal => meal.id === parseInt(selectedMealId));
 
     if (mealToImport) {
+      clearAll();
+
       mealToImport.MealIngredients.forEach((item) => {
         const existingIngredient = meal.find((ingredient) => ingredient.name === item.ingredient_name);
   
