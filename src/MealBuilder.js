@@ -165,7 +165,13 @@ const MealBuilder = () => {
         alert("Meal saved successfully!");
         clearAll();
       })
-      .catch((error) => console.error("Error saving meal:", error));
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          alert(error.response.data.message); // Show duplicate error message
+        } else {
+          console.error("Error saving meal:", error);
+        }
+      });1
   };
 
 

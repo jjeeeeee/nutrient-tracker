@@ -2,6 +2,62 @@
   margin-bottom: 30px;
 }
 
+.import-meal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.import-meal select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 120px;
+  max-width: 40%;
+  box-sizing: border-box;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.import-meal button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  min-width: 50px;
+  box-sizing: border-box;
+}
+
+.import-meal button:hover {
+  background-color: #1e88e5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .import-meal {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 15px; /* Increase spacing for stacked items */
+  }
+
+  .import-meal select {
+    flex: none;
+    width: 100%;
+    max-width: none;
+  }
+
+  .import-meal button {
+    align-self: stretch; /* Button fills the width if needed */
+    width: 100%;
+  }
+}
+
 .add-ingredient {
   display: flex;
   justify-content: space-between;
