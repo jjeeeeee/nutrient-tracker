@@ -6,7 +6,7 @@ const MealBuilder = () => {
   const [ingredients, setIngredients] = useState([]); // List of ingredients fetched from the database
   const [meal, setMeal] = useState([]); // Ingredients added to the meal
   const [selectedIngredient, setSelectedIngredient] = useState(""); // Selected ingredient from the dropdown
-  const [weight, setWeight] = useState(""); // Weight input for the selected ingredient
+  const [amount, setAmount] = useState(""); // Amount input for the selected ingredient
   const [totalNutrients, setTotalNutrients] = useState(null); // Displayed nutrient totals
   const [originalNutrients, setOriginalNutrients] = useState(null); // Original calculated nutrient totals
   const [portions, setPortions] = useState(1); // Number of portions
@@ -52,7 +52,7 @@ const MealBuilder = () => {
             {
               id: ingredient.id,
               name: ingredient.name,
-              weight: parseFloat(item.amount),
+              amount: parseFloat(item.amount),
               unit: ingredient.measurement_unit || "", // Store the measurement unit
             },
           ]);
@@ -69,8 +69,8 @@ const MealBuilder = () => {
 
   // Add an ingredient to the meal
   const addIngredient = () => {
-    if (!selectedIngredient || !weight) {
-      setErrorMessage("Please select an ingredient and enter a valid weight.");
+    if (!selectedIngredient || !amount) {
+      setErrorMessage("Please select an ingredient and enter a valid amount.");
       return;
     }
 
@@ -88,20 +88,20 @@ const MealBuilder = () => {
       {
         id: ingredient.id,
         name: ingredient.name,
-        weight: parseFloat(weight),
+        amount: parseFloat(amount),
         unit: ingredient.measurement_unit, // Store the measurement unit from the ingredient
       },
     ]);
 
     setSelectedIngredient("");
-    setWeight("");
+    setAmount("");
     setErrorMessage(""); // Clear error message
   };
 
-  // Update the weight of an ingredient
-  const updateWeight = (index, newWeight) => {
+  // Update the amount of an ingredient
+  const updateAmount = (index, newAmount) => {
     const updatedMeal = [...meal];
-    updatedMeal[index].weight = parseFloat(newWeight) || 0;
+    updatedMeal[index].amount = parseFloat(newAmount) || 0;
     setMeal(updatedMeal);
   };
 
@@ -157,8 +157,8 @@ const MealBuilder = () => {
       .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
         name: mealName,
         ingredients: meal.map((item) => ({
-          ingredientame: item.name,
-          amount: item.weight,
+          ingredient_name: item.name,
+          amount: item.amount,
         })),
       })
       .then(() => {
@@ -214,8 +214,8 @@ const MealBuilder = () => {
           <input
             type="number"
             placeholder="Amount"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <button onClick={addIngredient}>+</button>
         </div>
@@ -226,8 +226,8 @@ const MealBuilder = () => {
               <span>{item.name}</span>
               <input
                 type="number"
-                value={item.weight}
-                onChange={(e) => updateWeight(index, e.target.value)}
+                value={item.amount}
+                onChange={(e) => updateAmount(index, e.target.value)}
               />
               <span>{item.unit}</span> {/* Display the measurement unit */}
               <button onClick={() => removeIngredient(index)}>Remove</button>
