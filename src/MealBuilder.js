@@ -171,7 +171,7 @@ const MealBuilder = () => {
         } else {
           console.error("Error saving meal:", error);
         }
-      });1
+      });
   };
 
 
