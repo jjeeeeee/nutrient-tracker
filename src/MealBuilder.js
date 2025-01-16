@@ -12,7 +12,7 @@ const MealBuilder = () => {
   const [portions, setPortions] = useState(1); // Number of portions
   const [errorMessage, setErrorMessage] = useState(""); // Error message for duplicate ingredients
   const [storedMeals, setStoredMeals] = useState([]);
-  const [selectedMealId, setSelectedMealId] = useState(1);
+  const [selectedMealId, setSelectedMealId] = useState("");
 
   // Fetch ingredients from the backend
   useEffect(() => {

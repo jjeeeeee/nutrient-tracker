@@ -34,9 +34,9 @@ h1 {
 }
 
 .meal-item ul {
-  padding-left: 20px;
   list-style-type: disc;
   color: #555;
+  width: 50%;
 }
 
 .meal-item ul li {
