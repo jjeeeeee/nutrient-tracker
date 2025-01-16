@@ -216,6 +216,11 @@ const MealBuilder = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
+          {selectedIngredient && (
+            <span className="measurement-unit">
+              {ingredients.find((ing) => ing.name === selectedIngredient)?.measurement_unit || ""}
+            </span>
+          )}
           <button onClick={addIngredient}>+</button>
         </div>
 
