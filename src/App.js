@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
+import Foods from "./Foods"; // Food display
 import Meals from "./Meals"; // Meal display
 import "./App.css"; // Import your styles
 
@@ -57,6 +58,9 @@ const App = () => {
           <Link to="/add-food" onClick={() => setIsMenuOpen(false)}>
             Add Food
           </Link>
+          <Link to="foods" onClick={() => setIsMenuOpen(false)}>
+            Foods
+          </Link>
           <Link to="meals" onClick={() => setIsMenuOpen(false)}>
             Meals
           </Link>
@@ -67,6 +71,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MealBuilder />} />
         <Route path="/add-food" element={<AddFoodForm />} />
+        <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
       </Routes>
     </Router>
