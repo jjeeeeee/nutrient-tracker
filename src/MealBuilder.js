@@ -36,10 +36,12 @@ const MealBuilder = () => {
     const mealToImport = storedMeals.find((meal) => meal.id === parseInt(selectedMealId));
   
     if (mealToImport) {
-      setMeal((prevMeal) => {
-        let newMeal = []; // Start with a cleared meal
+      setMeal(() => {
+        let newMeal = []; // Start with an empty meal for this import
+  
         mealToImport.MealIngredients.forEach((item) => {
-          if (prevMeal.find((ingredient) => ingredient.name === item.ingredient_name)) {
+          // Check for duplicates in newMeal (the in-progress list)
+          if (newMeal.find((ingredient) => ingredient.name === item.ingredient_name)) {
             setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
             return;
           }
@@ -58,13 +60,14 @@ const MealBuilder = () => {
           }
         });
   
-        return newMeal;
+        setErrorMessage(""); // Clear error message after successful import
+        return newMeal; // Update the meal state with the final array
       });
-      setErrorMessage(""); // Clear any error messages
     } else {
       alert("Selected meal could not be found.");
     }
   };
+  
   
 
   // Add an ingredient to the meal
