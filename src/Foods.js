@@ -26,10 +26,10 @@ const Foods = () => {
               <ul>
                 <li><strong>Serving Amount:</strong> {food.serving_amount}</li>
                 <li><strong>Measurement Unit:</strong> {food.measurement_unit}</li>
-                <li><strong>Calories:</strong> {food.calories}</li>
-                <li><strong>Carbs:</strong> {food.carbs}</li>
-                <li><strong>Fat:</strong> {food.fat}</li>
-                <li><strong>Protein:</strong> {food.protein}</li>
+                <li><strong>Calories:</strong> {food.calories}kcal</li>
+                <li><strong>Carbs:</strong> {food.carbs}g</li>
+                <li><strong>Fat:</strong> {food.fat}g</li>
+                <li><strong>Protein:</strong> {food.protein}g</li>
               </ul>
             </div>
           ))
