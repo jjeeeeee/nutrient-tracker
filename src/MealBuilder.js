@@ -210,17 +210,19 @@ const MealBuilder = () => {
               </option>
             ))}
           </select>
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          {selectedIngredient && (
-            <span className="measurement-unit">
-              {ingredients.find((ing) => ing.name === selectedIngredient)?.measurement_unit || ""}
-            </span>
-          )}
+          <div className="amount-input">
+            <input
+              type="number"
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+            {selectedIngredient && (
+              <span className="measurement-unit">
+                {ingredients.find((ing) => ing.name === selectedIngredient)?.measurement_unit || ""}
+              </span>
+            )}
+          </div>
           <button onClick={addIngredient}>+</button>
         </div>
 
