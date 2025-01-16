@@ -32,42 +32,40 @@ const MealBuilder = () => {
       alert("Please select a meal to import.");
       return;
     }
-
-    const mealToImport = storedMeals.find(meal => meal.id === parseInt(selectedMealId));
-
+  
+    const mealToImport = storedMeals.find((meal) => meal.id === parseInt(selectedMealId));
+  
     if (mealToImport) {
-      setMeal([]); // Clearing ingredients before importing
-
-      mealToImport.MealIngredients.forEach((item) => {
-        const existingIngredient = meal.find((ingredient) => ingredient.name === item.ingredient_name);
+      setMeal((prevMeal) => {
+        let newMeal = []; // Start with a cleared meal
+        mealToImport.MealIngredients.forEach((item) => {
+          if (prevMeal.find((ingredient) => ingredient.name === item.ingredient_name)) {
+            setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
+            return;
+          }
   
-        if (existingIngredient) {
-          setErrorMessage(`The ingredient "${item.ingredient_name}" is already in the meal.`);
-          return;
-        }
+          const ingredient = ingredients.find((ing) => ing.name === item.ingredient_name);
   
-        const ingredient = ingredients.find((ing) => ing.name === item.ingredient_name);
-  
-        if (ingredient) {
-          setMeal((prevMeal) => [
-            ...prevMeal,
-            {
+          if (ingredient) {
+            newMeal.push({
               id: ingredient.id,
               name: ingredient.name,
               amount: parseFloat(item.amount),
-              unit: ingredient.measurement_unit || "", // Store the measurement unit
-            },
-          ]);
-        } else {
-          console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
-        }
-      });
+              unit: ingredient.measurement_unit || "",
+            });
+          } else {
+            console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
+          }
+        });
   
+        return newMeal;
+      });
       setErrorMessage(""); // Clear any error messages
     } else {
       alert("Selected meal could not be found.");
     }
-  }
+  };
+  
 
   // Add an ingredient to the meal
   const addIngredient = () => {
