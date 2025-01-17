@@ -33,10 +33,10 @@ const Meals = () => {
                 ) : (
                   <li>No ingredients available</li>
                 )}
-                <li><strong>Calories:</strong> {meal.calories}</li>
-                <li><strong>Carbs:</strong> {meal.carbs}</li>
-                <li><strong>Fat:</strong> {meal.fat}</li>
-                <li><strong>Protein:</strong> {meal.protein}</li>
+                <li><strong>Calories:</strong> {meal.calories} kcal</li>
+                <li><strong>Carbs:</strong> {meal.carbs} g</li>
+                <li><strong>Fat:</strong> {meal.fat} g</li>
+                <li><strong>Protein:</strong> {meal.protein} g</li>
               </ul>
             </div>
           ))          
