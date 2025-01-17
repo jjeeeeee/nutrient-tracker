@@ -21,7 +21,7 @@ const Meals = () => {
           <p>No meals saved yet. Add some in the Meal Builder!</p>
         ) : (
           meals.map((meal) => (
-            <div key={meal.id} className="meal-item">
+            <div key={meal.id} className="meal-item-display">
               <h2>{meal.name}</h2>
               <ul>
                 {Array.isArray(meal.MealIngredients) && meal.MealIngredients.length > 0 ? (
