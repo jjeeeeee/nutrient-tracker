@@ -61,6 +61,7 @@ const MealBuilder = () => {
         });
   
         setErrorMessage(""); // Clear error message after successful import
+        calculateNutrients();
         return newMeal; // Update the meal state with the final array
       });
     } else {
