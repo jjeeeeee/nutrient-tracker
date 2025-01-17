@@ -155,13 +155,17 @@ const MealBuilder = () => {
   const saveMeal = () => {
     const mealName = prompt("Enter a name for this meal:");
     if (!mealName) return;
-
+  
     axios
       .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
         name: mealName,
         ingredients: meal.map((item) => ({
           ingredient_name: item.name,
           amount: item.amount,
+          calories: item.calories,
+          carbs: item.carbs,
+          fat: item.fat,
+          protein: item.protein,
         })),
       })
       .then(() => {
@@ -172,6 +176,7 @@ const MealBuilder = () => {
         console.error("Error saving meal:", error);
       });
   };
+  
 
 
   return (
