@@ -152,30 +152,40 @@ const MealBuilder = () => {
   };
 
   // Add Save Meal Function
-  const saveMeal = () => {
-    calculateNutrients();
-    const mealName = prompt("Enter a name for this meal:");
-    if (!mealName) return;
-  
-    axios
-      .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
-        name: mealName,
-        ingredients: meal.map((item) => ({
-          ingredient_name: item.name,
-          amount: item.amount,})),
-        calories: totalNutrients.calories.toFixed(2),
-        carbs: totalNutrients.carbs.toFixed(2),
-        fat: totalNutrients.fat.toFixed(2),
-        protein: totalNutrients.protein.toFixed(2),
-      })
-      .then(() => {
-        alert("Meal saved successfully!");
-        clearAll();
-      })
-      .catch((error) => {
+  // Add Save Meal Function
+const saveMeal = () => {
+  calculateNutrients();
+  const mealName = prompt("Enter a name for this meal:");
+  if (!mealName) return;
+
+  axios
+    .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
+      name: mealName,
+      ingredients: meal.map((item) => ({
+        ingredient_name: item.name,
+        amount: item.amount,
+      })),
+      calories: totalNutrients.calories.toFixed(2),
+      carbs: totalNutrients.carbs.toFixed(2),
+      fat: totalNutrients.fat.toFixed(2),
+      protein: totalNutrients.protein.toFixed(2),
+    })
+    .then(() => {
+      alert("Meal saved successfully!");
+      clearAll();
+    })
+    .catch((error) => {
+      if (error.response && error.response.status === 409) {
+        // Handle conflict (meal already exists)
+        alert("This meal already exists in the database.");
+      } else {
+        // Handle other errors
         console.error("Error saving meal:", error);
-      });
-  };
+        alert("An error occurred while saving the meal. Please try again.");
+      }
+    });
+};
+
   
 
 
