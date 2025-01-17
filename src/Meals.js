@@ -22,7 +22,7 @@ const Meals = () => {
         ) : (
           meals.map((meal) => (
             <div key={meal.id} className="meal-item">
-              <span>{meal.name}</span>
+              <h2>{meal.name}</h2>
               <ul>
                 {Array.isArray(meal.MealIngredients) && meal.MealIngredients.length > 0 ? (
                   meal.MealIngredients.map((ingredient, index) => (
@@ -33,6 +33,10 @@ const Meals = () => {
                 ) : (
                   <li>No ingredients available</li>
                 )}
+                <li><strong>Calories:</strong> </li>
+                <li><strong>Carbs:</strong> </li>
+                <li><strong>Fat:</strong> </li>
+                <li><strong>Protein:</strong> </li>
               </ul>
             </div>
           ))          
