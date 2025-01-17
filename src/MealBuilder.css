@@ -90,7 +90,6 @@
   overflow-y: auto; /* Enable scrolling for overflowing content */
 }
 
-
 .add-ingredient button {
   background-color: #4caf50;
   color: white;
@@ -124,6 +123,56 @@
   .add-ingredient button {
     align-self: stretch; /* Button fills the width if needed */
     width: 100%; /* Ensure button takes full width */
+  }
+}
+
+.amount-input {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Vertically center the items */
+  gap: 10px; /* Add space between elements */
+}
+
+.amount-input input {
+  flex: 1; /* Allow the input to grow and shrink as needed */
+  min-width: 80px; /* Set a minimum width for the input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.amount-input .measurement-unit {
+  white-space: nowrap; /* Prevent the text from wrapping */
+  font-style: italic; /* Optional: Add style to the unit text */
+  color: #555; /* Optional: Add color for better visibility */
+}
+
+.amount-input button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+.amount-input button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .amount-input {
+    flex-wrap: nowrap; /* Prevent wrapping even on smaller screens */
+  }
+
+  .amount-input input {
+    min-width: 60px; /* Adjust the minimum width for smaller screens */
+  }
+
+  .amount-input button {
+    padding: 6px 10px; /* Adjust button padding for smaller screens */
   }
 }
 
