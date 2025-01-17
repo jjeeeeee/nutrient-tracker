@@ -27,7 +27,7 @@ const MealBuilder = () => {
       .catch((error) => console.error("Error fetching meals:", error));
   }, []);
 
-  const importMeal = () => {
+  const importMeal = async () => {
     if (!selectedMealId) {
       alert("Please select a meal to import.");
       return;
@@ -61,7 +61,7 @@ const MealBuilder = () => {
         });
   
         setErrorMessage(""); // Clear error message after successful import
-        calculateNutrients();
+        await calculateNutrients();
         return newMeal; // Update the meal state with the final array
       });
     } else {
@@ -69,8 +69,6 @@ const MealBuilder = () => {
     }
   };
   
-  
-
   // Add an ingredient to the meal
   const addIngredient = () => {
     if (!selectedIngredient || !amount) {
@@ -116,16 +114,18 @@ const MealBuilder = () => {
     setMeal(updatedMeal);
   };
 
-  // Calculate total nutrients
-  const calculateNutrients = () => {
-    axios
-      .post("https://nutrient-tracker-backend-c0o9.onrender.com/calculate", { ingredients: meal })
-      .then((response) => {
-        setTotalNutrients(response.data);
-        setOriginalNutrients(response.data); // Save original totals
-      })
-      .catch((error) => console.error("Error calculating total nutrients:", error));
-  };
+  const calculateNutrients = async () => {
+    try {
+      const response = await axios.post(
+        "https://nutrient-tracker-backend-c0o9.onrender.com/calculate",
+        { ingredients: meal }
+      );
+      setTotalNutrients(response.data);
+      setOriginalNutrients(response.data); // Save original totals
+    } catch (error) {
+      console.error("Error calculating total nutrients:", error);
+    }
+  };  
 
   // Divide amounts by portions
   const divideByPortions = () => {
@@ -153,9 +153,8 @@ const MealBuilder = () => {
   };
 
   // Add Save Meal Function
-  // Add Save Meal Function
-const saveMeal = () => {
-  calculateNutrients();
+const saveMeal = async () => {
+  await calculateNutrients();
   const mealName = prompt("Enter a name for this meal:");
   if (!mealName) return;
 
@@ -186,9 +185,6 @@ const saveMeal = () => {
       }
     });
 };
-
-  
-
 
   return (
     <div className="app-container">
