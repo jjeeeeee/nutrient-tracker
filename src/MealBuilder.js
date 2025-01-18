@@ -13,7 +13,6 @@ const MealBuilder = () => {
   const [errorMessage, setErrorMessage] = useState(""); // Error message for duplicate ingredients
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMealId, setSelectedMealId] = useState("");
-  const [isCalculating, setIsCalculating] = useState(false);
 
   // Fetch ingredients from the backend
   useEffect(() => {
@@ -60,9 +59,13 @@ const MealBuilder = () => {
             console.error(`Ingredient "${item.ingredient_name}" not found in the ingredient list.`);
           }
         });
+
+        totalNutrients.calories = mealToImport.Meal.calories;
+        totalNutrients.carbs = mealToImport.Meal.carbs;
+        totalNutrients.fat = mealToImport.Meal.fat;
+        totalNutrients.protein = mealToImport.Meal.protein;
   
         setErrorMessage(""); // Clear error message after successful import
-        calculateNutrients();
         return newMeal; // Update the meal state with the final array
       });
     } else {
@@ -116,7 +119,6 @@ const MealBuilder = () => {
   };
 
   const calculateNutrients = async () => {
-    setIsCalculating(true); // Start calculating
     try {
       const response = await axios.post(
         "https://nutrient-tracker-backend-c0o9.onrender.com/calculate",
@@ -126,8 +128,6 @@ const MealBuilder = () => {
       setOriginalNutrients(response.data); // Save original totals
     } catch (error) {
       console.error("Error calculating total nutrients:", error);
-    } finally {
-      setIsCalculating(false); // Finished calculating
     }
   };  
 
@@ -156,51 +156,39 @@ const MealBuilder = () => {
     setErrorMessage(""); // Clear any error messages
   };
 
-  const saveMeal = () => {
-    calculateNutrients(); // Trigger nutrient calculation
-  };  
+  // Add Save Meal Function
+const saveMeal = async () => {
+  await calculateNutrients();
+  const mealName = prompt("Enter a name for this meal:");
+  if (!mealName) return;
 
-  useEffect(() => {
-    if (totalNutrients) {
-      // Only proceed if totalNutrients has been updated
-      if (isCalculating === false) {
-        // Save the meal after nutrient calculation
-        const mealName = prompt("Enter a name for this meal:");
-        if (!mealName) return;
-  
-        if (!totalNutrients) {
-          alert("Failed to calculate nutrients. Please try again.");
-          return;
-        }
-  
-        axios
-          .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
-            name: mealName,
-            ingredients: meal.map((item) => ({
-              ingredient_name: item.name,
-              amount: item.amount,
-            })),
-            calories: totalNutrients.calories.toFixed(2),
-            carbs: totalNutrients.carbs.toFixed(2),
-            fat: totalNutrients.fat.toFixed(2),
-            protein: totalNutrients.protein.toFixed(2),
-          })
-          .then(() => {
-            alert("Meal saved successfully!");
-            clearAll();
-          })
-          .catch((error) => {
-            if (error.response && error.response.status === 409) {
-              alert("This meal already exists in the database.");
-            } else {
-              console.error("Error saving meal:", error);
-              alert("An error occurred while saving the meal. Please try again.");
-            }
-          });
+  axios
+    .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
+      name: mealName,
+      ingredients: meal.map((item) => ({
+        ingredient_name: item.name,
+        amount: item.amount,
+      })),
+      calories: totalNutrients.calories.toFixed(2),
+      carbs: totalNutrients.carbs.toFixed(2),
+      fat: totalNutrients.fat.toFixed(2),
+      protein: totalNutrients.protein.toFixed(2),
+    })
+    .then(() => {
+      alert("Meal saved successfully!");
+      clearAll();
+    })
+    .catch((error) => {
+      if (error.response && error.response.status === 409) {
+        // Handle conflict (meal already exists)
+        alert("This meal already exists in the database.");
+      } else {
+        // Handle other errors
+        console.error("Error saving meal:", error);
+        alert("An error occurred while saving the meal. Please try again.");
       }
-    }
-  }, [totalNutrients, isCalculating]); // Trigger whenever totalNutrients or isCalculating changes
-  
+    });
+};
 
   return (
     <div className="app-container">
