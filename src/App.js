@@ -4,6 +4,7 @@ import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
 import Foods from "./Foods"; // Food display
 import Meals from "./Meals"; // Meal display
+import Login from "./Login"; // Login display
 import "./App.css"; // Import your styles
 
 const App = () => {
@@ -64,6 +65,9 @@ const App = () => {
           <Link to="meals" onClick={() => setIsMenuOpen(false)}>
             Meals
           </Link>
+          <Link to="login" onClick={() => setIsMenuOpen(false)}>
+            Login
+          </Link>
         </div>
       </div>
 
@@ -73,6 +77,7 @@ const App = () => {
         <Route path="/add-food" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </Router>
   );
