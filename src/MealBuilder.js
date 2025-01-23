@@ -297,10 +297,10 @@ const saveMeal = async () => {
       {totalNutrients && (
         <div className="total-nutrients">
           <h2>Total Nutrients</h2>
-          <p>Calories: {totalNutrients.calories.toFixed(2)} kcal</p>
-          <p>Carbs: {totalNutrients.carbs.toFixed(2)} g</p>
-          <p>Fat: {totalNutrients.fat.toFixed(2)} g</p>
-          <p>Protein: {totalNutrients.protein.toFixed(2)} g</p>
+          <p>Calories: {totalNutrients.calories} kcal</p>
+          <p>Carbs: {totalNutrients.carbs} g</p>
+          <p>Fat: {totalNutrients.fat} g</p>
+          <p>Protein: {totalNutrients.protein} g</p>
         </div>
       )}
     </div>
