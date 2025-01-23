@@ -260,6 +260,7 @@ const saveMeal = async () => {
                 type="number"
                 value={item.amount}
                 onChange={(e) => updateAmount(index, e.target.value)}
+                onBlur={calculateNutrients}
               />
               <span>{item.unit}</span> {/* Display the measurement unit */}
               <button onClick={() => removeIngredient(index)}>Remove</button>
