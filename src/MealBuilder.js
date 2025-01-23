@@ -109,11 +109,16 @@ const MealBuilder = () => {
       },
     ]);
 
-    calculateNutrients();
     setSelectedIngredient("");
     setAmount("");
     setErrorMessage(""); // Clear error message
   };
+
+  useEffect(() => {
+    if (meal.length > 0) {
+      calculateNutrients();
+    }
+  }, [meal]);
 
   // Update the amount of an ingredient
   const updateAmount = (index, newAmount) => {
