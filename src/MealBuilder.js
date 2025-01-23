@@ -179,10 +179,10 @@ const saveMeal = async () => {
         ingredient_name: item.name,
         amount: item.amount,
       })),
-      calories: totalNutrients.calories.toFixed(2),
-      carbs: totalNutrients.carbs.toFixed(2),
-      fat: totalNutrients.fat.toFixed(2),
-      protein: totalNutrients.protein.toFixed(2),
+      calories: totalNutrients.calories,
+      carbs: totalNutrients.carbs,
+      fat: totalNutrients.fat,
+      protein: totalNutrients.protein,
     })
     .then(() => {
       alert("Meal saved successfully!");
