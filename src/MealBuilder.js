@@ -62,17 +62,17 @@ const MealBuilder = () => {
 
         // Update total nutrients state
       setTotalNutrients({
-        calories: mealToImport.Meal.calories,
-        carbs: mealToImport.Meal.carbs,
-        fat: mealToImport.Meal.fat,
-        protein: mealToImport.Meal.protein,
+        calories: mealToImport.calories,
+        carbs: mealToImport.carbs,
+        fat: mealToImport.fat,
+        protein: mealToImport.protein,
       });
       // Update original nutrients state
       setOriginalNutrients({
-        calories: mealToImport.Meal.calories,
-        carbs: mealToImport.Meal.carbs,
-        fat: mealToImport.Meal.fat,
-        protein: mealToImport.Meal.protein,
+        calories: mealToImport.calories,
+        carbs: mealToImport.carbs,
+        fat: mealToImport.fat,
+        protein: mealToImport.protein,
       });
   
         setErrorMessage(""); // Clear error message after successful import
