@@ -1,42 +1,83 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-const Login = ({ onLogin }) => {
+const LoginRegister = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleLogin = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const endpoint = isRegistering ? "/register" : "/login";
+    const body = { username, password };
+
     try {
-      const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/login", {
-        username,
-        password,
-      }, { withCredentials: true });
-      alert("Login successful");
-      onLogin();
+      const response = await fetch(`https://nutrient-tracker-backend-c0o9.onrender.com${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        credentials: "include", // Ensures cookies are sent/received
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccessMessage(isRegistering ? "Registration successful!" : "Login successful!");
+        setErrorMessage("");
+        setUsername("");
+        setPassword("");
+      } else {
+        setErrorMessage(data.error || "An error occurred");
+        setSuccessMessage("");
+      }
     } catch (error) {
-      console.error("Error logging in:", error);
-      alert("Login failed");
+      console.error("Error:", error);
+      setErrorMessage("Something went wrong. Please try again.");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
+    <div style={{ maxWidth: "400px", margin: "0 auto", padding: "20px" }}>
+      <h2>{isRegistering ? "Register" : "Login"}</h2>
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            style={{ width: "100%", padding: "8px", marginBottom: "5px" }}
+          />
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ width: "100%", padding: "8px", marginBottom: "5px" }}
+          />
+        </div>
+        <button type="submit" style={{ width: "100%", padding: "10px", backgroundColor: "#007bff", color: "#fff", border: "none", cursor: "pointer" }}>
+          {isRegistering ? "Register" : "Login"}
+        </button>
+      </form>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      <button
+        onClick={() => setIsRegistering(!isRegistering)}
+        style={{ marginTop: "10px", width: "100%", padding: "10px", backgroundColor: "#6c757d", color: "#fff", border: "none", cursor: "pointer" }}
+      >
+        {isRegistering ? "Already have an account? Login" : "Don't have an account? Register"}
+      </button>
     </div>
   );
 };
 
-export default Login;
+export default LoginRegister;
