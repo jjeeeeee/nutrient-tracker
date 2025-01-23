@@ -109,6 +109,7 @@ const MealBuilder = () => {
       },
     ]);
 
+    calculateNutrients();
     setSelectedIngredient("");
     setAmount("");
     setErrorMessage(""); // Clear error message
@@ -282,11 +283,6 @@ const saveMeal = async () => {
 
         <button className="save-meal-button" onClick={saveMeal}>
           Save Meal
-        </button>
-
-
-        <button className="calculate-button" onClick={calculateNutrients}>
-          Calculate Nutrients
         </button>
 
         {/* Clear All button */}
