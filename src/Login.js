@@ -31,7 +31,7 @@ const LoginRegister = () => {
 
       if (!isRegistering) {
         // Redirect user to tracker page after successful login
-        navigate("/tracker");
+        navigate("/../tracker");
       }
     } catch (error) {
       console.error("Error:", error);
