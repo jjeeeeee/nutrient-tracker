@@ -5,6 +5,7 @@ import MealBuilder from "./MealBuilder"; // Meal Builder
 import Foods from "./Foods"; // Food display
 import Meals from "./Meals"; // Meal display
 import Login from "./Login"; // Login display
+import PersonalTracker from "./PersonalTracker"; // Personal Tracker display
 import "./App.css"; // Import your styles
 
 const App = () => {
@@ -56,6 +57,9 @@ const App = () => {
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
           </Link>
+          <Link to="tracker" onClick={() => setIsMenuOpen(false)}>
+            Personal Tracker
+          </Link>
           <Link to="/add-food" onClick={() => setIsMenuOpen(false)}>
             Add Food
           </Link>
@@ -74,6 +78,7 @@ const App = () => {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<MealBuilder />} />
+        <Route path="tracker" element={<PersonalTracker />} />
         <Route path="/add-food" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
