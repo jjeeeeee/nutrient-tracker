@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios
+import Tracker from "./PersonalTracker"; // Login display
 
 const LoginRegister = () => {
   const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ const LoginRegister = () => {
 
       if (!isRegistering) {
         // Redirect user to tracker page after successful login
-        window.location.href = "/tracker";
+        window.location.href = Tracker;
       }
     } catch (error) {
       console.error("Error:", error);
