@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
 
 const LoginRegister = () => {
   const [username, setUsername] = useState("");
@@ -14,27 +15,32 @@ const LoginRegister = () => {
     const body = { username, password };
 
     try {
-      const response = await fetch(`https://nutrient-tracker-backend-c0o9.onrender.com${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        credentials: "include", // Ensures cookies are sent/received
-      });
+      const response = await axios.post(
+        `https://nutrient-tracker-backend-c0o9.onrender.com${endpoint}`,
+        body,
+        { withCredentials: true } // Ensures cookies are sent/received
+      );
 
-      const data = await response.json();
+      setSuccessMessage(isRegistering ? "Registration successful!" : "Login successful!");
+      setErrorMessage("");
+      setUsername("");
+      setPassword("");
 
-      if (response.ok) {
-        setSuccessMessage(isRegistering ? "Registration successful!" : "Login successful!");
-        setErrorMessage("");
-        setUsername("");
-        setPassword("");
-      } else {
-        setErrorMessage(data.error || "An error occurred");
-        setSuccessMessage("");
+      if (!isRegistering) {
+        // Redirect user to tracker page after successful login
+        window.location.href = "/tracker";
       }
     } catch (error) {
       console.error("Error:", error);
-      setErrorMessage("Something went wrong. Please try again.");
+
+      // Check if error is from Axios response or something else
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage("Something went wrong. Please try again.");
+      }
+
+      setSuccessMessage("");
     }
   };
 
@@ -64,7 +70,17 @@ const LoginRegister = () => {
             style={{ width: "100%", padding: "8px", marginBottom: "5px" }}
           />
         </div>
-        <button type="submit" style={{ width: "100%", padding: "10px", backgroundColor: "#007bff", color: "#fff", border: "none", cursor: "pointer" }}>
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
           {isRegistering ? "Register" : "Login"}
         </button>
       </form>
@@ -72,7 +88,15 @@ const LoginRegister = () => {
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       <button
         onClick={() => setIsRegistering(!isRegistering)}
-        style={{ marginTop: "10px", width: "100%", padding: "10px", backgroundColor: "#6c757d", color: "#fff", border: "none", cursor: "pointer" }}
+        style={{
+          marginTop: "10px",
+          width: "100%",
+          padding: "10px",
+          backgroundColor: "#6c757d",
+          color: "#fff",
+          border: "none",
+          cursor: "pointer",
+        }}
       >
         {isRegistering ? "Already have an account? Login" : "Don't have an account? Register"}
       </button>

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const NutrientTracker = () => {
+const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchNutrients = async () => {
       try {
-        const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/nutrients", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          "https://nutrient-tracker-backend-c0o9.onrender.com/nutrients",
+          { withCredentials: true } // Ensures cookies are included in the request
+        );
         setNutrients(response.data);
       } catch (error) {
         console.error("Error fetching nutrients:", error);
-        alert("You must be logged in to view this page");
+        setErrorMessage(
+          error.response?.data?.error || "You must be logged in to view this page"
+        );
       }
     };
 
@@ -23,7 +27,9 @@ const NutrientTracker = () => {
   return (
     <div>
       <h2>Nutrient Tracker</h2>
-      {nutrients ? (
+      {errorMessage ? (
+        <p style={{ color: "red" }}>{errorMessage}</p>
+      ) : nutrients ? (
         <div>
           <p>{nutrients.message}</p>
           {/* Render nutrient data */}
@@ -35,4 +41,4 @@ const NutrientTracker = () => {
   );
 };
 
-export default NutrientTracker;
+export default PersonalTracker;
