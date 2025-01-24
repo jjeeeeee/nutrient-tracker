@@ -57,7 +57,7 @@ const App = () => {
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
           </Link>
-          <Link to="tracker" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/tracker" onClick={() => setIsMenuOpen(false)}>
             Personal Tracker
           </Link>
           <Link to="/add-food" onClick={() => setIsMenuOpen(false)}>
