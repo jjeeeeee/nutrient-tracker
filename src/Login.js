@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import axios from "axios";
+import axios from "axios"; // Import Axios
+import Tracker from "./PersonalTracker"; // Login display
 
 const LoginRegister = () => {
   const [username, setUsername] = useState("");
@@ -8,8 +8,6 @@ const LoginRegister = () => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
-  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +34,7 @@ const LoginRegister = () => {
     } catch (error) {
       console.error("Error:", error);
 
+      // Check if error is from Axios response or something else
       if (error.response && error.response.data && error.response.data.error) {
         setErrorMessage(error.response.data.error);
       } else {
