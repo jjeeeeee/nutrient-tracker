@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./PersonalTracker.css"; // Import the external CSS file
+import "./PersonalTracker.css";
 
 const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
@@ -10,29 +10,29 @@ const PersonalTracker = () => {
   const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
 
   useEffect(() => {
-    const fetchNutrients = async () => {
-      try {
-        const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/nutrients", { withCredentials: true });
-        setNutrients(response.data.data);
-      } catch (error) {
-        console.error("Error fetching nutrients:", error);
-        setErrorMessage(error.response?.data?.error || "You must be logged in to view this page");
-      }
-    };
-
-    const fetchMeals = async () => {
-      try {
-        const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
-        setMeals(response.data.meals);
-      } catch (error) {
-        console.error("Error fetching meals:", error);
-        setErrorMessage("Failed to load meals.");
-      }
-    };
-
     fetchNutrients();
     fetchMeals();
   }, []);
+
+  const fetchNutrients = async () => {
+    try {
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/nutrients", { withCredentials: true });
+      setNutrients(response.data.data);
+    } catch (error) {
+      console.error("Error fetching nutrients:", error);
+      setErrorMessage(error.response?.data?.error || "You must be logged in to view this page");
+    }
+  };
+
+  const fetchMeals = async () => {
+    try {
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
+      setMeals(response.data.meals);
+    } catch (error) {
+      console.error("Error fetching meals:", error);
+      setErrorMessage("Failed to load meals.");
+    }
+  };
 
   const handleMealSubmit = async (e) => {
     e.preventDefault();
@@ -40,9 +40,21 @@ const PersonalTracker = () => {
       const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals", newMeal, { withCredentials: true });
       setMeals(response.data.meals);
       setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
+      fetchNutrients();
     } catch (error) {
       console.error("Error adding meal:", error);
       setErrorMessage("Failed to add meal.");
+    }
+  };
+
+  const handleClearMeals = async () => {
+    try {
+      await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/clear-user-meals", { withCredentials: true });
+      setMeals([]);
+      setNutrients({ calories: 0, carbs: 0, fat: 0, protein: 0 });
+    } catch (error) {
+      console.error("Error clearing meals:", error);
+      setErrorMessage("Failed to clear meals.");
     }
   };
 
@@ -52,6 +64,19 @@ const PersonalTracker = () => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>
+          <div className="goal-container">
+            <h3>Set Daily Goals</h3>
+            {Object.keys(goal).map((key) => (
+              <input
+                key={key}
+                type="number"
+                value={goal[key]}
+                onChange={(e) => setGoal({ ...goal, [key]: Number(e.target.value) })}
+                placeholder={`Set ${key} goal`}
+              />
+            ))}
+          </div>
+
           <div className="progress-container">
             <h3>Daily Progress</h3>
             {Object.keys(nutrients).map((nutrient) => (
@@ -68,25 +93,30 @@ const PersonalTracker = () => {
               </div>
             ))}
           </div>
+
           <form onSubmit={handleMealSubmit} className="meal-form">
             <h3>Add a Meal</h3>
             {Object.keys(newMeal).map((key) => (
               key !== "name" ? (
-                <input key={key} type="number" placeholder={key} value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} required />
+                <input key={key} type="number" placeholder={key} value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} required />
               ) : (
                 <input key={key} type="text" placeholder="Meal Name" value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} required />
               )
             ))}
             <button type="submit">Add Meal</button>
           </form>
+
           <div className="meals-list">
             <h3>Meals for the Day</h3>
             {meals.length > 0 ? (
-              <ul>
-                {meals.map((meal, index) => (
-                  <li key={index}>{meal.name}: {meal.calories} cal, {meal.carbs}g carbs, {meal.fat}g fat, {meal.protein}g protein</li>
-                ))}
-              </ul>
+              <>
+                <ul>
+                  {meals.map((meal, index) => (
+                    <li key={index}>{meal.name}: {meal.calories} cal, {meal.carbs}g carbs, {meal.fat}g fat, {meal.protein}g protein</li>
+                  ))}
+                </ul>
+                <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
+              </>
             ) : (
               <p>No meals added yet.</p>
             )}
