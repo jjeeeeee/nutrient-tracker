@@ -49,3 +49,45 @@ li {
   padding: 10px;
   border-radius: 4px;
 }
+
+.tracker-container {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.goal-container input {
+  width: 100px;
+  margin: 5px;
+}
+
+.progress-container {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  margin: 10px 0;
+}
+
+.progress {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: green;
+  transition: width 0.3s ease-in-out;
+}
+
+.clear-button {
+  margin-top: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
