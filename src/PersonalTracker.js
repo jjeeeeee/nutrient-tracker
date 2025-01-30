@@ -16,13 +16,17 @@ const PersonalTracker = () => {
 
   const fetchNutrients = async () => {
     try {
-      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/nutrients", { withCredentials: true });
-      setNutrients(response.data.data);
+      const response = await axios.get(
+        "https://nutrient-tracker-backend-c0o9.onrender.com/nutrients",
+        { withCredentials: true }
+      );
+      setNutrients(response.data.data || { calories: 0, carbs: 0, fat: 0, protein: 0 });  // Fallback to 0
     } catch (error) {
       console.error("Error fetching nutrients:", error);
       setErrorMessage(error.response?.data?.error || "You must be logged in to view this page");
     }
   };
+  
 
   const fetchMeals = async () => {
     try {
@@ -37,15 +41,26 @@ const PersonalTracker = () => {
   const handleMealSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals", newMeal, { withCredentials: true });
+      console.log("Submitting meal:", newMeal);
+      
+      const response = await axios.post(
+        "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
+        newMeal,
+        { withCredentials: true }
+      );
+  
       setMeals(response.data.meals);
       setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
-      fetchNutrients();
+  
+      await fetchNutrients();  // Ensure this updates properly
+  
     } catch (error) {
       console.error("Error adding meal:", error);
       setErrorMessage("Failed to add meal.");
     }
   };
+  
+  
 
   const handleClearMeals = async () => {
     try {
