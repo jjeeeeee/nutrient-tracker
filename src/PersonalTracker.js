@@ -37,7 +37,7 @@ const PersonalTracker = () => {
   const handleMealSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/add--user-meals", newMeal, { withCredentials: true });
+      const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals", newMeal, { withCredentials: true });
       setMeals(response.data.meals);
       setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
     } catch (error) {
