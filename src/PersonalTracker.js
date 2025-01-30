@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./styles.css"; // Import the external CSS file
+import "./PersonalTracker.css"; // Import the external CSS file
 
 const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
