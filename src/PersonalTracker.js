@@ -1,180 +1,90 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./styles.css"; // Import the external CSS file
 
 const PersonalTracker = () => {
-  const [nutrients, setNutrients] = useState({
-    calories: 0,
-    carbs: 0,
-    fat: 0,
-    protein: 0,
-  });
-  const [goal, setGoal] = useState({
-    calories: 2000,
-    carbs: 300,
-    fat: 70,
-    protein: 150,
-  });
+  const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
+  const [goal, setGoal] = useState({ calories: 2000, carbs: 300, fat: 70, protein: 150 });
   const [errorMessage, setErrorMessage] = useState("");
-  const [meals, setMeals] = useState([]); // List of meals for the day
-  const [newMeal, setNewMeal] = useState({
-    name: "",
-    calories: 0,
-    carbs: 0,
-    fat: 0,
-    protein: 0,
-  });
+  const [meals, setMeals] = useState([]);
+  const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
 
   useEffect(() => {
-    // Fetch initial data (e.g., nutrients and meals for the day)
     const fetchNutrients = async () => {
       try {
-        const response = await axios.get(
-          "https://nutrient-tracker-backend-c0o9.onrender.com/nutrients",
-          { withCredentials: true } // Ensures cookies are included in the request
-        );
-        setNutrients(response.data.data); // Assuming backend sends nutrient totals
+        const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/nutrients", { withCredentials: true });
+        setNutrients(response.data.data);
       } catch (error) {
         console.error("Error fetching nutrients:", error);
-        setErrorMessage(
-          error.response?.data?.error || "You must be logged in to view this page"
-        );
+        setErrorMessage(error.response?.data?.error || "You must be logged in to view this page");
+      }
+    };
+
+    const fetchMeals = async () => {
+      try {
+        const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
+        setMeals(response.data.meals);
+      } catch (error) {
+        console.error("Error fetching meals:", error);
+        setErrorMessage("Failed to load meals.");
       }
     };
 
     fetchNutrients();
+    fetchMeals();
   }, []);
 
-  const handleMealSubmit = (e) => {
+  const handleMealSubmit = async (e) => {
     e.preventDefault();
-    // Add the new meal to the list
-    setMeals([...meals, newMeal]);
-
-    // Update total nutrients
-    setNutrients({
-      calories: nutrients.calories + parseInt(newMeal.calories),
-      carbs: nutrients.carbs + parseInt(newMeal.carbs),
-      fat: nutrients.fat + parseInt(newMeal.fat),
-      protein: nutrients.protein + parseInt(newMeal.protein),
-    });
-
-    // Clear the meal form
-    setNewMeal({
-      name: "",
-      calories: 0,
-      carbs: 0,
-      fat: 0,
-      protein: 0,
-    });
-  };
-
-  const calculateProgress = (current, goal) => {
-    return Math.min((current / goal) * 100, 100).toFixed(1);
+    try {
+      const response = await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/add--user-meals", newMeal, { withCredentials: true });
+      setMeals(response.data.meals);
+      setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
+    } catch (error) {
+      console.error("Error adding meal:", error);
+      setErrorMessage("Failed to add meal.");
+    }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="tracker-container">
       <h2>Nutrient Tracker</h2>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>
-          {/* Progress Bars */}
-          <div>
+          <div className="progress-container">
             <h3>Daily Progress</h3>
-            {["calories", "carbs", "fat", "protein"].map((nutrient) => (
-              <div key={nutrient} style={{ marginBottom: "10px" }}>
+            {Object.keys(nutrients).map((nutrient) => (
+              <div key={nutrient} className="progress-bar">
                 <label>
-                  {nutrient.charAt(0).toUpperCase() + nutrient.slice(1)}:{" "}
-                  {nutrients[nutrient]} / {goal[nutrient]} ({calculateProgress(nutrients[nutrient], goal[nutrient])}%)
+                  {nutrient.charAt(0).toUpperCase() + nutrient.slice(1)}: {nutrients[nutrient]} / {goal[nutrient]}
                 </label>
-                <div
-                  style={{
-                    width: "100%",
-                    backgroundColor: "#e0e0e0",
-                    borderRadius: "5px",
-                    overflow: "hidden",
-                  }}
-                >
+                <div className="progress">
                   <div
-                    style={{
-                      width: `${calculateProgress(nutrients[nutrient], goal[nutrient])}%`,
-                      backgroundColor: "#007bff",
-                      height: "20px",
-                    }}
+                    className="progress-fill"
+                    style={{ width: `${Math.min((nutrients[nutrient] / goal[nutrient]) * 100, 100)}%` }}
                   />
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Meal Input */}
-          <form onSubmit={handleMealSubmit} style={{ marginTop: "20px" }}>
+          <form onSubmit={handleMealSubmit} className="meal-form">
             <h3>Add a Meal</h3>
-            <input
-              type="text"
-              placeholder="Meal Name"
-              value={newMeal.name}
-              onChange={(e) =>
-                setNewMeal({ ...newMeal, name: e.target.value })
-              }
-              required
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-            <input
-              type="number"
-              placeholder="Calories"
-              value={newMeal.calories}
-              onChange={(e) =>
-                setNewMeal({ ...newMeal, calories: e.target.value })
-              }
-              required
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-            <input
-              type="number"
-              placeholder="Carbs (g)"
-              value={newMeal.carbs}
-              onChange={(e) =>
-                setNewMeal({ ...newMeal, carbs: e.target.value })
-              }
-              required
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-            <input
-              type="number"
-              placeholder="Fat (g)"
-              value={newMeal.fat}
-              onChange={(e) =>
-                setNewMeal({ ...newMeal, fat: e.target.value })
-              }
-              required
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-            <input
-              type="number"
-              placeholder="Protein (g)"
-              value={newMeal.protein}
-              onChange={(e) =>
-                setNewMeal({ ...newMeal, protein: e.target.value })
-              }
-              required
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-            <button type="submit" style={{ padding: "10px", width: "100%" }}>
-              Add Meal
-            </button>
+            {Object.keys(newMeal).map((key) => (
+              key !== "name" ? (
+                <input key={key} type="number" placeholder={key} value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} required />
+              ) : (
+                <input key={key} type="text" placeholder="Meal Name" value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} required />
+              )
+            ))}
+            <button type="submit">Add Meal</button>
           </form>
-
-          {/* List of Meals */}
-          <div style={{ marginTop: "20px" }}>
+          <div className="meals-list">
             <h3>Meals for the Day</h3>
             {meals.length > 0 ? (
               <ul>
                 {meals.map((meal, index) => (
-                  <li key={index}>
-                    {meal.name}: {meal.calories} cal, {meal.carbs}g carbs,{" "}
-                    {meal.fat}g fat, {meal.protein}g protein
-                  </li>
+                  <li key={index}>{meal.name}: {meal.calories} cal, {meal.carbs}g carbs, {meal.fat}g fat, {meal.protein}g protein</li>
                 ))}
               </ul>
             ) : (
