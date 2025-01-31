@@ -14,20 +14,6 @@ const PersonalTracker = () => {
     fetchMeals();
   }, []);
 
-  const fetchNutrients = async () => {
-    try {
-      const response = await axios.get(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/nutrients",
-        { withCredentials: true }
-      );
-      setNutrients(response.data.data || { calories: 0, carbs: 0, fat: 0, protein: 0 });  // Fallback to 0
-    } catch (error) {
-      console.error("Error fetching nutrients:", error);
-      setErrorMessage(error.response?.data?.error || "You must be logged in to view this page");
-    }
-  };
-  
-
   const fetchMeals = async () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
