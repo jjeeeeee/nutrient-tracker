@@ -13,6 +13,27 @@ const PersonalTracker = () => {
     fetchMeals();
   }, []);
 
+  const fetchUserGoals = async () => {
+    try {
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-goals", { withCredentials: true });
+      setGoal(response.data);
+    } catch (error) {
+      console.error("Error fetching user goals:", error);
+      setErrorMessage("Failed to load goals.");
+    }
+  };
+
+  const handleGoalSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", goal, { withCredentials: true });
+      fetchUserGoals(); // Refresh goals
+    } catch (error) {
+      console.error("Error updating goals:", error);
+      setErrorMessage("Failed to update goals.");
+    }
+  };
+
   const fetchMeals = async () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
@@ -71,15 +92,18 @@ const PersonalTracker = () => {
         <>
           <div className="goal-container">
             <h3>Set Daily Goals</h3>
-            {Object.keys(goal).map((key) => (
-              <input
-                key={key}
-                type="number"
-                value={goal[key]}
-                onChange={(e) => setGoal({ ...goal, [key]: Number(e.target.value) })}
-                placeholder={`Set ${key} goal`}
-              />
-            ))}
+            <form onSubmit={handleGoalSubmit}>
+              {Object.keys(goal).map((key) => (
+                <input
+                  key={key}
+                  type="number"
+                  value={goal[key]}
+                  onChange={(e) => setGoal({ ...goal, [key]: Number(e.target.value) })}
+                  placeholder={`Set ${key} goal`}
+                />
+              ))}
+              <button type="submit">Update Goals</button>
+            </form>
           </div>
 
           <div className="progress-container">
