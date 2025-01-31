@@ -11,6 +11,7 @@ const PersonalTracker = () => {
 
   useEffect(() => {
     fetchMeals();
+    fetchUserGoals();
   }, []);
 
   const fetchUserGoals = async () => {
