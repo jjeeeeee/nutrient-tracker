@@ -19,15 +19,14 @@ const PersonalTracker = () => {
       const fetchedMeals = response.data.meals || [];
       setMeals(fetchedMeals);
 
-      // Calculate total nutrients from fetched meals
       const totalNutrients = fetchedMeals.reduce((acc, meal) => {
         return {
-          calories: acc.calories + meal.calories,
-          carbs: acc.carbs + meal.carbs,
-          fat: acc.fat + meal.fat,
-          protein: acc.protein + meal.protein,
+          calories: acc.calories + Number(meal.calories),
+          carbs: acc.carbs + Number(meal.carbs),
+          fat: acc.fat + Number(meal.fat),
+          protein: acc.protein + Number(meal.protein),
         };
-      }, { calories: 0, carbs: 0, fat: 0, protein: 0 });
+      }, { calories: 0, carbs: 0, fat: 0, protein: 0 });      
 
       setNutrients(totalNutrients);
     } catch (error) {
