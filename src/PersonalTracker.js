@@ -38,24 +38,13 @@ const PersonalTracker = () => {
 
   const handleMealSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log("Submitting meal:", newMeal);
-  
+    try {  
       const response = await axios.post(
         "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
         newMeal,
         { withCredentials: true }
       );
-  
-      console.log("Response received:", response.data);
-  
-      if (response.data && response.data.meals) {
-        setMeals(response.data.meals);
-      } else {
-        console.warn("Unexpected response format:", response.data);
-        setErrorMessage("Unexpected response from server.");
-      }
-  
+
       setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
       fetchMeals(); // Refresh meals and nutrients
     } catch (error) {
