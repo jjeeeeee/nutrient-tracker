@@ -4,9 +4,11 @@ import "./PersonalTracker.css";
 
 const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
-  const [goal, setGoal] = useState({ calories: 2000, carbs: 300, fat: 70, protein: 150 });
+  const [goal, setGoal] = useState({ calories: 1, carbs: 1, fat: 1, protein: 1 });
   const [errorMessage, setErrorMessage] = useState("");
   const [meals, setMeals] = useState([]);
+  const [storedMeals, setStoredMeals] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState("");
   const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
 
   useEffect(() => {
