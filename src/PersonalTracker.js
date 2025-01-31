@@ -10,14 +10,26 @@ const PersonalTracker = () => {
   const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
 
   useEffect(() => {
-    fetchNutrients();
     fetchMeals();
   }, []);
 
   const fetchMeals = async () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
-      setMeals(response.data.meals);
+      const fetchedMeals = response.data.meals || [];
+      setMeals(fetchedMeals);
+
+      // Calculate total nutrients from fetched meals
+      const totalNutrients = fetchedMeals.reduce((acc, meal) => {
+        return {
+          calories: acc.calories + meal.calories,
+          carbs: acc.carbs + meal.carbs,
+          fat: acc.fat + meal.fat,
+          protein: acc.protein + meal.protein,
+        };
+      }, { calories: 0, carbs: 0, fat: 0, protein: 0 });
+
+      setNutrients(totalNutrients);
     } catch (error) {
       console.error("Error fetching meals:", error);
       setErrorMessage("Failed to load meals.");
@@ -45,8 +57,7 @@ const PersonalTracker = () => {
       }
   
       setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
-  
-      await fetchNutrients(); // Update nutrients after adding a meal
+      fetchMeals(); // Refresh meals and nutrients
     } catch (error) {
       console.error("Error adding meal:", error);
       setErrorMessage(error.response?.data?.error || "Failed to add meal.");
