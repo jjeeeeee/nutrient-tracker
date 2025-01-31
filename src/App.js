@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import axios from "axios";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
 import Foods from "./Foods"; // Food display
@@ -12,6 +13,7 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null); // Reference to the menu
   const navbarRef = useRef(null); // Reference to the entire navbar
+  const [user, setUser] = useState(null);
 
   // Toggle the menu open/close
   const toggleMenu = () => {
