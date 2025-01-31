@@ -20,6 +20,7 @@ const App = () => {
 
   // Close the menu if a click happens outside the navbar
   useEffect(() => {
+    fetchUser();
     const handleClickOutside = (event) => {
       if (
         navbarRef.current &&
@@ -38,6 +39,24 @@ const App = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [isMenuOpen]);
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true });
+      setUser(response.data.username);
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/logout", {}, { withCredentials: true });
+      setUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <Router>
@@ -69,9 +88,16 @@ const App = () => {
           <Link to="meals" onClick={() => setIsMenuOpen(false)}>
             Meals
           </Link>
+          {user ? (
+          <>
+            <span>{user}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
           <Link to="login" onClick={() => setIsMenuOpen(false)}>
             Login
           </Link>
+        )}
         </div>
       </div>
 
