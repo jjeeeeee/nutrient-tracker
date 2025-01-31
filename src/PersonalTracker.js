@@ -12,6 +12,7 @@ const PersonalTracker = () => {
   useEffect(() => {
     fetchMeals();
     fetchUserGoals();
+    fetchStoredMeals();
   }, []);
 
   const fetchUserGoals = async () => {
@@ -57,6 +58,15 @@ const PersonalTracker = () => {
     }
   };
 
+  const fetchStoredMeals = async () => {
+    try {
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/meals");
+      setStoredMeals(response.data);
+    } catch (error) {
+      console.error("Error fetching stored meals:", error);
+    }
+  };
+
   const handleMealSubmit = async (e) => {
     e.preventDefault();
     try {  
@@ -73,6 +83,21 @@ const PersonalTracker = () => {
       setErrorMessage(error.response?.data?.error || "Failed to add meal.");
     }
   };  
+
+  const handleSelectMeal = (e) => {
+    const mealName = e.target.value;
+    setSelectedMeal(mealName);
+    const meal = storedMeals.find((m) => m.name === mealName);
+    if (meal) {
+      setNewMeal({
+        name: meal.name,
+        calories: meal.calories,
+        carbs: meal.carbs,
+        fat: meal.fat,
+        protein: meal.protein,
+      });
+    }
+  };
 
   const handleClearMeals = async () => {
     try {
@@ -126,6 +151,12 @@ const PersonalTracker = () => {
 
           <form onSubmit={handleMealSubmit} className="meal-form">
             <h3>Add a Meal</h3>
+            <select value={selectedMeal} onChange={handleSelectMeal}>
+              <option value="">Select a stored meal</option>
+              {storedMeals.map((meal) => (
+                <option key={meal.name} value={meal.name}>{meal.name}</option>
+              ))}
+            </select>
             {Object.keys(newMeal).map((key) => (
               key !== "name" ? (
                 <input key={key} type="number" placeholder={key} value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} required />
