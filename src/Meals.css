@@ -33,14 +33,10 @@ h1 {
 .meal-item {
   background-color: var(--card-bg);
   margin-bottom: 15px;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px var(--shadow);
   transition: transform 0.2s ease-in-out;
-}
-
-.meal-item:hover {
-  transform: translateY(-2px);
 }
 
 .meal-item h2 {
