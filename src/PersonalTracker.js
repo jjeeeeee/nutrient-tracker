@@ -146,6 +146,22 @@ const PersonalTracker = () => {
             ))}
           </div>
 
+          <div className="meals-list">
+            <h3>Meals for the Day</h3>
+            {meals.length > 0 ? (
+              <>
+                <ul>
+                  {meals.map((meal, index) => (
+                    <li key={index}>{meal.name}: {meal.calories} cal, {meal.carbs}g carbs, {meal.fat}g fat, {meal.protein}g protein</li>
+                  ))}
+                </ul>
+                <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
+              </>
+            ) : (
+              <p>No meals added yet.</p>
+            )}
+          </div>
+
           <form onSubmit={handleMealSubmit} className="meal-form">
             <h3>Add a Meal</h3>
             <select value={selectedMeal} onChange={handleSelectMeal}>
@@ -163,22 +179,6 @@ const PersonalTracker = () => {
             ))}
             <button type="submit">Add Meal</button>
           </form>
-
-          <div className="meals-list">
-            <h3>Meals for the Day</h3>
-            {meals.length > 0 ? (
-              <>
-                <ul>
-                  {meals.map((meal, index) => (
-                    <li key={index}>{meal.name}: {meal.calories} cal, {meal.carbs}g carbs, {meal.fat}g fat, {meal.protein}g protein</li>
-                  ))}
-                </ul>
-                <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
-              </>
-            ) : (
-              <p>No meals added yet.</p>
-            )}
-          </div>
 
           <div className="goal-container">
             <h3>Set Daily Goals</h3>

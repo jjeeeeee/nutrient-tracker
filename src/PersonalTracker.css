@@ -1,5 +1,6 @@
 :root {
   --progress-color: #00D4FF;
+  --clear-button: #E63946;
 }
 
 .container {
@@ -77,12 +78,12 @@ li {
 }
 
 .clear-button {
-  margin-top: 10px;
-  background: red;
+  background: var(--clear-button);
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
+  width: 100%;
 }
 
 .goal-container {
