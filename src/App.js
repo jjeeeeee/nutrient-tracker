@@ -46,6 +46,7 @@ const App = () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true });
       setUser(response.data.username);
+      console.log(response.data.username);
     } catch (error) {
       setUser(null);
     }
@@ -91,15 +92,15 @@ const App = () => {
             Meals
           </Link>
           {user ? (
-          <>
-            <span>{user}</span>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          <Link to="login" onClick={() => setIsMenuOpen(false)}>
-            Login
-          </Link>
-        )}
+            <>
+              <span>{user}</span>
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
+            <Link to="login" onClick={() => setIsMenuOpen(false)}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
 
