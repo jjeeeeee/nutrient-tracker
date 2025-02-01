@@ -32,12 +32,7 @@ const PersonalTracker = () => {
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
 
-    setGoal({
-      calories: Number(tempGoal.calories),
-      carbs: Number(tempGoal.carbs),
-      fats: Number(tempGoal.fats),
-      protein: Number(tempGoal.protein),
-    });
+    setGoal(tempGoal);
 
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", goal, { withCredentials: true });
