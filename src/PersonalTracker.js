@@ -152,7 +152,12 @@ const PersonalTracker = () => {
               <>
                 <ul>
                   {meals.map((meal, index) => (
-                    <li key={index}>{meal.name}: {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fats, {meal.protein}g Proteins</li>
+                    <li key={index}>
+                      <span className="meal-name">{meal.name}</span>
+                      <span className="nutrient-info">
+                        {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fats, {meal.protein}g Proteins
+                      </span>
+                    </li>
                   ))}
                 </ul>
                 <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
