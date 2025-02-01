@@ -4,12 +4,14 @@ import "./PersonalTracker.css";
 
 const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
+  const [tempGoal, setTempGoal] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0});
   const [goal, setGoal] = useState({ calories: 1, carbs: 1, fat: 1, protein: 1 });
   const [errorMessage, setErrorMessage] = useState("");
   const [meals, setMeals] = useState([]);
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
   const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
+  const placeholders = ['Calories (kcal)', 'Carbs (g)', 'Fats (g)', 'Protein (g)'];
 
   useEffect(() => {
     fetchMeals();
@@ -29,6 +31,14 @@ const PersonalTracker = () => {
 
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
+
+    setGoal({
+      calories: Number(tempGoal.calories),
+      carbs: Number(tempGoal.carbs),
+      fats: Number(tempGoal.fats),
+      protein: Number(tempGoal.protein),
+    });
+
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", goal, { withCredentials: true });
       fetchUserGoals(); // Refresh goals
@@ -121,12 +131,12 @@ const PersonalTracker = () => {
           <div className="goal-container">
             <h3>Set Daily Goals</h3>
             <form onSubmit={handleGoalSubmit}>
-              {Object.keys(goal).map((key) => (
+              {Object.keys(goal).map((key, index) => (
                 <input
                   key={key}
                   type="number"
-                  onChange={(e) => setGoal({ ...goal, [key]: Number(e.target.value) })}
-                  placeholder={`${key} Goal`}
+                  onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
+                  placeholder={placeholders[index]}
                 />
               ))}
               <button type="submit">Update Goals</button>

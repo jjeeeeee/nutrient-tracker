@@ -109,7 +109,7 @@ const AddFoodForm = () => {
         />
         <input
           type="number"
-          placeholder="Calories"
+          placeholder="Calories (kcal)"
           value={calories}
           onChange={(e) => setCalories(e.target.value)}
           required
