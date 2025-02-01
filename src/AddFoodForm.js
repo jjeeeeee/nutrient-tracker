@@ -12,6 +12,29 @@ const AddFoodForm = () => {
   const [protein, setProtein] = useState("");
   const [notification, setNotification] = useState(null); // For notifications
 
+  useEffect(() => {
+    // Fetch the logged-in user
+    axios
+      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+      .then((response) => {
+        setUsername(response.data.username); 
+      })
+      .catch(() => {
+        setUsername(null); // Ensure unauthorized users are blocked
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (username !== "Jason") {
+    return <p>Access Denied</p>;
+  }
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
