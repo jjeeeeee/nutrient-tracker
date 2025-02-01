@@ -46,7 +46,6 @@ const App = () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true });
       setUser(response.data.username);
-      console.log(response.data.username);
     } catch (error) {
       setUser(null);
     }
@@ -56,6 +55,7 @@ const App = () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/logout", {}, { withCredentials: true });
       setUser(null);
+      window.location.reload(); // Force page refresh
     } catch (error) {
       console.error("Logout failed:", error);
     }
