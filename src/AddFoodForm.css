@@ -1,13 +1,31 @@
+/* Define global color variables */
+:root {
+  --primary-bg: #FFFFFF;
+  --primary-text: #2C2C2C;
+  --navbar-bg: #1B263B;
+  --navbar-text: #D6D6D6;
+  --accent-color: #00A8E8;
+  --highlight-color: #00D4FF;
+  --button-bg: #FFFFFF;
+  --button-text: #1B263B;
+  --button-hover-bg: #00A8E8;
+  --button-hover-text: #FFFFFF;
+  --input-border: #ccc;
+  --input-focus-border: #00A8E8;
+  --success-bg: #4CAF50;
+  --error-bg: #f44336;
+}
+
 /* Container for the form */
 .add-food-form-container {
   width: 80%;
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ddd;
-  background-color: #fff;
+  border: 2px solid var(--navbar-bg);
+  background-color: var(--primary-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Form Title */
@@ -15,7 +33,7 @@
   text-align: center;
   margin-bottom: 30px;
   font-size: 24px;
-  color: #000000;
+  color: var(--primary-text);
 }
 
 /* Form Inputs */
@@ -24,33 +42,35 @@
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid var(--input-border);
   font-size: 16px;
-  box-sizing: border-box; /* Ensure inputs take full width */
+  box-sizing: border-box;
 }
 
 .add-food-form-container form input:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 5px rgba(0, 168, 232, 0.5);
 }
 
 /* Submit Button */
 .add-food-form-container form button {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-text);
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
 }
 
 .add-food-form-container form button:hover {
-  background-color: #45a049;
+  background-color: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
 /* Notification Styles */
@@ -60,15 +80,14 @@
   padding: 15px;
   border-radius: 5px;
   font-size: 16px;
-  display: none;
 }
 
 .notification.success {
-  background-color: #4CAF50;
+  background-color: var(--success-bg);
   color: white;
 }
 
 .notification.error {
-  background-color: #f44336;
+  background-color: var(--error-bg);
   color: white;
 }
