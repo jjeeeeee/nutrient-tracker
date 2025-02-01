@@ -180,7 +180,7 @@
   margin-bottom: 20px;
 }
 
-.meal-item {
+.meal-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -189,13 +189,13 @@
   gap: 10px;
 }
 
-.meal-item span {
+.meal-list-item span {
   flex: 2;
   font-weight: bold;
   text-align: left;
 }
 
-.meal-item input {
+.meal-list-item input {
   width: 60px;
   padding: 5px;
   border: 1px solid #ccc;
@@ -203,7 +203,7 @@
   text-align: right;
 }
 
-.meal-item button {
+.meal-list-item button {
   background-color: #f44336;
   color: white;
   border: none;
@@ -212,7 +212,7 @@
   cursor: pointer;
 }
 
-.meal-item button:hover {
+.meal-list-item button:hover {
   background-color: #e53935;
 }
 

@@ -18,7 +18,7 @@ const Meals = () => {
       <h1>Saved Meals</h1>
       <div className="meal-list">
         {meals.length === 0 ? (
-          <p>No meals saved yet. Add some in the Meal Builder!</p>
+          <p>No meals saved yet.</p>
         ) : (
           meals.map((meal) => (
             <div key={meal.id} className="meal-item">

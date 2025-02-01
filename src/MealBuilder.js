@@ -260,7 +260,7 @@ const saveMeal = async () => {
 
         <div className="meal-list">
           {meal.map((item, index) => (
-            <div key={index} className="meal-item">
+            <div key={index} className="meal-list-item">
               <span>{item.name}</span>
               <input
                 type="number"
