@@ -80,10 +80,10 @@ const App = () => {
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
           </Link>
-          <Link to="/tracker" onClick={() => setIsMenuOpen(false)}>
+          <Link to="tracker" onClick={() => setIsMenuOpen(false)}>
             Personal Tracker
           </Link>
-          <Link to="/add-food" onClick={() => setIsMenuOpen(false)}>
+          <Link to="addFood" onClick={() => setIsMenuOpen(false)}>
             Add Food
           </Link>
           <Link to="foods" onClick={() => setIsMenuOpen(false)}>
@@ -94,13 +94,13 @@ const App = () => {
           </Link>
           {user ? (
             <>
-              <span>{user}</span>
-              <Link to="" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
+              <span id="username">{user}</span>
+              <Link to="" id="actionButton" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
                 Logout
               </Link>
             </>
           ) : (
-            <Link to="login" onClick={() => setIsMenuOpen(false)}>
+            <Link to="login" id="actionButton" onClick={() => setIsMenuOpen(false)}>
               Login
             </Link>
           )}
@@ -111,7 +111,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MealBuilder />} />
         <Route path="tracker" element={<PersonalTracker />} />
-        <Route path="add-food" element={<AddFoodForm />} />
+        <Route path="addFood" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
         <Route path="login" element={<Login />} />

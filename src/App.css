@@ -73,6 +73,28 @@ h2 {
   color: #FFFFFF;
 }
 
+#username {
+  text-decoration: underline;
+  color: #D6D6D6;
+}
+
+#actionButton {
+  background-color: #FFFFFF;
+  color: #1B263B;
+  border: 2px solid #1B263B;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#actionButton:hover {
+  background-color: #00A8E8;
+  color: #FFFFFF;
+}
+
 .burger-menu {
   display: none;
 }
