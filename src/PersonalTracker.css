@@ -50,17 +50,6 @@ li {
   border-radius: 4px;
 }
 
-.tracker-container {
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
-
-.goal-container input {
-  width: 100px;
-  margin: 5px;
-}
-
 .progress-container {
   margin-top: 20px;
 }
@@ -90,4 +79,72 @@ li {
   border: none;
   padding: 10px;
   cursor: pointer;
+}
+
+
+.goal-container {
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  text-align: center;
+}
+
+.goal-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.goal-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.goal-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.goal-container input::placeholder {
+  color: #888;
+}
+
+.goal-container button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.goal-container button:hover {
+  background-color: #1e88e5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .goal-container {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  .goal-container input,
+  .goal-container button {
+    width: 100%; /* Full width on smaller screens */
+  }
 }

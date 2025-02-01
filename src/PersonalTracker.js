@@ -113,7 +113,7 @@ const PersonalTracker = () => {
   };
 
   return (
-    <div className="tracker-container">
+    <div className="app-container">
       <h2>Nutrient Tracker</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
