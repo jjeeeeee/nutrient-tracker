@@ -73,9 +73,9 @@ h2 {
   color: #FFFFFF;
 }
 
-#username {
-  text-decoration: underline;
-  color: #D6D6D6;
+#usernameNavBar {
+  border-bottom: 1px solid #D6D6D6;
+  color: #00A8E8;
 }
 
 #actionButton {

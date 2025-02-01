@@ -94,7 +94,7 @@ const App = () => {
           </Link>
           {user ? (
             <>
-              <span id="username">{user}</span>
+              <span id="usernameNavbar">{user}</span>
               <Link to="" id="actionButton" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
                 Logout
               </Link>
