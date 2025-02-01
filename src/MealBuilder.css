@@ -1,66 +1,29 @@
-/* General Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #fafafa;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.app-container {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-h1 {
-  text-align: center;
-  color: #2196f3;
-  margin-bottom: 20px;
-}
-
-h2 {
-  color: #333;
-}
-
-/* Meal Builder Section */
 .meal-builder {
   margin-bottom: 30px;
 }
 
-.import-meal,
-.add-ingredient {
+.import-meal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
-.import-meal select,
-.add-ingredient select,
-.add-ingredient input {
+.import-meal select {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   flex: 1;
   min-width: 120px;
+  max-width: 40%;
   box-sizing: border-box;
+  max-height: 250px;
+  overflow-y: auto;
 }
 
-.import-meal button,
-.add-ingredient button,
-.divide-button,
-.save-meal-button,
-.clear-all-button {
+.import-meal button {
   background-color: #2196f3;
   color: white;
   border: none;
@@ -68,15 +31,149 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   flex: 0 0 auto;
-  min-width: 80px;
+  min-width: 50px;
+  box-sizing: border-box;
 }
 
-.import-meal button:hover,
-.add-ingredient button:hover,
-.divide-button:hover,
-.save-meal-button:hover,
-.clear-all-button:hover {
+.import-meal button:hover {
   background-color: #1e88e5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .import-meal {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 15px; /* Increase spacing for stacked items */
+  }
+
+  .import-meal select {
+    flex: none;
+    width: 100%;
+    max-width: none;
+  }
+
+  .import-meal button {
+    align-self: stretch; /* Button fills the width if needed */
+    width: 100%;
+  }
+}
+
+.add-ingredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+
+.add-ingredient input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1; /* Flex-grow: share remaining space */
+  min-width: 120px; /* Prevents elements from shrinking too small */
+  max-width: 40%; /* Limits their maximum width */
+  box-sizing: border-box; /* Ensures padding is included in width calculations */
+}
+
+.add-ingredient select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1; /* Flex-grow: share remaining space */
+  min-width: 120px; /* Prevents elements from shrinking too small */
+  max-width: 40%; /* Limits their maximum width */
+  box-sizing: border-box; /* Ensures padding is included in width calculations */
+
+  max-height: 250px; /* Adjust to your desired maximum height */
+  overflow-y: auto; /* Enable scrolling for overflowing content */
+}
+
+.add-ingredient button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 0 0 auto; /* Keeps the button width fixed */
+  min-width: 50px; /* Sets a minimum button width */
+  box-sizing: border-box; /* Ensures padding is included */
+}
+
+.add-ingredient button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .add-ingredient {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 15px; /* Increase spacing for stacked items */
+  }
+
+  .add-ingredient select,
+  .add-ingredient input {
+    flex: none; /* Prevents flex behavior */
+    width: 100%; /* Make them take the full width */
+    max-width: none; /* Remove the max-width restriction */
+  }
+
+  .add-ingredient button {
+    align-self: stretch; /* Button fills the width if needed */
+    width: 100%; /* Ensure button takes full width */
+  }
+}
+
+.amount-input {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Vertically center the items */
+  gap: 10px; /* Add space between elements */
+}
+
+.amount-input input {
+  flex: 1; /* Allow the input to grow and shrink as needed */
+  min-width: 80px; /* Set a minimum width for the input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.amount-input .measurement-unit {
+  white-space: nowrap; /* Prevent the text from wrapping */
+  font-style: italic; /* Optional: Add style to the unit text */
+  color: #555; /* Optional: Add color for better visibility */
+}
+
+.amount-input button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+.amount-input button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .amount-input {
+    flex-wrap: nowrap; /* Prevent wrapping even on smaller screens */
+  }
+
+  .amount-input input {
+    min-width: 60px; /* Adjust the minimum width for smaller screens */
+  }
+
+  .amount-input button {
+    padding: 6px 10px; /* Adjust button padding for smaller screens */
+  }
 }
 
 .meal-list {
@@ -89,6 +186,13 @@ h2 {
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
+  gap: 10px;
+}
+
+.meal-list-item span {
+  flex: 2;
+  font-weight: bold;
+  text-align: left;
 }
 
 .meal-list-item input {
@@ -112,12 +216,52 @@ h2 {
   background-color: #e53935;
 }
 
-/* Portion Control */
+.calculate-button {
+  width: 100%;
+  margin-top: 1em;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.calculate-button:hover {
+  background-color: #45a049;
+}
+
+.save-meal-button {
+  width: 100%;
+  margin-top: 1em;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-meal-button:hover {
+  background-color: #1e88e5;
+}
+
+.total-nutrients {
+  text-align: center;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .portion-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  margin-top: 20px;
+  gap: 10px;
 }
 
 .portion-controls input {
@@ -140,7 +284,6 @@ h2 {
   background-color: #1e88e5;
 }
 
-/* Error Message */
 .error-message {
   color: red;
   font-size: 14px;
@@ -148,53 +291,18 @@ h2 {
   text-align: center;
 }
 
-/* Total Nutrients */
-.total-nutrients {
-  text-align: center;
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.total-nutrients p {
-  margin: 5px 0;
-}
-
-/* Buttons for Save and Clear */
-.save-meal-button {
-  background-color: #2196f3;
-}
-
-.save-meal-button:hover {
-  background-color: #1e88e5;
-}
-
 .clear-all-button {
+  width: 100%;
+  margin-top: 1em;
   background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .clear-all-button:hover {
   background-color: #e53935;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .meal-builder {
-    flex-direction: column;
-  }
-
-  .meal-builder > * {
-    width: 100%;
-  }
-
-  .import-meal,
-  .add-ingredient {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .meal-list-item input {
-    width: 50px;
-  }
 }
