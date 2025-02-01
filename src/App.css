@@ -2,8 +2,8 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #FFFFFF;
+  color: #2C2C2C;
 }
 
 .app-container {
@@ -26,53 +26,63 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
-  padding: 10px;
-  color: white;
+  background-color: #1B263B;
+  padding: 10px 20px;
+  color: #D6D6D6;
   position: relative;
   z-index: 1;
 }
 
-/* Style the burger icon */
-.burger-menu {
-  font-size: 30px;
-  cursor: pointer;
-  display: none; /* Hidden by default (on larger screens) */
-}
-
-/* Style the X icon */
-.close-icon {
-  font-size: 30px;
-  cursor: pointer;
-  display: block;
-}
-
-/* Menu links are hidden by default */
-.menu-links {
-  display: flex;
-  gap: 20px;
-  margin-right: 2em;
-}
-
-/* Navbar links */
-.menu-links a {
-  color: white;
+.navbar .home-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00A8E8;
   text-decoration: none;
 }
 
-.menu-links a:hover {
-  color: #f4f4f4;
+.menu-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* For mobile screens */
+.menu-links a {
+  color: #D6D6D6;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+.menu-links a:hover {
+  color: #00D4FF;
+}
+
+.menu-links .auth-button {
+  background-color: #FFFFFF;
+  color: #1B263B;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-links .auth-button:hover {
+  background-color: #00A8E8;
+  color: #FFFFFF;
+}
+
+.burger-menu {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  /* Show the burger icon only on small screens */
   .burger-menu {
     display: block;
     font-size: 30px;
   }
 
-  /* Menu links should be hidden by default on mobile */
   .menu-links {
     display: none;
     position: absolute;
@@ -80,20 +90,19 @@ h2 {
     top: 3em;
     left: 0;
     right: 0;
-    background-color: #000000;
+    background-color: #1B263B;
     flex-direction: column;
     padding: 10px;
     z-index: 2;
   }
 
-  /* Show menu when it has 'open' class */
   .menu-links.open {
     display: flex;
   }
 
   .menu-links a {
     padding: 10px 20px;
-    border-bottom: 1px solid #737171;
+    border-bottom: 1px solid #D6D6D6;
   }
 
   .menu-links a:last-child {
