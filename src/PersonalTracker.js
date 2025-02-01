@@ -35,6 +35,9 @@ const PersonalTracker = () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", tempGoal, { withCredentials: true });
       fetchUserGoals(); // Refresh goals
+
+      // Clear the form inputs 
+      setTempGoal({ calories: "", carbs: "", fats: "", protein: "" }); 
     } catch (error) {
       console.error("Error updating goals:", error);
       setErrorMessage("Failed to update goals.");
@@ -126,7 +129,9 @@ const PersonalTracker = () => {
             <form onSubmit={handleGoalSubmit}>
               {Object.keys(tempGoal).map((key, index) => (
                 <input
+                  key={key}
                   type="number"
+                  value={tempGoal[key]} // Bind the value to state
                   onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
                   placeholder={placeholders[index]}
                 />
