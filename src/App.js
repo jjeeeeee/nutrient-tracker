@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
