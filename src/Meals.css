@@ -63,32 +63,6 @@ h1 {
   color: var(--highlight);
 }
 
-.meal-ingredients ul {
-  margin-bottom: 20px;
-}
-
-.meal-ingredients li {
-  font-size: 16px;
-  color: #4CAF50; /* Green for ingredients */
-}
-
-.meal-ingredients strong {
-  color: #388E3C; /* Darker green for ingredient names */
-}
-
-.meal-nutrients ul {
-  margin-top: 10px;
-}
-
-.meal-nutrients li {
-  font-size: 16px;
-  color: #FF5722; /* Orange for nutrients */
-}
-
-.meal-nutrients strong {
-  color: #D32F2F; /* Darker red for nutrient labels */
-}
-
 p {
   text-align: center;
   color: var(--secondary-text);
