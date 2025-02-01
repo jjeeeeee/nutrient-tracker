@@ -64,9 +64,8 @@ h1 {
 }
 
 .listed-meal-ingredient {
-  padding: 50px;
+  padding: 10px;
   border: 2px solid var(--navbar-bg);
-  border-radius: 8px;
 }
 
 p {
