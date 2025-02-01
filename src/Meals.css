@@ -1,39 +1,99 @@
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f0f4f8;
+  --card-bg: #f9f9f9;
+  --primary-text: #2c2c2c;
+  --secondary-text: #999;
+  --accent: #00A8E8;
+  --highlight: #1B263B;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
 .app-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--primary-bg);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow);
   font-family: Arial, sans-serif;
 }
 
 h1 {
   text-align: center;
-  color: #333;
+  color: var(--highlight);
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .meal-list {
   margin-top: 20px;
 }
 
-.meal-item-display {
-  background-color: #f9f9f9;
+.meal-item {
+  background-color: var(--card-bg);
   margin-bottom: 15px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow);
+  transition: transform 0.2s ease-in-out;
 }
 
-.meal-item-display h2 {
+.meal-item:hover {
+  transform: translateY(-2px);
+}
+
+.meal-item h2 {
   font-size: 18px;
   font-weight: bold;
   display: block;
   margin-bottom: 10px;
-  color: #4caf50;
+  color: var(--accent);
+}
+
+.meal-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-item li {
+  font-size: 16px;
+  color: var(--primary-text);
+  margin-bottom: 5px;
+}
+
+.meal-item li strong {
+  color: var(--highlight);
+}
+
+.meal-ingredients ul {
+  margin-bottom: 20px;
+}
+
+.meal-ingredients li {
+  font-size: 16px;
+  color: #4CAF50; /* Green for ingredients */
+}
+
+.meal-ingredients strong {
+  color: #388E3C; /* Darker green for ingredient names */
+}
+
+.meal-nutrients ul {
+  margin-top: 10px;
+}
+
+.meal-nutrients li {
+  font-size: 16px;
+  color: #FF5722; /* Orange for nutrients */
+}
+
+.meal-nutrients strong {
+  color: #D32F2F; /* Darker red for nutrient labels */
 }
 
 p {
   text-align: center;
-  color: #999;
+  color: var(--secondary-text);
 }
