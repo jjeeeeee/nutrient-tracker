@@ -95,7 +95,9 @@ const App = () => {
           {user ? (
             <>
               <span>{user}</span>
-              <button onClick={handleLogout}>Logout</button>
+              <Link to="" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
+                Logout
+              </Link>
             </>
           ) : (
             <Link to="login" onClick={() => setIsMenuOpen(false)}>
