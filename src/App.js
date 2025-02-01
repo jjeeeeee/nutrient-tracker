@@ -56,7 +56,7 @@ const App = () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/logout", {}, { withCredentials: true });
       setUser(null);
-      window.location.href = "/MealBuilder";
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);
     }
