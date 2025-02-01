@@ -31,12 +31,9 @@ const PersonalTracker = () => {
 
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
-    setGoal(tempGoal);
-    console.log(goal);
-    console.log(tempGoal);
 
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", goal, { withCredentials: true });
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", tempGoal, { withCredentials: true });
       fetchUserGoals(); // Refresh goals
     } catch (error) {
       console.error("Error updating goals:", error);
