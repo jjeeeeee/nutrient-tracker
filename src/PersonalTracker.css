@@ -1,15 +1,7 @@
 :root {
   --progress-color: #00D4FF;
   --clear-button: #E63946;
-}
-
-.container {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  --inner-border: #2A3A57;
 }
 
 h2, h3 {
@@ -56,7 +48,10 @@ li {
 }
 
 .progress-container {
+  padding: 0 20px 10px;
   margin-top: 20px;
+  border: 2px solid #2A3A57;
+  border-radius: 5px;
 }
 
 .progress-bar {
@@ -77,6 +72,13 @@ li {
   transition: width 0.3s ease-in-out;
 }
 
+.meals-list {
+  padding: 0 20px 10px;
+  margin-top: 20px;
+  border: 2px solid #2A3A57;
+  border-radius: 5px;
+}
+
 .clear-button {
   background: var(--clear-button);
   color: white;
@@ -92,8 +94,8 @@ li {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
   text-align: center;
+  border: 2px solid var(--inner-border);
 }
 
 .goal-container form {
@@ -108,7 +110,6 @@ li {
   border-radius: 4px;
   font-size: 16px;
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -126,7 +127,6 @@ li {
   cursor: pointer;
   font-size: 16px;
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -138,8 +138,7 @@ li {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .goal-container {
-    padding: 15px;
-    max-width: 90%;
+    padding: 20px;
   }
 
   .goal-container input,
