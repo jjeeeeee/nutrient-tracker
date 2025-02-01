@@ -11,6 +11,8 @@ const AddFoodForm = () => {
   const [fat, setFat] = useState("");
   const [protein, setProtein] = useState("");
   const [notification, setNotification] = useState(null); // For notifications
+  const [username, setUsername] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch the logged-in user
