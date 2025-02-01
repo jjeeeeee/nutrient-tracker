@@ -79,13 +79,56 @@ li {
   border-radius: 5px;
 }
 
+.meals-list {
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid var(--inner-border);
+}
+
+.meals-list h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #2A3A57;
+}
+
+.meals-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.meals-list li {
+  background: #e3e3e3;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .clear-button {
   background: var(--clear-button);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
   width: 100%;
+  margin-top: 15px;
+}
+
+.clear-button:hover {
+  background: #d62839;
 }
 
 .goal-container {
@@ -133,16 +176,4 @@ li {
 
 .goal-container button:hover {
   background-color: #1e88e5;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .goal-container {
-    padding: 20px;
-  }
-
-  .goal-container input,
-  .goal-container button {
-    width: 100%; /* Full width on smaller screens */
-  }
 }
