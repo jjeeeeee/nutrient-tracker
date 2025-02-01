@@ -1,3 +1,7 @@
+:root {
+  --progress-color: #00D4FF;
+}
+
 .container {
   max-width: 500px;
   margin: 20px auto;
@@ -68,7 +72,7 @@ li {
 
 .progress-fill {
   height: 100%;
-  background: green;
+  background: var(--progress-color);
   transition: width 0.3s ease-in-out;
 }
 
@@ -81,7 +85,6 @@ li {
   cursor: pointer;
 }
 
-
 .goal-container {
   margin: 30px auto;
   padding: 20px;
@@ -90,11 +93,6 @@ li {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   text-align: center;
-}
-
-.goal-container h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
 }
 
 .goal-container form {

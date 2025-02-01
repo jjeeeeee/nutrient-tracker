@@ -129,22 +129,6 @@ const PersonalTracker = () => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>
-          <div className="goal-container">
-            <h3>Set Daily Goals</h3>
-            <form onSubmit={handleGoalSubmit}>
-              {Object.keys(tempGoal).map((key, index) => (
-                <input
-                  key={key}
-                  type="number"
-                  value={tempGoal[key]} // Bind the value to state
-                  onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
-                  placeholder={placeholders[index]}
-                />
-              ))}
-              <button type="submit">Update Goals</button>
-            </form>
-          </div>
-
           <div className="progress-container">
             <h3>Daily Progress</h3>
             {Object.keys(nutrients).map((nutrient) => (
@@ -194,6 +178,22 @@ const PersonalTracker = () => {
             ) : (
               <p>No meals added yet.</p>
             )}
+          </div>
+
+          <div className="goal-container">
+            <h3>Set Daily Goals</h3>
+            <form onSubmit={handleGoalSubmit}>
+              {Object.keys(tempGoal).map((key, index) => (
+                <input
+                  key={key}
+                  type="number"
+                  value={tempGoal[key]} // Bind the value to state
+                  onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
+                  placeholder={placeholders[index]}
+                />
+              ))}
+              <button type="submit">Update Goals</button>
+            </form>
           </div>
         </>
       )}
