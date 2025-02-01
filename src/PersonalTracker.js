@@ -4,7 +4,7 @@ import "./PersonalTracker.css";
 
 const PersonalTracker = () => {
   const [nutrients, setNutrients] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0 });
-  const [tempGoal, setTempGoal] = useState({ calories: 0, carbs: 0, fat: 0, protein: 0});
+  const [tempGoal, setTempGoal] = useState({ calories: "", carbs: "", fat: "", protein: ""});
   const [goal, setGoal] = useState({ calories: 1, carbs: 1, fat: 1, protein: 1 });
   const [errorMessage, setErrorMessage] = useState("");
   const [meals, setMeals] = useState([]);
@@ -32,8 +32,13 @@ const PersonalTracker = () => {
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
 
+    // Convert tempGoal values to numbers before updating goal
+    const numericGoal = Object.fromEntries(
+      Object.entries(tempGoal).map(([key, value]) => [key, Number(value) || 0]) // Convert to number, default to 0 if empty
+    );
+
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", tempGoal, { withCredentials: true });
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", numericGoal, { withCredentials: true });
       fetchUserGoals(); // Refresh goals
 
       // Clear the form inputs 
