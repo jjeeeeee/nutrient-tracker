@@ -125,9 +125,8 @@ const PersonalTracker = () => {
                 <input
                   key={key}
                   type="number"
-                  value={goal[key]}
                   onChange={(e) => setGoal({ ...goal, [key]: Number(e.target.value) })}
-                  placeholder={`Set ${key} goal`}
+                  placeholder={`${key} Goal`}
                 />
               ))}
               <button type="submit">Update Goals</button>
