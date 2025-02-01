@@ -28,6 +28,7 @@ const Login = () => {
 
       // Redirect to tracker page
       navigate("/../tracker");
+      window.location.reload();
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage(
