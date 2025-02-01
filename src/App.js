@@ -6,6 +6,7 @@ import MealBuilder from "./MealBuilder"; // Meal Builder
 import Foods from "./Foods"; // Food display
 import Meals from "./Meals"; // Meal display
 import Login from "./Login"; // Login display
+import Register from "./Register";
 import PersonalTracker from "./PersonalTracker"; // Personal Tracker display
 import "./App.css"; // Import your styles
 
@@ -108,10 +109,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MealBuilder />} />
         <Route path="tracker" element={<PersonalTracker />} />
-        <Route path="/add-food" element={<AddFoodForm />} />
+        <Route path="add-food" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css"; // Import CSS file
+import "./Register.css"; // Import CSS file
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -11,23 +11,20 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
       await axios.post(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/login",
+        "https://nutrient-tracker-backend-c0o9.onrender.com/register",
         { username, password },
         { withCredentials: true }
       );
 
-      setSuccessMessage("Login successful!");
+      setSuccessMessage("Registration successful! Please log in.");
       setErrorMessage("");
       setUsername("");
       setPassword("");
-
-      // Redirect to tracker page
-      navigate("/../tracker");
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage(
@@ -39,8 +36,8 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <h2>Register</h2>
+      <form onSubmit={handleRegister}>
         <div className="input-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -61,15 +58,15 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
-      <button className="switch-btn" onClick={() => navigate("/register")}>
-        Don't have an account? Register
+      <button className="switch-btn" onClick={() => navigate("/login")}>
+        Already have an account? Login
       </button>
     </div>
   );
 };
 
-export default Login;
+export default Register;
