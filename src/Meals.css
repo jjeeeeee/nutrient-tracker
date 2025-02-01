@@ -63,6 +63,12 @@ h1 {
   color: var(--highlight);
 }
 
+.listed-meal-ingredient {
+  padding: 50px;
+  border: 2px solid var(--navbar-bg);
+  border-radius: 8px;
+}
+
 p {
   text-align: center;
   color: var(--secondary-text);

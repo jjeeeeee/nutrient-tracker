@@ -26,7 +26,7 @@ const Meals = () => {
               <ul>
                 {Array.isArray(meal.MealIngredients) && meal.MealIngredients.length > 0 ? (
                   meal.MealIngredients.map((ingredient, index) => (
-                    <li key={index}>
+                    <li key={index} className="listed-meal-ingredient">
                       <strong>{ingredient.ingredient_name}: {ingredient.amount} {ingredient.Food.measurement_unit}</strong>
                     </li>
                   ))
