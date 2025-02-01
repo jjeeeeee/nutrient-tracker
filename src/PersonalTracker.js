@@ -131,9 +131,8 @@ const PersonalTracker = () => {
           <div className="goal-container">
             <h3>Set Daily Goals</h3>
             <form onSubmit={handleGoalSubmit}>
-              {Object.keys(goal).map((key, index) => (
+              {Object.keys(tempGoal).map((key, index) => (
                 <input
-                  key={key}
                   type="number"
                   onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
                   placeholder={placeholders[index]}
