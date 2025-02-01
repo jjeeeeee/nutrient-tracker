@@ -1,16 +1,28 @@
+:root {
+  --primary-bg: #FFFFFF;
+  --primary-text: #2C2C2C;
+  --navbar-bg: #1B263B;
+  --navbar-text: #D6D6D6;
+  --accent-color: #00A8E8;
+  --hover-color: #00D4FF;
+  --button-bg: #FFFFFF;
+  --button-text: #1B263B;
+  --button-border: #1B263B;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FFFFFF;
-  color: #2C2C2C;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
 }
 
 .app-container {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--primary-bg);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -26,9 +38,9 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1B263B;
+  background-color: var(--navbar-bg);
   padding: 10px 20px;
-  color: #D6D6D6;
+  color: var(--navbar-text);
   position: relative;
   z-index: 1;
 }
@@ -36,7 +48,7 @@ h2 {
 .navbar .home-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #00A8E8;
+  color: var(--accent-color);
   text-decoration: none;
 }
 
@@ -47,19 +59,19 @@ h2 {
 }
 
 .menu-links a {
-  color: #D6D6D6;
+  color: var(--navbar-text);
   text-decoration: none;
   padding: 8px 12px;
   transition: color 0.3s;
 }
 
 .menu-links a:hover {
-  color: #00D4FF;
+  color: var(--hover-color);
 }
 
 .menu-links .auth-button {
-  background-color: #FFFFFF;
-  color: #1B263B;
+  background-color: var(--button-bg);
+  color: var(--button-text);
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -69,19 +81,19 @@ h2 {
 }
 
 .menu-links .auth-button:hover {
-  background-color: #00A8E8;
-  color: #FFFFFF;
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
 }
 
 #usernameNavbar {
   font-weight: bold;
-  color: #00A8E8;
+  color: var(--accent-color);
 }
 
 #actionButton {
-  background-color: #FFFFFF;
-  color: #1B263B;
-  border: 2px solid #1B263B;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-border);
   padding: 8px 15px;
   border-radius: 8px;
   font-weight: bold;
@@ -91,8 +103,8 @@ h2 {
 }
 
 #actionButton:hover {
-  background-color: #00A8E8;
-  color: #FFFFFF;
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
 }
 
 .burger-menu {
@@ -112,7 +124,7 @@ h2 {
     top: 3em;
     left: 0;
     right: 0;
-    background-color: #1B263B;
+    background-color: var(--navbar-bg);
     flex-direction: column;
     padding: 10px;
     z-index: 2;
@@ -124,7 +136,7 @@ h2 {
 
   .menu-links a {
     padding: 10px 20px;
-    border-bottom: 1px solid #D6D6D6;
+    border-bottom: 1px solid var(--navbar-text);
   }
 
   .menu-links a:last-child {
