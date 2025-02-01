@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import axios from "axios";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
@@ -15,7 +15,6 @@ const App = () => {
   const menuRef = useRef(null); // Reference to the menu
   const navbarRef = useRef(null); // Reference to the entire navbar
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   // Toggle the menu open/close
   const toggleMenu = () => {
@@ -57,7 +56,7 @@ const App = () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/logout", {}, { withCredentials: true });
       setUser(null);
-      navigate("./MealBuilder");
+      window.location.href = "/MealBuilder";
     } catch (error) {
       console.error("Logout failed:", error);
     }
