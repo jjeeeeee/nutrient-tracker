@@ -121,7 +121,11 @@ const MealBuilder = () => {
   useEffect(() => {
     if (meal.length > 0) {
       calculateNutrients();
-      divideByPortions();
+      useEffect(() => {
+        if (meal.length > 0) {
+          divideByPortions();
+        }
+      }, [totalNutrients]);
     }
   }, [meal]);
 
