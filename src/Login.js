@@ -66,11 +66,14 @@ const Login = () => {
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
-      <button className="switch-btn" onClick={() => navigate("/register")}>
-        Don't have an account? Register
-      </button>
     </div>
   );
+      /*
+        // Removing link to register page for now, if putting back, put it in the div above
+        <button className="switch-btn" onClick={() => navigate("/register")}>
+        Don't have an account? Register
+        </button>
+      */
 };
 
 export default Login;
