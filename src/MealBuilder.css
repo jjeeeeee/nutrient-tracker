@@ -258,7 +258,7 @@
 .clear-all-button {
   width: 100%;
   margin-top: 1em;
-  background-color: #f44336;
+  background-color: var(--clear-button);
   color: white;
   border: none;
   padding: 10px;
@@ -268,5 +268,5 @@
 }
 
 .clear-all-button:hover {
-  background-color: #e53935;
+  background: #981724;
 }

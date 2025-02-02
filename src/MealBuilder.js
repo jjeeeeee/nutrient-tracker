@@ -275,6 +275,10 @@ const saveMeal = async () => {
               <button onClick={() => removeIngredient(index)}>Remove</button>
             </div>
           ))}
+          {/* Clear All button */}
+          <button className="clear-all-button" onClick={clearAll}>
+            Clear All
+          </button>
         </div>
 
         <div className="portion-controls">
@@ -291,11 +295,6 @@ const saveMeal = async () => {
 
         <button className="save-meal-button" onClick={saveMeal}>
           Save Meal
-        </button>
-
-        {/* Clear All button */}
-        <button className="clear-all-button" onClick={clearAll}>
-          Clear All
         </button>
       </div>
 
