@@ -201,7 +201,7 @@ const PersonalTracker = () => {
                 <input 
                   key={key} 
                   type="number" 
-                  placeholder={placeholders[index]}
+                  placeholder={placeholders[index - 1]}
                   value={newMeal[key]} 
                   onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} 
                   required 
