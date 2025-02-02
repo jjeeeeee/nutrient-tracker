@@ -145,6 +145,53 @@ li {
   background: #d62839;
 }
 
+.meal-form {
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid var(--inner-border);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.meal-form h3 {
+  margin-bottom: 10px;
+}
+
+.meal-select, 
+.meal-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.meal-select {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.meal-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.meal-button:hover {
+  background-color: #1e88e5;
+}
+
 .goal-container {
   margin: 30px auto;
   padding: 20px;

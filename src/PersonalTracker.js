@@ -82,15 +82,22 @@ const PersonalTracker = () => {
 
   const handleMealSubmit = async (e) => {
     e.preventDefault();
+
+  // Convert tempGoal values to numbers before updating goal
+  const numericMeal = Object.fromEntries(
+    Object.entries(newMeal).map(([key, value]) => [key, Number(value) || 0]) // Convert to number, default to 0 if empty
+  );
+
     try {  
       const response = await axios.post(
         "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
-        newMeal,
+        numericMeal,
         { withCredentials: true }
       );
 
-      setNewMeal({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
+      setNewMeal({ name: "", calories: "", carbs: "", fat: "", protein: "" });
       fetchMeals(); // Refresh meals and nutrients
+      setSelectedMeal("");
     } catch (error) {
       console.error("Error adding meal:", error);
       setErrorMessage(error.response?.data?.error || "Failed to add meal.");
@@ -169,20 +176,45 @@ const PersonalTracker = () => {
 
           <form onSubmit={handleMealSubmit} className="meal-form">
             <h3>Add a Meal</h3>
-            <select value={selectedMeal} onChange={handleSelectMeal}>
+            
+            {/* Dropdown for Stored Meals */}
+            <select 
+              value={selectedMeal} 
+              onChange={handleSelectMeal} 
+              className="meal-select"
+            >
               <option value="">Select a stored meal</option>
               {storedMeals.map((meal) => (
                 <option key={meal.name} value={meal.name}>{meal.name}</option>
               ))}
             </select>
+            
+            {/* Input Fields for Meal Info */}
             {Object.keys(newMeal).map((key) => (
               key !== "name" ? (
-                <input key={key} type="number" placeholder={key} value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} required />
+                <input 
+                  key={key} 
+                  type="number" 
+                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)} 
+                  value={newMeal[key]} 
+                  onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} 
+                  required 
+                  className="meal-input"
+                />
               ) : (
-                <input key={key} type="text" placeholder="Meal Name" value={newMeal[key]} onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} required />
+                <input 
+                  key={key} 
+                  type="text" 
+                  placeholder="Meal Name" 
+                  value={newMeal[key]} 
+                  onChange={(e) => setNewMeal({ ...newMeal, [key]: e.target.value })} 
+                  required 
+                  className="meal-input"
+                />
               )
             ))}
-            <button type="submit">Add Meal</button>
+            
+            <button type="submit" className="meal-button">Add Meal</button>
           </form>
 
           <div className="goal-container">
