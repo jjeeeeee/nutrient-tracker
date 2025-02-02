@@ -233,6 +233,7 @@ const PersonalTracker = () => {
                   value={tempGoal[key]} // Bind the value to state
                   onChange={(e) => setTempGoal({ ...tempGoal, [key]: Number(e.target.value) })}
                   placeholder={placeholders[index]}
+                  required 
                 />
               ))}
               <button type="submit">Update Goals</button>
