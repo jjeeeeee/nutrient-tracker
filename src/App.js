@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 import axios from "axios";
 import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
@@ -77,32 +77,32 @@ const App = () => {
 
         {/* Menu Links */}
         <div className={`menu-links ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
-          <Link to="/" onClick={() => setIsMenuOpen(false)}>
+          <NavLink to="/" onClick={() => setIsMenuOpen(false)} end>
             Home
-          </Link>
-          <Link to="tracker" onClick={() => setIsMenuOpen(false)}>
+          </NavLink>
+          <NavLink to="tracker" onClick={() => setIsMenuOpen(false)} end>
             Personal Tracker
-          </Link>
-          <Link to="addFood" onClick={() => setIsMenuOpen(false)}>
+          </NavLink>
+          <NavLink to="addFood" onClick={() => setIsMenuOpen(false)} end>
             Add Food
-          </Link>
-          <Link to="foods" onClick={() => setIsMenuOpen(false)}>
+          </NavLink>
+          <NavLink to="foods" onClick={() => setIsMenuOpen(false)} end>
             Foods
-          </Link>
-          <Link to="meals" onClick={() => setIsMenuOpen(false)}>
+          </NavLink>
+          <NavLink to="meals" onClick={() => setIsMenuOpen(false)} end>
             Meals
-          </Link>
+          </NavLink>
           {user ? (
             <>
               <span id="usernameNavbar">{user}</span>
-              <Link to="" id="actionButton" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
+              <NavLink to="" id="actionButton" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
                 Logout
-              </Link>
+              </NavLink>
             </>
           ) : (
-            <Link to="login" id="actionButton" onClick={() => setIsMenuOpen(false)}>
+            <NavLink to="login" id="actionButton" onClick={() => setIsMenuOpen(false)}>
               Login
-            </Link>
+            </NavLink>
           )}
         </div>
       </div>

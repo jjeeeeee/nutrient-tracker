@@ -65,6 +65,11 @@ h2 {
   transition: color 0.3s;
 }
 
+.menu-links a.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
 .menu-links a:hover {
   color: var(--hover-color);
 }
