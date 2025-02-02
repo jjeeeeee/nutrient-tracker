@@ -126,7 +126,7 @@ h2 {
     right: 0;
     background-color: var(--navbar-bg);
     flex-direction: column;
-    padding: 10px;
+    padding-bottom: 10px;
     z-index: 2;
   }
 
