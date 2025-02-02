@@ -2,14 +2,28 @@
   --progress-color: #00D4FF;
   --clear-button: #E63946;
   --inner-border: #2A3A57;
+  --button-bg-color: #28a745;
+  --button-bg-hover: #218838;
+  --list-bg-color: #e3e3e3;
+  --list-item-bg-color: #f8f8f8;
+  --meal-name-color: #2A3A57;
+  --text-color: #333;
+  --error-color: red;
+  --meal-button-bg-color: #2196f3;
+  --meal-button-hover-bg-color: #1e88e5;
+  --meal-input-border: #ccc;
+  --meal-select-bg-color: #f8f8f8;
+  --goal-container-bg-color: #fff;
+  --goal-container-border: #2A3A57;
 }
 
+/* Global Styles */
 h2, h3 {
   text-align: center;
 }
 
 .error {
-  color: red;
+  color: var(--error-color);
   text-align: center;
 }
 
@@ -21,18 +35,18 @@ form {
 
 input, button {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--meal-input-border);
   border-radius: 4px;
 }
 
 button {
-  background-color: #28a745;
+  background-color: var(--button-bg-color);
   color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: var(--button-bg-hover);
 }
 
 ul {
@@ -41,7 +55,7 @@ ul {
 }
 
 li {
-  background: #e3e3e3;
+  background: var(--list-bg-color);
   margin: 5px 0;
   padding: 10px;
   border-radius: 4px;
@@ -50,7 +64,7 @@ li {
 .progress-container {
   padding: 0 20px 10px;
   margin: 30px auto;
-  border: 2px solid #2A3A57;
+  border: 2px solid var(--inner-border);
   border-radius: 5px;
 }
 
@@ -73,26 +87,19 @@ li {
 }
 
 .meals-list {
-  padding: 0 20px 10px;
-  margin: 30px auto;
-  border: 2px solid #2A3A57;
-  border-radius: 5px;
-}
-
-.meals-list {
   padding: 20px;
   margin-top: 20px;
-  background-color: #fff;
+  background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border: 2px solid var(--inner-border);
+  border: 2px solid var(--goal-container-border);
 }
 
 .meals-list h3 {
   font-size: 20px;
   margin-bottom: 15px;
-  color: #2A3A57;
+  color: var(--meal-name-color);
 }
 
 .meals-list ul {
@@ -101,30 +108,28 @@ li {
 }
 
 .meals-list li {
-  background: #e3e3e3;
+  background: var(--list-item-bg-color);
   padding: 12px;
   margin: 8px 0;
   border-radius: 6px;
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: var(--text-color);
   display: flex;
-  flex-direction: column;  /* Stack elements inside */
-  align-items: flex-start; /* Align text to the left */
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .meal-name {
   font-weight: bold;
   font-size: 18px;
-  margin-bottom: 5px; /* Space between name and nutrient info */
-  color: #2A3A57;
-  margin: auto;
+  margin-bottom: 5px;
+  color: var(--meal-name-color);
 }
 
 .nutrient-info {
   font-size: 14px;
   color: black;
-  margin: auto
 }
 
 .clear-button {
@@ -142,16 +147,16 @@ li {
 }
 
 .clear-button:hover {
-  background: #d62839;
+  background: #981724;
 }
 
 .meal-form {
   margin: 30px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   text-align: center;
-  border: 2px solid var(--inner-border);
+  border: 2px solid var(--goal-container-border);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -164,7 +169,7 @@ li {
 .meal-select, 
 .meal-input {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--meal-input-border);
   border-radius: 4px;
   font-size: 16px;
   width: 100%;
@@ -172,12 +177,12 @@ li {
 }
 
 .meal-select {
-  background-color: #f8f8f8;
+  background-color: var(--meal-select-bg-color);
   cursor: pointer;
 }
 
 .meal-button {
-  background-color: #2196f3;
+  background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
   padding: 10px;
@@ -187,17 +192,17 @@ li {
 }
 
 .meal-button:hover {
-  background-color: #1e88e5;
+  background-color: var(--meal-button-hover-bg-color);
 }
 
 .goal-container {
   margin: 30px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border: 2px solid var(--inner-border);
+  border: 2px solid var(--goal-container-border);
 }
 
 .goal-container form {
@@ -208,7 +213,7 @@ li {
 
 .goal-container input {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--meal-input-border);
   border-radius: 4px;
   font-size: 16px;
   width: 100%;
@@ -221,7 +226,7 @@ li {
 }
 
 .goal-container button {
-  background-color: #2196f3;
+  background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
   padding: 10px;
@@ -234,5 +239,5 @@ li {
 }
 
 .goal-container button:hover {
-  background-color: #1e88e5;
+  background-color: var(--meal-button-hover-bg-color);
 }
