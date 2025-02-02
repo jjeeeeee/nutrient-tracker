@@ -306,7 +306,7 @@ const saveMeal = async () => {
         )}
       </div>
 
-      {totalNutrients && (
+      {totalNutrients && meal.length > 0 &&  (
         <div className="total-nutrients">
           <h2>Total Nutrients</h2>
           <p>Calories: {totalNutrients.calories} kcal</p>
