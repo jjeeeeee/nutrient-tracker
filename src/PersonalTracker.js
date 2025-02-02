@@ -189,7 +189,7 @@ const PersonalTracker = () => {
               onChange={handleSelectMeal} 
               className="meal-select"
             >
-              <option value="">Select a stored meal</option>
+              <option value="">Select A Stored Meal</option>
               {storedMeals.map((meal) => (
                 <option key={meal.name} value={meal.name}>{meal.name}</option>
               ))}

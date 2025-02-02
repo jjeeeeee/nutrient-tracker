@@ -5,7 +5,6 @@
   --button-bg-color: #28a745;
   --button-bg-hover: #218838;
   --list-bg-color: #e3e3e3;
-  --list-item-bg-color: #f8f8f8;
   --meal-name-color: #2A3A57;
   --text-color: #333;
   --error-color: red;
@@ -108,7 +107,7 @@ li {
 }
 
 .meals-list li {
-  background: var(--list-item-bg-color);
+  background: var(--list-bg-color);
   padding: 12px;
   margin: 8px 0;
   border-radius: 6px;
