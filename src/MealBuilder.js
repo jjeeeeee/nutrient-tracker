@@ -13,6 +13,8 @@ const MealBuilder = () => {
   const [errorMessage, setErrorMessage] = useState(""); // Error message for duplicate ingredients
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMealId, setSelectedMealId] = useState("");
+  const [username, setUsername] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Fetch ingredients from the backend
   useEffect(() => {
@@ -25,6 +27,18 @@ const MealBuilder = () => {
       .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
       .then((response) => setStoredMeals(response.data))
       .catch((error) => console.error("Error fetching meals:", error));
+
+    axios
+    .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+    .then((response) => {
+      setUsername(response.data.username); 
+    })
+    .catch(() => {
+      setUsername(null); // Ensure unauthorized users are blocked
+    })
+    .finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   const importMeal = async () => {
@@ -196,6 +210,11 @@ const MealBuilder = () => {
 
   // Add Save Meal Function
 const saveMeal = async () => {
+  if(!username) {
+    alert("Can only save meal if you are logged in.");
+    return;
+  }
+
   await calculateNutrients();
   const mealName = prompt("Enter a name for this meal:");
   if (!mealName) return;
