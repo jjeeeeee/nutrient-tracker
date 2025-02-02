@@ -291,6 +291,9 @@ const saveMeal = async () => {
           <button className="divide-button" onClick={divideByPortions}>
             Divide By Portions
           </button>
+        </div>
+
+        <div className="save-button-div">
           <button className="save-meal-button" onClick={saveMeal}>
             Save Meal
           </button>

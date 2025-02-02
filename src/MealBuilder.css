@@ -245,9 +245,13 @@
   background-color: var(--meal-button-hover-bg-color);
 }
 
+.save-button-div {
+  padding: 0 15px;
+}
+
 .save-meal-button {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 15px;
   background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
