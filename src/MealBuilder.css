@@ -44,70 +44,67 @@
 
 .add-ingredient {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 15px;
   margin-bottom: 20px;
-  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  background-color: var(--goal-container-bg-color);
+  padding: 15px;
+  border-radius: 8px;
 }
 
-.add-ingredient input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  flex: 1; /* Flex-grow: share remaining space */
-  min-width: 120px; /* Prevents elements from shrinking too small */
-  max-width: 40%; /* Limits their maximum width */
-  box-sizing: border-box; /* Ensures padding is included in width calculations */
+.add-ingredient h3 {
+  text-align: center;
+  font-size: 20px;
+  color: var(--meal-name-color);
+  margin-bottom: 5px;
 }
 
-.add-ingredient select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  flex: 1; /* Flex-grow: share remaining space */
-  min-width: 120px; /* Prevents elements from shrinking too small */
-  max-width: 40%; /* Limits their maximum width */
-  box-sizing: border-box; /* Ensures padding is included in width calculations */
+.ingredient-inputs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  max-height: 250px; /* Adjust to your desired maximum height */
-  overflow-y: auto; /* Enable scrolling for overflowing content */
+.ingredient-inputs select,
+.ingredient-inputs input {
+  padding: 10px;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--meal-select-bg-color);
+  color: var(--text-color);
+  font-size: 16px;
+  flex: 1; /* Make them share space equally */
+  min-width: 120px;
+  max-width: 50%;
+  box-sizing: border-box;
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.amount-input .measurement-unit {
+  font-size: 14px;
+  color: var(--text-color);
 }
 
 .add-ingredient button {
-  background-color: #4caf50;
+  background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
-  flex: 0 0 auto; /* Keeps the button width fixed */
-  min-width: 50px; /* Sets a minimum button width */
-  box-sizing: border-box; /* Ensures padding is included */
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .add-ingredient button:hover {
-  background-color: #45a049;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .add-ingredient {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    gap: 15px; /* Increase spacing for stacked items */
-  }
-
-  .add-ingredient select,
-  .add-ingredient input {
-    flex: none; /* Prevents flex behavior */
-    width: 100%; /* Make them take the full width */
-    max-width: none; /* Remove the max-width restriction */
-  }
-
-  .add-ingredient button {
-    align-self: stretch; /* Button fills the width if needed */
-    width: 100%; /* Ensure button takes full width */
-  }
+  background-color: var(--meal-button-hover-bg-color);
 }
 
 .amount-input {

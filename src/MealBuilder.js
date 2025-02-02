@@ -227,6 +227,7 @@ const saveMeal = async () => {
         </div>
 
         <div className="add-ingredient">
+          <h3>Ingredients</h3>
           <select
             value={selectedIngredient}
             onChange={(e) => setSelectedIngredient(e.target.value)}
@@ -251,7 +252,7 @@ const saveMeal = async () => {
               </span>
             )}
           </div>
-          <button onClick={addIngredient}>+</button>
+          <button onClick={addIngredient}>Add Ingredient</button>
         </div>
 
         <div className="meal-list">
