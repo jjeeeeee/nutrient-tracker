@@ -16,7 +16,7 @@ const Register = () => {
 
     try {
       await axios.post(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/register",
+        "/api/register",
         { username, password },
         { withCredentials: true }
       );

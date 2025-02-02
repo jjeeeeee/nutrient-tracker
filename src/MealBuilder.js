@@ -19,17 +19,17 @@ const MealBuilder = () => {
   // Fetch ingredients from the backend
   useEffect(() => {
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/foods")
+      .get("/api/foods")
       .then((response) => setIngredients(response.data))
       .catch((error) => console.error("Error fetching ingredients:", error));
 
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
+      .get("/api/meals")
       .then((response) => setStoredMeals(response.data))
       .catch((error) => console.error("Error fetching meals:", error));
 
     axios
-    .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+    .get("/api/get-user", { withCredentials: true }) 
     .then((response) => {
       setUsername(response.data.username); 
     })
@@ -162,7 +162,7 @@ const MealBuilder = () => {
   const calculateNutrients = async () => {
     try {
       const response = await axios.post(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/calculate",
+        "/api/calculate",
         { ingredients: meal }
       );
       setTotalNutrients({
@@ -222,7 +222,7 @@ const saveMeal = async () => {
   if (!mealName) return;
 
   axios
-    .post("https://nutrient-tracker-backend-c0o9.onrender.com/meals", {
+    .post("/api/meals", {
       name: mealName,
       ingredients: meal.map((item) => ({
         ingredient_name: item.name,

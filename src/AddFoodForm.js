@@ -17,7 +17,7 @@ const AddFoodForm = () => {
   useEffect(() => {
     // Fetch the logged-in user
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+      .get("/api/get-user", { withCredentials: true }) 
       .then((response) => {
         setUsername(response.data.username); 
       })
@@ -53,7 +53,7 @@ const AddFoodForm = () => {
 
     // POST request to insert into the database
     axios
-    .post("https://nutrient-tracker-backend-c0o9.onrender.com/foods", foodData)
+    .post("/api/foods", foodData)
     .then((response) => {
       setNotification({
         message: "Food added successfully!",

@@ -45,5 +45,6 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
-  "homepage": "./"
+  "homepage": "./",
+  "proxy": "https://nutrient-tracker-backend-c0o9.onrender.com"
 }
