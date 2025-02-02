@@ -70,10 +70,10 @@ const MealBuilder = () => {
       
         // Update original nutrients state with two decimal places
         setOriginalNutrients({
-          calories: parseFloat(mealToImport.calories).toFixed(2),
-          carbs: parseFloat(mealToImport.carbs).toFixed(2),
-          fat: parseFloat(mealToImport.fat).toFixed(2),
-          protein: parseFloat(mealToImport.protein).toFixed(2),
+          calories: (parseFloat(mealToImport.calories) * response.data.portionAmount).toFixed(2),
+          carbs: (parseFloat(mealToImport.carbs) * response.data.portionAmount).toFixed(2),
+          fat: (parseFloat(mealToImport.fat) * response.data.portionAmount).toFixed(2),
+          protein: (parseFloat(mealToImport.protein) * response.data.portionAmount).toFixed(2),
         });
 
         setPortions(mealToImport.portionAmount);
@@ -153,11 +153,12 @@ const MealBuilder = () => {
     
       // Update original nutrients state with two decimal places
       setOriginalNutrients({
-        calories: (parseFloat(response.data.calories) * response.data.portionAmount).toFixed(2),
-        carbs: (parseFloat(response.data.carbs) * response.data.portionAmount).toFixed(2),
-        fat: (parseFloat(response.data.fat) * response.data.portionAmount).toFixed(2),
-        protein: (parseFloat(response.data * response.data.portionAmount).protein).toFixed(2),
+        calories: parseFloat(response.data.calories).toFixed(2),
+        carbs: parseFloat(response.data.carbs).toFixed(2),
+        fat: parseFloat(response.data.fat).toFixed(2),
+        protein: parseFloat(response.data.protein).toFixed(2),
       });
+
     } catch (error) {
       console.error("Error calculating total nutrients:", error);
     }
