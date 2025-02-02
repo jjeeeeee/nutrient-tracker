@@ -141,8 +141,20 @@ const MealBuilder = () => {
         "https://nutrient-tracker-backend-c0o9.onrender.com/calculate",
         { ingredients: meal }
       );
-      setTotalNutrients(response.data);
-      setOriginalNutrients(response.data); // Save original totals
+      setTotalNutrients({
+        calories: parseFloat(response.data.calories).toFixed(2),
+        carbs: parseFloat(response.data.carbs).toFixed(2),
+        fat: parseFloat(response.data.fat).toFixed(2),
+        protein: parseFloat(response.data.protein).toFixed(2),
+      });
+    
+      // Update original nutrients state with two decimal places
+      setOriginalNutrients({
+        calories: parseFloat(response.data.calories).toFixed(2),
+        carbs: parseFloat(response.data.carbs).toFixed(2),
+        fat: parseFloat(response.data.fat).toFixed(2),
+        protein: parseFloat(response.data.protein).toFixed(2),
+      });
     } catch (error) {
       console.error("Error calculating total nutrients:", error);
     }
