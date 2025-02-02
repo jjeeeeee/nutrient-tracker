@@ -10,10 +10,24 @@ const PersonalTracker = () => {
   const [meals, setMeals] = useState([]);
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
+  const [username, setUsername] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [newMeal, setNewMeal] = useState({ name: "", calories: "", carbs: "", fat: "", protein: "" });
   const placeholders = ['Calories (kcal)', 'Carbs (g)', 'Fats (g)', 'Protein (g)'];
 
   useEffect(() => {
+    axios
+      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+      .then((response) => {
+        setUsername(response.data.username); 
+      })
+      .catch(() => {
+        setUsername(null); // Ensure unauthorized users are blocked
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
     fetchMeals();
     fetchUserGoals();
     fetchStoredMeals();
@@ -135,6 +149,14 @@ const PersonalTracker = () => {
       setErrorMessage("Failed to clear meals.");
     }
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!username) {
+    return <p>Access Denied</p>;
+  }
 
   return (
     <div className="app-container">
