@@ -75,8 +75,11 @@ const MealBuilder = () => {
           fat: parseFloat(mealToImport.fat).toFixed(2),
           protein: parseFloat(mealToImport.protein).toFixed(2),
         });
+
+        setPortions(mealToImport.portionAmount);
   
         setErrorMessage(""); // Clear error message after successful import
+        setSelectedMealId("");
         return newMeal; // Update the meal state with the final array
       });
     } else {
@@ -155,6 +158,10 @@ const MealBuilder = () => {
         fat: parseFloat(response.data.fat).toFixed(2),
         protein: parseFloat(response.data.protein).toFixed(2),
       });
+
+      if(portions) {
+        divideByPortions();
+      }
     } catch (error) {
       console.error("Error calculating total nutrients:", error);
     }
@@ -202,6 +209,7 @@ const saveMeal = async () => {
       carbs: totalNutrients.carbs,
       fat: totalNutrients.fat,
       protein: totalNutrients.protein,
+      portionAmount: portions,
     })
     .then(() => {
       alert("Meal saved successfully!");
