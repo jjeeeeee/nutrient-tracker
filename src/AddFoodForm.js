@@ -84,7 +84,7 @@ const AddFoodForm = () => {
 
   return (
     <div className="add-food-form-container">
-      <h1>Add a New Food</h1>
+      <h1>Add A New Food</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

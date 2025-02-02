@@ -289,13 +289,12 @@ const saveMeal = async () => {
             onChange={(e) => setPortions(e.target.value)}
           />
           <button className="divide-button" onClick={divideByPortions}>
-            Divide by Portions
+            Divide By Portions
+          </button>
+          <button className="save-meal-button" onClick={saveMeal}>
+            Save Meal
           </button>
         </div>
-
-        <button className="save-meal-button" onClick={saveMeal}>
-          Save Meal
-        </button>
       </div>
 
       {totalNutrients && (

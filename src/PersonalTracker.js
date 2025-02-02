@@ -181,7 +181,7 @@ const PersonalTracker = () => {
           </div>
 
           <form onSubmit={handleMealSubmit} className="meal-form">
-            <h3>Add a Meal</h3>
+            <h3>Add A Meal</h3>
             
             {/* Dropdown for Stored Meals */}
             <select 
