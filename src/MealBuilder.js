@@ -208,13 +208,8 @@ const saveMeal = async () => {
 
   return (
     <div className="app-container">
-      <h1>Food Nutrient Calculator</h1>
+      <h1>Build Your Meal</h1>
       <div className="meal-builder">
-        <h2>Build Your Meal</h2>
-
-        {/* Error Message */}
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
-
         <div className="import-meal">
           <select
             value={selectedMealId}

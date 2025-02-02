@@ -1,7 +1,3 @@
-.meal-builder {
-  margin-bottom: 30px;
-}
-
 .import-meal {
   display: flex;
   justify-content: space-between;
@@ -9,53 +5,42 @@
   gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  background-color: var(--goal-container-bg-color);
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid var(--goal-container-border);
 }
 
 .import-meal select {
-  padding: 8px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border: 2px solid var(--input-border);
   border-radius: 4px;
+  background-color: var(--meal-select-bg-color);
+  color: var(--text-color);
   flex: 1;
   min-width: 120px;
   max-width: 40%;
   box-sizing: border-box;
   max-height: 250px;
   overflow-y: auto;
+  font-size: 16px;
 }
 
 .import-meal button {
-  background-color: #2196f3;
+  background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
   flex: 0 0 auto;
   min-width: 50px;
   box-sizing: border-box;
 }
 
 .import-meal button:hover {
-  background-color: #1e88e5;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .import-meal {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    gap: 15px; /* Increase spacing for stacked items */
-  }
-
-  .import-meal select {
-    flex: none;
-    width: 100%;
-    max-width: none;
-  }
-
-  .import-meal button {
-    align-self: stretch; /* Button fills the width if needed */
-    width: 100%;
-  }
+  background-color: var(--meal-button-hover-bg-color);
 }
 
 .add-ingredient {
