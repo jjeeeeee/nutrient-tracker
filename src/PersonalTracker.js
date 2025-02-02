@@ -10,7 +10,7 @@ const PersonalTracker = () => {
   const [meals, setMeals] = useState([]);
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
-  const [newMeal, setNewMeal] = useState({ name: "", calories: 0, carbs: 0, fat: 0, protein: 0 });
+  const [newMeal, setNewMeal] = useState({ name: "", calories: "", carbs: "", fat: "", protein: "" });
   const placeholders = ['Calories (kcal)', 'Carbs (g)', 'Fats (g)', 'Protein (g)'];
 
   useEffect(() => {
@@ -196,12 +196,12 @@ const PersonalTracker = () => {
             </select>
             
             {/* Input Fields for Meal Info */}
-            {Object.keys(newMeal).map((key) => (
+            {Object.keys(newMeal).map((key, index) => (
               key !== "name" ? (
                 <input 
                   key={key} 
                   type="number" 
-                  placeholder={key.charAt(0).toUpperCase() + key.slice(1)} 
+                  placeholder={placeholders[index]}
                   value={newMeal[key]} 
                   onChange={(e) => setNewMeal({ ...newMeal, [key]: Number(e.target.value) })} 
                   required 
