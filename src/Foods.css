@@ -37,6 +37,7 @@ h1 {
   border-radius: 8px;
   box-shadow: 0 2px 4px var(--shadow);
   transition: transform 0.2s ease-in-out;
+  border: 2px solid var(--inner-border);
 }
 
 .food-item h2 {

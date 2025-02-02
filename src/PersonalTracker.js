@@ -160,7 +160,7 @@ const PersonalTracker = () => {
           </div>
 
           <div className="meals-list">
-            <h3>Meals for the Day</h3>
+            <h3>Meals Consumed</h3>
             {meals.length > 0 ? (
               <>
                 <ul>
