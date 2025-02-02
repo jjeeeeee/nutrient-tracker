@@ -85,7 +85,13 @@ const PersonalTracker = () => {
 
   // Convert tempGoal values to numbers before updating goal
   const numericMeal = Object.fromEntries(
-    Object.entries(newMeal).map(([key, value]) => [key, Number(value) || 0]) // Convert to number, default to 0 if empty
+    Object.entries(newMeal).map(([key, value]) => {
+      // Convert only calories, carbs, fat, and protein to numbers, leave name as a string
+      if (key === "calories" || key === "carbs" || key === "fat" || key === "protein") {
+        return [key, Number(value) || 0]; // Convert to number, default to 0 if empty
+      }
+      return [key, value]; // Leave name as is
+    })
   );
 
     try {  
