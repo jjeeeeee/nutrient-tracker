@@ -215,7 +215,6 @@
   display: flex;
   justify-content: space-between; /* Distribute space between the input and button */
   align-items: center;
-  margin-top: 20px;
   gap: 10px; /* Space between input and button */
   padding: 0 15px;
 }

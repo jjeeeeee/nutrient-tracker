@@ -168,7 +168,7 @@ const MealBuilder = () => {
   const clearAll = () => {
     setMeal([]);
     setTotalNutrients(null);
-    setPortions(1);
+    setPortions("");
     setErrorMessage(""); // Clear any error messages
   };
 
@@ -276,28 +276,34 @@ const saveMeal = async () => {
             </div>
           ))}
           {/* Clear All button */}
-          <button className="clear-all-button" onClick={clearAll}>
-            Clear All
-          </button>
+          {meal.length > 0 && (
+            <button className="clear-all-button" onClick={clearAll}>
+              Clear All
+            </button>
+          )}
         </div>
 
-        <div className="portion-controls">
-          <input
-            type="number"
-            placeholder="Portions"
-            value={portions}
-            onChange={(e) => setPortions(e.target.value)}
-          />
-          <button className="divide-button" onClick={divideByPortions}>
-            Divide By Portions
-          </button>
-        </div>
+        {meal.length > 0 && (
+          <div className="portion-controls">
+            <input
+              type="number"
+              placeholder="Portions"
+              value={portions}
+              onChange={(e) => setPortions(e.target.value)}
+            />
+            <button className="divide-button" onClick={divideByPortions}>
+              Divide By Portions
+            </button>
+          </div>
+        )}
 
-        <div className="save-button-div">
-          <button className="save-meal-button" onClick={saveMeal}>
-            Save Meal
-          </button>
-        </div>
+        {meal.length > 0 && (
+          <div className="save-button-div">
+            <button className="save-meal-button" onClick={saveMeal}>
+              Save Meal
+            </button>
+          </div>
+        )}
       </div>
 
       {totalNutrients && (
