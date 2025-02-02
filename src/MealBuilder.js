@@ -70,10 +70,10 @@ const MealBuilder = () => {
       
         // Update original nutrients state with two decimal places
         setOriginalNutrients({
-          calories: (parseFloat(mealToImport.calories) * response.data.portionAmount).toFixed(2),
-          carbs: (parseFloat(mealToImport.carbs) * response.data.portionAmount).toFixed(2),
-          fat: (parseFloat(mealToImport.fat) * response.data.portionAmount).toFixed(2),
-          protein: (parseFloat(mealToImport.protein) * response.data.portionAmount).toFixed(2),
+          calories: (parseFloat(mealToImport.calories) * mealToImport.portionAmount).toFixed(2),
+          carbs: (parseFloat(mealToImport.carbs) * mealToImport.portionAmount).toFixed(2),
+          fat: (parseFloat(mealToImport.fat) * mealToImport.portionAmount).toFixed(2),
+          protein: (parseFloat(mealToImport.protein) * mealToImport.portionAmount).toFixed(2),
         });
 
         setPortions(mealToImport.portionAmount);
