@@ -87,33 +87,12 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 100px;
 }
 
 .amount-input .measurement-unit {
   font-size: 14px;
   color: var(--text-color);
-}
-
-.add-ingredient button {
-  background-color: var(--meal-button-bg-color);
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.add-ingredient button:hover {
-  background-color: var(--meal-button-hover-bg-color);
-}
-
-.amount-input {
-  display: flex; /* Use flexbox to align items horizontally */
-  align-items: center; /* Vertically center the items */
-  gap: 10px; /* Add space between elements */
 }
 
 .amount-input input {
@@ -145,60 +124,78 @@
   background-color: #45a049;
 }
 
-.meal-list {
-  margin-bottom: 20px;
-}
-
-.meal-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #ccc;
-  gap: 10px;
-}
-
-.meal-list-item span {
-  flex: 2;
-  font-weight: bold;
-  text-align: left;
-}
-
-.meal-list-item input {
-  width: 60px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: right;
-}
-
-.meal-list-item button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.meal-list-item button:hover {
-  background-color: #e53935;
-}
-
-.calculate-button {
-  width: 100%;
-  margin-top: 1em;
-  background-color: #4caf50;
+.add-ingredient button {
+  background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.calculate-button:hover {
-  background-color: #45a049;
+.add-ingredient button:hover {
+  background-color: var(--meal-button-hover-bg-color);
+}
+
+.meal-list {
+  margin-bottom: 20px;
+  background-color: var(--goal-container-bg-color);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--goal-container-border);
+}
+
+.meal-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--input-border);
+  gap: 10px;
+}
+
+.meal-list-item:last-child {
+  border-bottom: none; /* Remove bottom border for the last item */
+}
+
+.meal-list-item span {
+  flex: 2;
+  font-weight: bold;
+  text-align: left;
+  color: var(--meal-name-color);
+}
+
+.meal-list-item input {
+  width: 70px;
+  padding: 8px;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  text-align: right;
+  font-size: 16px;
+  background-color: var(--meal-select-bg-color);
+}
+
+.meal-list-item input::placeholder {
+  text-align: center; /* Centers the placeholder text */
+}
+
+.meal-list-item button {
+  background-color: var(--clear-button);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease-in-out;
+}
+
+.meal-list-item button:hover {
+  background-color: #981724;
 }
 
 .save-meal-button {
