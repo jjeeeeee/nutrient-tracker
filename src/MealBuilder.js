@@ -77,6 +77,8 @@ const MealBuilder = () => {
         });
 
         setPortions(mealToImport.portionAmount);
+
+        divideByPortions();
   
         setErrorMessage(""); // Clear error message after successful import
         setSelectedMealId("");
