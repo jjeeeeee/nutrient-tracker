@@ -228,31 +228,33 @@ const saveMeal = async () => {
 
         <div className="add-ingredient">
           <h3>Ingredients</h3>
-          <select
-            value={selectedIngredient}
-            onChange={(e) => setSelectedIngredient(e.target.value)}
-          >
-            <option value="">Select an ingredient...</option>
-            {ingredients.map((ingredient) => (
-              <option key={ingredient.id} value={ingredient.name}>
-                {ingredient.name}
-              </option>
-            ))}
-          </select>
-          <div className="amount-input">
-            <input
-              type="number"
-              placeholder="Amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-            {selectedIngredient && (
-              <span className="measurement-unit">
-                {ingredients.find((ing) => ing.name === selectedIngredient)?.measurement_unit || ""}
-              </span>
-            )}
+          <div className="ingredient-inputs">
+            <select
+              value={selectedIngredient}
+              onChange={(e) => setSelectedIngredient(e.target.value)}
+            >
+              <option value="">Select an ingredient...</option>
+              {ingredients.map((ingredient) => (
+                <option key={ingredient.id} value={ingredient.name}>
+                  {ingredient.name}
+                </option>
+              ))}
+            </select>
+            <div className="amount-input">
+              <input
+                type="number"
+                placeholder="Amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+              {selectedIngredient && (
+                <span className="measurement-unit">
+                  {ingredients.find((ing) => ing.name === selectedIngredient)?.measurement_unit || ""}
+                </span>
+              )}
+            </div>
+            <button onClick={addIngredient}>Add Ingredient</button>
           </div>
-          <button onClick={addIngredient}>Add Ingredient</button>
         </div>
 
         <div className="meal-list">
