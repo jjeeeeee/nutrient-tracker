@@ -136,7 +136,9 @@ const MealBuilder = () => {
     const fetchData = async () => {
       if (meal.length > 0) {
         await calculateNutrients();  // Wait for calculateNutrients to finish
-        divideByPortions();
+        if(portions) {
+          divideByPortions();
+        }
       }
     };
   
