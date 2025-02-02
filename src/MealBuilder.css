@@ -195,66 +195,6 @@
   background-color: #981724;
 }
 
-.save-meal-button {
-  width: 100%;
-  margin-top: 1em;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.save-meal-button:hover {
-  background-color: #1e88e5;
-}
-
-.total-nutrients {
-  text-align: center;
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.portion-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  gap: 10px;
-}
-
-.portion-controls input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.divide-button {
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.divide-button:hover {
-  background-color: #1e88e5;
-}
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-}
-
 .clear-all-button {
   width: 100%;
   margin-top: 1em;
@@ -269,4 +209,71 @@
 
 .clear-all-button:hover {
   background: #981724;
+}
+
+.portion-controls {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 15px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.portion-controls input {
+  padding: 10px;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px; /* Keep input width controlled */
+  text-align: center;
+  background-color: var(--meal-select-bg-color);
+}
+
+.portion-controls button {
+  background-color: var(--meal-button-bg-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px; /* Keep button width controlled */
+}
+
+.portion-controls button:hover {
+  background-color: var(--meal-button-hover-bg-color);
+}
+
+.save-meal-button {
+  width: 100%;
+  margin-top: 20px;
+  background-color: var(--meal-button-bg-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-meal-button:hover {
+  background-color: var(--meal-button-hover-bg-color);
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.total-nutrients {
+  text-align: center;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
