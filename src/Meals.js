@@ -8,7 +8,7 @@ const Meals = () => {
   // Fetch all meals
   useEffect(() => {
     axios
-      .get("/api/meals")
+      .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
       .then((response) => setMeals(response.data))
       .catch((error) => console.error("Error fetching meals:", error));
   }, []);

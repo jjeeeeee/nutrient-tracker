@@ -17,7 +17,7 @@ const PersonalTracker = () => {
 
   useEffect(() => {
     axios
-      .get("/api/get-user", { withCredentials: true }) 
+      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
       .then((response) => {
         setUsername(response.data.username); 
       })
@@ -35,7 +35,7 @@ const PersonalTracker = () => {
 
   const fetchUserGoals = async () => {
     try {
-      const response = await axios.get("/api/get-user-goals", { withCredentials: true });
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-goals", { withCredentials: true });
       setGoal(response.data);
     } catch (error) {
       console.error("Error fetching user goals:", error);
@@ -52,7 +52,7 @@ const PersonalTracker = () => {
     );
 
     try {
-      await axios.post("/api/update-user-goals", numericGoal, { withCredentials: true });
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", numericGoal, { withCredentials: true });
       fetchUserGoals(); // Refresh goals
 
       // Clear the form inputs 
@@ -65,7 +65,7 @@ const PersonalTracker = () => {
 
   const fetchMeals = async () => {
     try {
-      const response = await axios.get("/api/get-user-meals", { withCredentials: true });
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
       const fetchedMeals = response.data.meals || [];
       setMeals(fetchedMeals);
 
@@ -87,7 +87,7 @@ const PersonalTracker = () => {
 
   const fetchStoredMeals = async () => {
     try {
-      const response = await axios.get("/api/meals");
+      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/meals");
       setStoredMeals(response.data);
     } catch (error) {
       console.error("Error fetching stored meals:", error);
@@ -110,7 +110,7 @@ const PersonalTracker = () => {
 
     try {  
       const response = await axios.post(
-        "/api/add-user-meals",
+        "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
         numericMeal,
         { withCredentials: true }
       );
@@ -141,7 +141,7 @@ const PersonalTracker = () => {
 
   const handleClearMeals = async () => {
     try {
-      await axios.delete("/api/clear-user-meals", { withCredentials: true });
+      await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/clear-user-meals", { withCredentials: true });
       setMeals([]);
       setNutrients({ calories: 0, carbs: 0, fat: 0, protein: 0 });
     } catch (error) {

@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       await axios.post(
-        "/api/login",
+        "https://nutrient-tracker-backend-c0o9.onrender.com/login",
         { username, password },
         { withCredentials: true }
       );
