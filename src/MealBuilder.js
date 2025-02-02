@@ -119,14 +119,14 @@ const MealBuilder = () => {
   };
 
   useEffect(() => {
-    if (meal.length > 0) {
-      calculateNutrients();
-      useEffect(() => {
-        if (meal.length > 0) {
-          divideByPortions();
-        }
-      }, [totalNutrients]);
-    }
+    const fetchData = async () => {
+      if (meal.length > 0) {
+        await calculateNutrients();  // Wait for calculateNutrients to finish
+        divideByPortions();
+      }
+    };
+  
+    fetchData();
   }, [meal]);
 
   // Update the amount of an ingredient
