@@ -182,7 +182,7 @@ const PersonalTracker = () => {
           </div>
 
           <div className="meals-list">
-            <h3>Meals Consumed</h3>
+            <h3>Daily Meals Consumed</h3>
             {meals.length > 0 ? (
               <>
                 <ul>
@@ -203,7 +203,7 @@ const PersonalTracker = () => {
           </div>
 
           <form onSubmit={handleMealSubmit} className="meal-form">
-            <h3>Add A Meal</h3>
+            <h3>Add A Daily Meal</h3>
             
             {/* Dropdown for Stored Meals */}
             <select 
@@ -246,7 +246,7 @@ const PersonalTracker = () => {
           </form>
 
           <div className="goal-container">
-            <h3>Set Daily Goals</h3>
+            <h3>Update Daily Goals</h3>
             <form onSubmit={handleGoalSubmit}>
               {Object.keys(tempGoal).map((key, index) => (
                 <input

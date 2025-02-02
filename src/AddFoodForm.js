@@ -33,7 +33,7 @@ const AddFoodForm = () => {
     return <p>Loading...</p>;
   }
 
-  if (username !== "Jason") {
+  if (username !== "Jason" || username !== "Helen" || username !== "Mom" || username !== "Sam" || username !== "Alison" || username !== "Yury") {
     return <p>Access Denied</p>;
   }
 
