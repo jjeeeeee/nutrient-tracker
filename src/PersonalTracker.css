@@ -10,7 +10,7 @@
   --error-color: red;
   --meal-button-bg-color: #2196f3;
   --meal-button-hover-bg-color: #1e88e5;
-  --meal-input-border: #ccc;
+  --input-border: #ccc;
   --meal-select-bg-color: #f8f8f8;
   --goal-container-bg-color: #fff;
   --goal-container-border: #2A3A57;
@@ -34,7 +34,7 @@ form {
 
 input, button {
   padding: 10px;
-  border: 1px solid var(--meal-input-border);
+  border: 2px solid var(--input-border);
   border-radius: 4px;
 }
 
@@ -167,7 +167,7 @@ li {
 .meal-select, 
 .meal-input {
   padding: 10px;
-  border: 1px solid var(--meal-input-border);
+  border: 2px solid var(--input-border);
   border-radius: 4px;
   font-size: 16px;
   width: 100%;
@@ -175,7 +175,6 @@ li {
 }
 
 .meal-select {
-  background-color: var(--meal-select-bg-color);
   cursor: pointer;
 }
 
@@ -211,7 +210,7 @@ li {
 
 .goal-container input {
   padding: 10px;
-  border: 1px solid var(--meal-input-border);
+  border: 2px solid var(--input-border);
   border-radius: 4px;
   font-size: 16px;
   width: 100%;
