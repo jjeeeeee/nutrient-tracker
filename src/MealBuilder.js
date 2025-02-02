@@ -9,7 +9,7 @@ const MealBuilder = () => {
   const [amount, setAmount] = useState(""); // Amount input for the selected ingredient
   const [totalNutrients, setTotalNutrients] = useState(null); // Displayed nutrient totals
   const [originalNutrients, setOriginalNutrients] = useState(null); // Original calculated nutrient totals
-  const [portions, setPortions] = useState(1); // Number of portions
+  const [portions, setPortions] = useState(""); // Number of portions
   const [errorMessage, setErrorMessage] = useState(""); // Error message for duplicate ingredients
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMealId, setSelectedMealId] = useState("");
@@ -149,17 +149,17 @@ const MealBuilder = () => {
 
   // Divide amounts by portions
   const divideByPortions = () => {
-    if (portions <= 0) {
+    if (Number(portions) <= 0) {
       alert("Please enter a valid number of portions (greater than 0).");
       return;
     }
 
     if (originalNutrients) {
       setTotalNutrients({
-        calories: originalNutrients.calories / portions,
-        carbs: originalNutrients.carbs / portions,
-        fat: originalNutrients.fat / portions,
-        protein: originalNutrients.protein / portions,
+        calories: originalNutrients.calories / Number(portions),
+        carbs: originalNutrients.carbs / Number(portions),
+        fat: originalNutrients.fat / Number(portions),
+        protein: originalNutrients.protein / Number(portions),
       });
     }
   };
