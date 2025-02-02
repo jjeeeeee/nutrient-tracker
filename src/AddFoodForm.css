@@ -29,9 +29,9 @@
 }
 
 /* Form Title */
-.add-food-form-container h2 {
+.add-food-form-container h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 24px;
   color: var(--primary-text);
 }

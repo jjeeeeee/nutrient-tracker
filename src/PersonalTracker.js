@@ -138,7 +138,7 @@ const PersonalTracker = () => {
 
   return (
     <div className="app-container">
-      <h2>Nutrient Tracker</h2>
+      <h1>Nutrient Tracker</h1>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>

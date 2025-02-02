@@ -98,7 +98,6 @@ li {
 .meals-list h3 {
   font-size: 20px;
   margin-bottom: 15px;
-  color: var(--meal-name-color);
 }
 
 .meals-list ul {
