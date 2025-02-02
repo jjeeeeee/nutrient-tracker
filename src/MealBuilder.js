@@ -77,8 +77,6 @@ const MealBuilder = () => {
         });
 
         setPortions(mealToImport.portionAmount);
-
-        divideByPortions();
   
         setErrorMessage(""); // Clear error message after successful import
         setSelectedMealId("");
@@ -123,6 +121,7 @@ const MealBuilder = () => {
   useEffect(() => {
     if (meal.length > 0) {
       calculateNutrients();
+      divideByPortions();
     }
   }, [meal]);
 
