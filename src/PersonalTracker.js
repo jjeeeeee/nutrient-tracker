@@ -155,7 +155,7 @@ const PersonalTracker = () => {
                     <li key={index}>
                       <span className="meal-name">{meal.name}</span>
                       <span className="nutrient-info">
-                        {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fats, {meal.protein}g Proteins
+                        {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fat, {meal.protein}g Protein
                       </span>
                     </li>
                   ))}
