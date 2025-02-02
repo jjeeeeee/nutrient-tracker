@@ -61,19 +61,20 @@ const MealBuilder = () => {
         });
 
         // Update total nutrients state
-      setTotalNutrients({
-        calories: mealToImport.calories.toFixed(2),
-        carbs: mealToImport.carbs.toFixed(2),
-        fat: mealToImport.fat.toFixed(2),
-        protein: mealToImport.protein.toFixed(2),
-      });
-      // Update original nutrients state
-      setOriginalNutrients({
-        calories: mealToImport.calories.toFixed(2),
-        carbs: mealToImport.carbs.toFixed(2),
-        fat: mealToImport.fat.toFixed(2),
-        protein: mealToImport.protein.toFixed(2),
-      });
+        setTotalNutrients({
+          calories: parseFloat(mealToImport.calories).toFixed(2),
+          carbs: parseFloat(mealToImport.carbs).toFixed(2),
+          fat: parseFloat(mealToImport.fat).toFixed(2),
+          protein: parseFloat(mealToImport.protein).toFixed(2),
+        });
+      
+        // Update original nutrients state with two decimal places
+        setOriginalNutrients({
+          calories: parseFloat(mealToImport.calories).toFixed(2),
+          carbs: parseFloat(mealToImport.carbs).toFixed(2),
+          fat: parseFloat(mealToImport.fat).toFixed(2),
+          protein: parseFloat(mealToImport.protein).toFixed(2),
+        });
   
         setErrorMessage(""); // Clear error message after successful import
         return newMeal; // Update the meal state with the final array
