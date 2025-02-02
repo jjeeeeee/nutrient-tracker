@@ -76,8 +76,11 @@
   font-size: 16px;
   flex: 1; /* Make them share space equally */
   min-width: 120px;
-  max-width: 50%;
   box-sizing: border-box;
+}
+
+.ingredient-inputs input::placeholder {
+  text-align: center;
 }
 
 .amount-input {
@@ -140,21 +143,6 @@
 
 .amount-input button:hover {
   background-color: #45a049;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .amount-input {
-    flex-wrap: nowrap; /* Prevent wrapping even on smaller screens */
-  }
-
-  .amount-input input {
-    min-width: 60px; /* Adjust the minimum width for smaller screens */
-  }
-
-  .amount-input button {
-    padding: 6px 10px; /* Adjust button padding for smaller screens */
-  }
 }
 
 .meal-list {
