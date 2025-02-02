@@ -261,7 +261,7 @@ const saveMeal = async () => {
           </button>
         </div>
 
-        <div className="meal-list">
+        <div className="meal-list-display">
           {meal.map((item, index) => (
             <div key={index} className="meal-list-item">
               <span>{item.name}</span>

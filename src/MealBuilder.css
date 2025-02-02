@@ -12,7 +12,7 @@
   text-align: center;
   font-size: 20px;
   color: var(--meal-name-color);
-  margin-bottom: 5px;
+  margin-bottom: -20px;
 }
 
 .import-meal select {
@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column; /* Stack elements vertically */
   gap: 15px;
-  margin-bottom: 20px;
   background-color: var(--goal-container-bg-color);
   padding: 15px;
   border-radius: 8px;
@@ -56,7 +55,7 @@
   text-align: center;
   font-size: 20px;
   color: var(--meal-name-color);
-  margin-bottom: 5px;
+  margin-bottom: -20px;
 }
 
 .ingredient-inputs {
@@ -140,8 +139,8 @@
   background-color: var(--meal-button-hover-bg-color);
 }
 
-.meal-list {
-  margin-bottom: 20px;
+.meal-list-display {
+  margin-top: -30px;
   background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   padding: 15px;
