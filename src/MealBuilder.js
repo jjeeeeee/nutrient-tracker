@@ -232,6 +232,7 @@ const saveMeal = async () => {
             <select
               value={selectedIngredient}
               onChange={(e) => setSelectedIngredient(e.target.value)}
+              className="meal-select"
             >
               <option value="">Select an ingredient...</option>
               {ingredients.map((ingredient) => (
@@ -246,6 +247,7 @@ const saveMeal = async () => {
                 placeholder="Amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                className="meal-input"
               />
               {selectedIngredient && (
                 <span className="measurement-unit">
@@ -253,8 +255,10 @@ const saveMeal = async () => {
                 </span>
               )}
             </div>
-            <button onClick={addIngredient}>Add Ingredient</button>
           </div>
+          <button onClick={addIngredient} className="meal-button">
+            Add Ingredient
+          </button>
         </div>
 
         <div className="meal-list">
