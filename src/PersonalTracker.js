@@ -134,7 +134,7 @@ const PersonalTracker = () => {
             {Object.keys(nutrients).map((nutrient) => (
               <div key={nutrient} className="progress-bar">
                 <label>
-                  {nutrient.charAt(0).toUpperCase() + nutrient.slice(1)}: {nutrients[nutrient]} / {goal[nutrient]}
+                  {nutrient.charAt(0).toUpperCase() + nutrient.slice(1)}: {` ${nutrients[nutrient].toFixed(2)} / ${goal[nutrient].toFixed(2)}`}
                 </label>
                 <div className="progress">
                   <div
