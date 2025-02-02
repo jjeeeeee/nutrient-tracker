@@ -156,10 +156,10 @@ const MealBuilder = () => {
 
     if (originalNutrients) {
       setTotalNutrients({
-        calories: originalNutrients.calories / Number(portions),
-        carbs: originalNutrients.carbs / Number(portions),
-        fat: originalNutrients.fat / Number(portions),
-        protein: originalNutrients.protein / Number(portions),
+        calories: (originalNutrients.calories / Number(portions)).toFixed(2),
+        carbs: (originalNutrients.carbs / Number(portions)).toFixed(2),
+        fat: (originalNutrients.fat / Number(portions)).toFixed(2),
+        protein: (originalNutrients.protein / Number(portions)).toFixed(2),
       });
     }
   };
