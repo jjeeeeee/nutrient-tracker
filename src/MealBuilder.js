@@ -104,7 +104,7 @@ const MealBuilder = () => {
   // Add an ingredient to the meal
   const addIngredient = () => {
     if (!selectedIngredient || !amount) {
-      setErrorMessage("Please select an ingredient and enter a valid amount.");
+      alert("Please select an ingredient and enter a valid amount.");
       return;
     }
 
@@ -232,7 +232,7 @@ const saveMeal = async () => {
       carbs: totalNutrients.carbs,
       fat: totalNutrients.fat,
       protein: totalNutrients.protein,
-      portionAmount: portions,
+      portionAmount: portions ? portions: 1,
     })
     .then(() => {
       alert("Meal saved successfully!");
