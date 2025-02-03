@@ -152,7 +152,7 @@ const PersonalTracker = () => {
 
   const handleDeleteMeal = async (mealId) => {
     try {
-      await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal", 
+      const response = await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal", 
       mealId,
       { withCredentials: true});
       if (response.ok) {
