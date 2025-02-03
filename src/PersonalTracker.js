@@ -150,6 +150,21 @@ const PersonalTracker = () => {
     }
   };
 
+  const handleDeleteMeal = async (mealId) => {
+    try {
+      const response = await fetch(`https://nutrient-tracker-backend-c0o9.onrender.com/meals/${mealId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setMeals(meals.filter(meal => meal.id !== mealId));
+      } else {
+        console.error('Failed to delete meal');
+      }
+    } catch (error) {
+      console.error('Error deleting meal:', error);
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -186,12 +201,13 @@ const PersonalTracker = () => {
             {meals.length > 0 ? (
               <>
                 <ul>
-                  {meals.map((meal, index) => (
-                    <li key={index}>
+                  {meals.map((meal) => (
+                    <li key={meal.id} className="meal-item">
                       <span className="meal-name">{meal.name}</span>
                       <span className="nutrient-info">
                         {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fat, {meal.protein}g Protein
                       </span>
+                      <button className="delete-button" onClick={() => handleDeleteMeal(meal.id)}>❌</button>
                     </li>
                   ))}
                 </ul>
