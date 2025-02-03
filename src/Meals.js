@@ -4,14 +4,22 @@ import "./Meals.css"; // Import the styles
 
 const Meals = () => {
   const [meals, setMeals] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch all meals
   useEffect(() => {
     axios
       .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
       .then((response) => setMeals(response.data))
-      .catch((error) => console.error("Error fetching meals:", error));
+      .catch((error) => console.error("Error fetching meals:", error))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="app-container">

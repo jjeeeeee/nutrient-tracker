@@ -115,10 +115,11 @@ const App = () => {
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
     // Removed register for now
-    // <Route path="register" element={<Register />} />
+    // 
   );
 };
 
