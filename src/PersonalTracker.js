@@ -207,7 +207,7 @@ const PersonalTracker = () => {
                       <span className="nutrient-info">
                         {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fat, {meal.protein}g Protein
                       </span>
-                      <button className="delete-button" onClick={() => handleDeleteMeal(meal.name)}>❌</button>
+                      <button className="delete-button" onClick={handleDeleteMeal(meal.name)}>❌</button>
                     </li>
                   ))}
                 </ul>
