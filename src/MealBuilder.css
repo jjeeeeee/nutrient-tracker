@@ -265,13 +265,6 @@
   background-color: var(--meal-button-hover-bg-color);
 }
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
-}
-
 .total-nutrients {
   text-align: center;
   background-color: #f1f1f1;

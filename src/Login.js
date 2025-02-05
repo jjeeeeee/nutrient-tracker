@@ -8,19 +8,22 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await axios.post(
         "https://nutrient-tracker-backend-c0o9.onrender.com/login",
         { username, password },
         { withCredentials: true }
-      );
+      ); //.finally(setLoading(false));
 
+      setLoading(false);
       setSuccessMessage("Login successful!");
       setErrorMessage("");
       setUsername("");
@@ -31,6 +34,7 @@ const Login = () => {
       window.location.reload();
     } catch (error) {
       console.error("Error:", error);
+      setLoading(false);
       setErrorMessage(
         error.response?.data?.error || "Something went wrong. Please try again."
       );
@@ -62,10 +66,17 @@ const Login = () => {
             required
           />
         </div>
+        <div className="message-container">
+          {loading ? (
+            <div className="loading-message">Loading...</div>
+          ) : errorMessage ? (
+            <div className="error-message">{errorMessage}</div>
+          ) : successMessage ? (
+            <div className="success-message">{successMessage}</div>
+          ) : null}
+        </div>
         <button type="submit">Login</button>
       </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
   );
       /*

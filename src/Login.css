@@ -12,8 +12,6 @@
   --button-hover-text: #FFFFFF;
   --input-border: #ccc;
   --input-focus-border: #00A8E8;
-  --success-bg: #4CAF50;
-  --error-bg: #f44336;
 }
 
 /* Container for the form */
@@ -99,15 +97,27 @@
   color: var(--button-hover-text);
 }
 
-/* Notification Styles */
-.auth-container .error-message {
-  color: red;
-  font-size: 16px;
-  margin-top: 10px;
+.message-container {
+  margin-top: -20px;
 }
 
-.auth-container .success-message {
-  color: green;
-  font-size: 16px;
-  margin-top: 10px;
+.loading-message {
+  border-radius: 10px;
+  background-color: rgb(244, 188, 84);
+  text-align: center;
+  padding: 10px;
+}
+
+.error-message {
+  border-radius: 10px;
+  background-color: red;
+  text-align: center;
+  padding: 10px;
+}
+
+.success-message {
+  border-radius: 10px;
+  background-color: green;
+  text-align: center;
+  padding: 10px;
 }

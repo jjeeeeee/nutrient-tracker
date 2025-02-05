@@ -103,8 +103,13 @@ const MealBuilder = () => {
   
   // Add an ingredient to the meal
   const addIngredient = () => {
-    if (!selectedIngredient || !amount) {
-      alert("Please select an ingredient and enter a valid amount.");
+    if (!selectedIngredient) {
+      alert("Please select an ingredient to add");
+      return;
+    }
+
+    if(!amount) {
+      alert("Please enter a valid amount");
       return;
     }
 
