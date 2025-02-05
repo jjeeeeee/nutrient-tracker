@@ -155,7 +155,7 @@ const PersonalTracker = () => {
   }
 
   if (!username) {
-    return <p>Access Denied</p>;
+    return <p>Please Log In To See Personal Tracker Page</p>;
   }
 
   return (
