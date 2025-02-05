@@ -223,7 +223,7 @@ const saveMeal = async () => {
   }
 
   await calculateNutrients();
-  const mealName = prompt("Enter a name for this meal:");
+  const mealName = prompt("Enter a name for this meal:") + " (" + portions + ")";
   if (!mealName) return;
 
   axios
