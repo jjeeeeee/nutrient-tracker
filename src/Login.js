@@ -36,7 +36,7 @@ const Login = () => {
       console.error("Error:", error);
       setLoading(false);
       setErrorMessage(
-        error.response?.data?.error || "Something went wrong. Please try again."
+        error.response.data || "Something went wrong. Please try again."
       );
       setSuccessMessage("");
     }
