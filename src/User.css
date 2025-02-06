@@ -1,0 +1,51 @@
+:root {
+  --goal-container-bg-color: #fff;
+  --goal-container-border: #2A3A57;
+}
+
+.goal-container {
+  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--goal-container-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid var(--goal-container-border);
+}
+
+.goal-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.goal-container input {
+  padding: 10px;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.goal-container input::placeholder {
+  color: #888;
+}
+
+.goal-container button {
+  background-color: var(--meal-button-bg-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.goal-container button:hover {
+  background-color: var(--meal-button-hover-bg-color);
+}
