@@ -150,6 +150,17 @@ const PersonalTracker = () => {
     }
   };
 
+  const handleSaveWeeklyInfo = async () => {
+    try {
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", 
+      nutrients,
+      {withCredentials: true});
+    } catch (error) {
+      console.error("Error clearing meals:", error);
+      setErrorMessage("Failed to add to weekly log");
+    }
+  }
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -177,6 +188,7 @@ const PersonalTracker = () => {
                     style={{ width: `${Math.min((nutrients[nutrient] / goal[nutrient]) * 100, 100)}%` }}
                   />
                 </div>
+                <button onClick={handleSaveWeeklyInfo} className="save-weekly-info-button">Save To Weekly Log</button>
               </div>
             ))}
           </div>
