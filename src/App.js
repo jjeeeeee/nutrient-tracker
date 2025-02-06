@@ -5,6 +5,7 @@ import AddFoodForm from "./AddFoodForm"; // Add Food Form
 import MealBuilder from "./MealBuilder"; // Meal Builder
 import Foods from "./Foods"; // Food display
 import Meals from "./Meals"; // Meal display
+import User from "./User";
 import Login from "./Login"; // Login display
 import Register from "./Register";
 import PersonalTracker from "./PersonalTracker"; // Personal Tracker display
@@ -94,7 +95,9 @@ const App = () => {
           </NavLink>
           {user ? (
             <>
-              <span id="usernameNavbar">{user}</span>
+              <NavLink to="user" id="user" onClick={() => setIsMenuOpen(false)} end>
+                {user}
+              </NavLink>
               <NavLink to="" id="actionButton" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
                 Logout
               </NavLink>
@@ -114,6 +117,7 @@ const App = () => {
         <Route path="addFood" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
+        <Route path="user" element={<User />} />
         <Route path="login" element={<Login />} />
       </Routes>
     </Router>

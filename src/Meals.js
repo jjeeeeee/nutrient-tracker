@@ -18,7 +18,7 @@ const Meals = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Loading Meals...</p>;
   }
 
   return (
