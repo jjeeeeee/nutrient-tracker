@@ -6,6 +6,8 @@ const User = () => {
   const [weeklyProgress, setWeeklyProgress] = useState([]);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const placeholders = ['Calories (kcal)', 'Carbs (g)', 'Fats (g)', 'Protein (g)'];
   const [tempGoal, setTempGoal] = useState({ calories: "", carbs: "", fat: "", protein: ""});
 
   useEffect(() => {
@@ -38,7 +40,6 @@ const User = () => {
 
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", numericGoal, { withCredentials: true });
-      fetchUserGoals(); // Refresh goals
 
       // Clear the form inputs 
       setTempGoal({ calories: "", carbs: "", fats: "", protein: "" }); 
