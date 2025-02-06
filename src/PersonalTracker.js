@@ -188,9 +188,9 @@ const PersonalTracker = () => {
                     style={{ width: `${Math.min((nutrients[nutrient] / goal[nutrient]) * 100, 100)}%` }}
                   />
                 </div>
-                <button onClick={handleSaveWeeklyInfo} className="save-weekly-info-button">Save To Weekly Log</button>
               </div>
             ))}
+            <button onClick={handleSaveWeeklyInfo} className="save-weekly-info-button">Save To Weekly Log</button>
           </div>
 
           <div className="meals-list">
