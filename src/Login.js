@@ -33,7 +33,7 @@ const Login = () => {
       navigate("/../tracker");
       window.location.reload();
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error.response);
       setLoading(false);
       setErrorMessage(
         error.response.data || "Something went wrong. Please try again."
