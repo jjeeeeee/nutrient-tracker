@@ -27,8 +27,17 @@ const User = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  const getDayOfWeek = (index) => {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return days[index];
+  };
+
   if (loading) {
     return <p>Loading Weekly Progress...</p>;
+  }
+
+  if(!username) {
+    return <p>Please Log In To See User Page</p>
   }
 
   return (
@@ -39,8 +48,8 @@ const User = () => {
           <p>No progress data available.</p>
         ) : (
           weeklyProgress.map((entry) => (
-            <div key={entry.day_of_week} className="food-item">
-              <h2>{entry.day_of_week}</h2>
+            <div key={getDayOfWeek(entry.day_of_week)} className="food-item">
+              <h2>{getDayOfWeek(entry.day_of_week)}</h2>
               <ul>
                 <li><strong>Calories:</strong> {entry.calories} kcal</li>
                 <li><strong>Carbs:</strong> {entry.carbs} g</li>
