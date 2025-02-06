@@ -152,7 +152,7 @@ const PersonalTracker = () => {
 
   const handleSaveWeeklyInfo = async () => {
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", 
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
       nutrients,
       {withCredentials: true});
     } catch (error) {
