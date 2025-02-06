@@ -153,10 +153,10 @@ const PersonalTracker = () => {
   const handleSaveWeeklyInfo = async () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
-      nutrients,
-      {withCredentials: true});
+        nutrients,
+        { withCredentials: true });
     } catch (error) {
-      console.error("Error clearing meals:", error);
+      console.error("Error adding meal to weekly log:", error);
       setErrorMessage("Failed to add to weekly log");
     }
   }
