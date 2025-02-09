@@ -31,7 +31,7 @@ const Meals = () => {
 
     const searchIngredients = searchQuery
       .toLowerCase()
-      .split(" ")
+      .split(", ")
       .map((ing) => ing.trim()); // Convert input into an array of lowercase trimmed ingredients
 
     const filtered = meals.filter((meal) => 
