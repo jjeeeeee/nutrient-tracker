@@ -60,8 +60,10 @@ const Meals = () => {
         className="search-bar"
       />
       <div className="meal-list">
-        {filteredMeals.length === 0 ? (
-          <p>No meals saved yet.</p>
+        {meals.length === 0 ? (
+          <p>No Meals Saved Yet</p>
+        ) : filteredMeals.length === 0 ? (
+          <p>No Meals With Searched Ingredients</p>
         ) : (
           filteredMeals.map((meal) => (
             <div key={meal.id} className="meal-item">
