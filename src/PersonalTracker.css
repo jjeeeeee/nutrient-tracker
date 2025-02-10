@@ -141,7 +141,6 @@ li {
   cursor: pointer;
   transition: background 0.3s ease-in-out;
   width: 100%;
-  margin-top: 15px;
 }
 
 .clear-button:hover {
@@ -213,4 +212,8 @@ li {
   cursor: pointer;
   font-size: 14px;
   align-content: center;
+}
+
+.remove-meal-button:hover {
+  background: #981724;
 }
