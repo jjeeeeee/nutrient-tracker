@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import axios from "axios";
 import "./User.css";
 
@@ -35,6 +36,14 @@ const User = () => {
       .catch((error) => console.error("Error fetching weekly progress:", error))
       .finally(() => setLoading(false));
   }, []);
+
+  const data = weeklyProgress.map(entry => ({
+    day: getDayOfWeek(entry.day_of_week),
+    Calories: parseFloat(entry.calories).toFixed(2),
+    Carbs: parseFloat(entry.carbs).toFixed(2),
+    Fat: parseFloat(entry.fat).toFixed(2),
+    Protein: parseFloat(entry.protein).toFixed(2),
+  }));
 
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
@@ -320,17 +329,19 @@ const User = () => {
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>
             ) : (
-              weeklyProgress.map((entry) => (
-                <div key={getDayOfWeek(entry.day_of_week)} className="food-item">
-                  <h2>{getDayOfWeek(entry.day_of_week)}</h2>
-                  <ul>
-                    <li><strong>Calories:</strong> {parseFloat(entry.calories).toFixed(2)} kcal</li>
-                    <li><strong>Carbs:</strong> {parseFloat(entry.carbs).toFixed(2)} g</li>
-                    <li><strong>Fat:</strong> {parseFloat(entry.fat).toFixed(2)} g</li>
-                    <li><strong>Protein:</strong> {parseFloat(entry.protein).toFixed(2)} g</li>
-                  </ul>
-                </div>
-              ))
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="day" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Calories" fill="#8884d8" />
+                  <Bar dataKey="Carbs" fill="#82ca9d" />
+                  <Bar dataKey="Fat" fill="#ffc658" />
+                  <Bar dataKey="Protein" fill="#ff7300" />
+                </BarChart>
+              </ResponsiveContainer>
             )}
           </div>
         </>
