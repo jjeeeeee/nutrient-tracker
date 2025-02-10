@@ -256,7 +256,7 @@ li {
 .remove-meal-button {
   margin-top: 5px;
   width: min-content;
-  padding: 8px 12px;
+  padding: 4px 10px;
   background-color: var(--clear-button);
   border: none;
   border-radius: 4px;
@@ -268,4 +268,8 @@ li {
 
 .remove-meal-button:hover {
   background: #981724;
+}
+
+.food-list {
+  border: 2px solid var(--goal-container-border);
 }

@@ -214,12 +214,12 @@ const User = () => {
 
   return (
     <div className="app-container">
-      <h1>Nutrient Tracker</h1>
+      <h1>{username}'s Weekly Progress</h1>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>
           <div className="progress-container">
-            <h3>Today's Progress</h3>
+            <h2>Today's Progress</h2>
             {Object.keys(nutrients).map((nutrient) => (
               <div key={nutrient} className="progress-bar">
                 <label>
@@ -236,7 +236,7 @@ const User = () => {
             <button onClick={handleSaveWeeklyInfo} className="save-weekly-info-button">Save To Weekly Log</button>
           </div>
           <form onSubmit={handleMealSubmit} className="meal-form">
-            <h3>Quick Add Meal</h3>
+            <h2>Quick Add Meal</h2>
             
             {/* Dropdown for Stored Meals */}
             <select 
@@ -277,7 +277,7 @@ const User = () => {
             <button type="submit" className="meal-button">Add Meal</button>
           </form>
           <div className="meals-list">
-            <h3>Daily Meals Consumed</h3>
+            <h2>Meals Consumed Today</h2>
             {meals.length > 0 ? (
               <>
                 <ul>
@@ -293,13 +293,13 @@ const User = () => {
                     </li>
                   ))}
                 </ul>
-                <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
+                <button onClick={handleClearMeals} className="clear-button">Clear All</button>
               </>
             ) : (
               <p>No Meals Added Yet.</p>
             )}
           </div>
-          <h3>Update Daily Goals</h3>
+          <h2>Update Daily Goals</h2>
           <div className="goal-container">
             <form onSubmit={handleGoalSubmit}>
               {Object.keys(tempGoal).map((key, index) => (
@@ -315,8 +315,8 @@ const User = () => {
               <button type="submit">Update Goals</button>
             </form>
           </div>
-          <h1>{username}'s Weekly Progress</h1>
           <div className="food-list">
+            <h2>Weekly Log</h2>
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>
             ) : (
