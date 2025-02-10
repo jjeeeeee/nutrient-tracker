@@ -294,7 +294,7 @@ const User = () => {
                     className="progress-fill"
                     style={{ 
                       width: `${Math.min((nutrients[nutrient] / goal[nutrient]) * 100, 100)}%`,
-                      backgroundColor: nutrients[nutrient] > goal[nutrient] ? 'red' : 'var(--progress-color)'
+                      background: nutrients[nutrient] > goal[nutrient] ? 'red' : 'var(--progress-color)'
                     }}
                   />
                 </div>
