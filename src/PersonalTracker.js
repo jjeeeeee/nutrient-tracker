@@ -128,15 +128,14 @@ const PersonalTracker = () => {
     }
   };
 
-  const handleRemoveMeal = (mealId) => {
-    axios
-      .delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal",
+  const handleRemoveMeal = async (mealId) => {
+    await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal",
         mealId,
         { withCredentials: true })
-      .then(() => {
-        setMeals(meals.filter((meal) => meal.id !== mealId));
-      })
-      .catch((error) => console.error("Error removing meal:", error));
+    .then(() => {
+      setMeals(meals.filter((meal) => meal.id !== mealId));
+    })
+    .catch((error) => console.error("Error removing meal:", error));
   };
 
   const handleSaveWeeklyInfo = async () => {
