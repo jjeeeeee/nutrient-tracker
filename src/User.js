@@ -17,6 +17,13 @@ const User = () => {
   const [selectedMeal, setSelectedMeal] = useState("");
   const [newMeal, setNewMeal] = useState({ name: "", calories: "", carbs: "", fat: "", protein: "" });
   const [data, setData] = useState([]);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     axios
@@ -73,8 +80,16 @@ const User = () => {
   };
 
   const getDayOfWeekAbbr = (index) => {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return days[index];
+    const shortDays = ["Su", "M", "T", "W", "R", "F", "Sa"];
+    const threeLetterDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    // Check if screen width is smaller than 450px for single-letter display
+    if (screenWidth < 450) {
+      return shortDays[index];
+    }
+
+    // Return 3-letter abbreviation for larger screens
+    return threeLetterDays[index];
   };
 
   useEffect(() => {
@@ -237,7 +252,7 @@ const User = () => {
   const handleClearLog = async () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/reset-user-meals", {}, { withCredentials: true });
-      alert("All meals have been reset to 0!");
+      alert("All meals have been reset!");
       setWeeklyProgress(prevProgress =>
         prevProgress.map(entry => ({
           ...entry,
@@ -254,11 +269,11 @@ const User = () => {
   };
 
   if (loading) {
-    return <p>Loading Weekly Progress...</p>;
+    return <p>Loading User Profile...</p>;
   }
 
   if(!username) {
-    return <p>Please Log In To See User Page</p>
+    return <p>Please Log In To See The User Profile Page</p>
   }
 
   return (
