@@ -299,8 +299,8 @@ const User = () => {
               <p>No Meals Added Yet.</p>
             )}
           </div>
-          <h2>Update Daily Goals</h2>
           <div className="goal-container">
+            <h2>Update Daily Goals</h2>
             <form onSubmit={handleGoalSubmit}>
               {Object.keys(tempGoal).map((key, index) => (
                 <input

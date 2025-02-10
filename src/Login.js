@@ -30,7 +30,7 @@ const Login = () => {
       setPassword("");
 
       // Redirect to tracker page
-      navigate("/../tracker");
+      navigate("/../user");
       window.location.reload();
     } catch (error) {
       console.error("Error:", error);

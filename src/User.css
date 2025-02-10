@@ -1,11 +1,24 @@
 :root {
   --goal-container-bg-color: #fff;
   --goal-container-border: #2A3A57;
+  --progress-color: #00D4FF;
+  --clear-button: #E63946;
+  --inner-border: #2A3A57;
+  --button-bg-color: #28a745;
+  --button-bg-hover: #218838;
+  --list-bg-color: #e3e3e3;
+  --meal-name-color: #2A3A57;
+  --text-color: #333;
+  --error-color: red;
+  --meal-button-bg-color: #2196f3;
+  --meal-button-hover-bg-color: #1e88e5;
+  --input-border: #ccc;
+  --meal-select-bg-color: #f8f8f8;
 }
 
 .goal-container {
   margin: 30px auto;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,27 +63,12 @@
   background-color: var(--meal-button-hover-bg-color);
 }
 
-:root {
-  --progress-color: #00D4FF;
-  --clear-button: #E63946;
-  --inner-border: #2A3A57;
-  --button-bg-color: #28a745;
-  --button-bg-hover: #218838;
-  --list-bg-color: #e3e3e3;
-  --meal-name-color: #2A3A57;
-  --text-color: #333;
-  --error-color: red;
-  --meal-button-bg-color: #2196f3;
-  --meal-button-hover-bg-color: #1e88e5;
-  --input-border: #ccc;
-  --meal-select-bg-color: #f8f8f8;
-  --goal-container-bg-color: #fff;
-  --goal-container-border: #2A3A57;
-}
-
-/* Global Styles */
 h2, h3 {
   text-align: center;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 .error {
@@ -113,7 +111,7 @@ li {
 }
 
 .progress-container {
-  padding: 0 20px 10px;
+  padding: 10px 20px 10px;
   margin: 30px auto;
   border: 2px solid var(--inner-border);
   border-radius: 5px;
@@ -138,7 +136,7 @@ li {
 }
 
 .meals-list {
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   margin-top: 20px;
   background-color: var(--goal-container-bg-color);
   border-radius: 8px;
@@ -200,7 +198,7 @@ li {
 
 .meal-form {
   margin: 30px auto;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   background-color: var(--goal-container-bg-color);
   border-radius: 8px;
   text-align: center;
