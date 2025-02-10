@@ -144,9 +144,12 @@ const PersonalTracker = () => {
   };
 
   const handleSaveWeeklyInfo = async () => {
+    const dayOfWeek = new Date().getUTCDay();
+    const requestBody = { ...nutrients, day_of_week: dayOfWeek };
+
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
-        nutrients,
+        requestBody,
         { withCredentials: true })
       .then(alert("Saved to Weekly Log!"));
     } catch (error) {
