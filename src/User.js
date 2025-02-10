@@ -16,7 +16,7 @@ const User = () => {
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
   const [newMeal, setNewMeal] = useState({ name: "", calories: "", carbs: "", fat: "", protein: "" });
-  const data = {};
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
