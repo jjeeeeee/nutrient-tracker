@@ -136,7 +136,7 @@ const PersonalTracker = () => {
           withCredentials: true
         })
       .then(() => {
-        setMeals(meals.filter((meal) => meal.id !== mealId));
+        fetchUserMeals();
       })
     } catch (error) {
       console.error("Error removing meal:", error);
@@ -198,7 +198,7 @@ const PersonalTracker = () => {
                       <span className="nutrient-info">
                         {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fat, {meal.protein}g Protein
                       </span>
-                      <button onClick={() => handleRemoveMeal(meal.id)} className="remove-button">
+                      <button onClick={() => handleRemoveMeal(meal.id)} className="remove-meal-button">
                         Remove
                       </button>
                     </li>
