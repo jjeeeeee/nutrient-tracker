@@ -27,7 +27,7 @@ const PersonalTracker = () => {
         setLoading(false);
       });
 
-    fetchMeals();
+    fetchUserMeals();
     fetchUserGoals();
     fetchStoredMeals();
   }, []);
@@ -42,7 +42,7 @@ const PersonalTracker = () => {
     }
   };
 
-  const fetchMeals = async () => {
+  const fetchUserMeals = async () => {
     try {
       const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
       const fetchedMeals = response.data.meals || [];
@@ -76,17 +76,16 @@ const PersonalTracker = () => {
   const handleMealSubmit = async (e) => {
     e.preventDefault();
 
-  // Convert tempGoal values to numbers before updating goal
-  const numericMeal = Object.fromEntries(
-    Object.entries(newMeal).map(([key, value]) => {
-      // Convert only calories, carbs, fat, and protein to numbers, leave name as a string
-      if (key === "calories" || key === "carbs" || key === "fat" || key === "protein") {
-        return [key, Number(value) || 0]; // Convert to number, default to 0 if empty
-      }
-      return [key, value]; // Leave name as is
-    })
-  );
-
+    // Convert tempGoal values to numbers before updating goal
+    const numericMeal = Object.fromEntries(
+      Object.entries(newMeal).map(([key, value]) => {
+        // Convert only calories, carbs, fat, and protein to numbers, leave name as a string
+        if (key === "calories" || key === "carbs" || key === "fat" || key === "protein") {
+          return [key, Number(value) || 0]; // Convert to number, default to 0 if empty
+        }
+        return [key, value];
+      })
+    );
     try {  
       const response = await axios.post(
         "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
@@ -95,7 +94,7 @@ const PersonalTracker = () => {
       );
 
       setNewMeal({ name: "", calories: "", carbs: "", fat: "", protein: "" });
-      fetchMeals(); // Refresh meals and nutrients
+      fetchUserMeals(); // Refresh meals and nutrients
       setSelectedMeal("");
     } catch (error) {
       console.error("Error adding meal:", error);
@@ -129,14 +128,26 @@ const PersonalTracker = () => {
     }
   };
 
+  const handleRemoveMeal = (mealId) => {
+    axios
+      .delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal",
+        mealId,
+        { withCredentials: true })
+      .then(() => {
+        setMeals(meals.filter((meal) => meal.id !== mealId));
+      })
+      .catch((error) => console.error("Error removing meal:", error));
+  };
+
   const handleSaveWeeklyInfo = async () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
         nutrients,
-        { withCredentials: true });
+        { withCredentials: true })
+      .then(alert("Saved to Weekly Log!"));
     } catch (error) {
       console.error("Error adding meal to weekly log:", error);
-      setErrorMessage("Failed to add to weekly log");
+      alert("Failed to Add to Weekly Log");
     }
   }
 
@@ -183,13 +194,16 @@ const PersonalTracker = () => {
                       <span className="nutrient-info">
                         {meal.calories} Calories, {meal.carbs}g Carbs, {meal.fat}g Fat, {meal.protein}g Protein
                       </span>
+                      <button onClick={() => handleRemoveMeal(meal.id)} className="remove-button">
+                        Remove
+                      </button>
                     </li>
                   ))}
                 </ul>
                 <button onClick={handleClearMeals} className="clear-button">Clear Meals</button>
               </>
             ) : (
-              <p>No meals added yet.</p>
+              <p>No Meals Added Yet.</p>
             )}
           </div>
 
