@@ -214,7 +214,18 @@ const User = () => {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
         requestBody,
         { withCredentials: true })
-      .then(alert("Saved to Weekly Log!"));
+
+      const response = await axios.get(
+        "https://nutrient-tracker-backend-c0o9.onrender.com/user-progress",
+        { withCredentials: true }
+      );
+      setWeeklyProgress(response.data);
+      
+      // Scroll to the graph section
+      const graphSection = document.getElementById("graph-section");
+      if (graphSection) {
+        graphSection.scrollIntoView({ behavior: "smooth" });
+      }
     } catch (error) {
       console.error("Error adding meal to weekly log:", error);
       alert("Failed to Add to Weekly Log");
@@ -351,7 +362,7 @@ const User = () => {
               <button type="submit">Update Goals</button>
             </form>
           </div>
-          <div className="user-log-list">
+          <div className="user-log-list" id="graph-section">
             <h2>Weekly Log</h2>
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>
