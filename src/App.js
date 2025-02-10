@@ -81,9 +81,6 @@ const App = () => {
           <NavLink to="/" onClick={() => setIsMenuOpen(false)} end>
             Home
           </NavLink>
-          <NavLink to="tracker" onClick={() => setIsMenuOpen(false)} end>
-            Personal Tracker
-          </NavLink>
           <NavLink to="addFood" onClick={() => setIsMenuOpen(false)} end>
             Add Food
           </NavLink>
@@ -113,7 +110,6 @@ const App = () => {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<MealBuilder />} />
-        <Route path="tracker" element={<PersonalTracker />} />
         <Route path="addFood" element={<AddFoodForm />} />
         <Route path="foods" element={<Foods />} />
         <Route path="meals" element={<Meals />} />
