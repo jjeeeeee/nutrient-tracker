@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Chart } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import axios from "axios";
 import "./User.css";
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const User = () => {
   const [weeklyProgress, setWeeklyProgress] = useState([]);
@@ -19,8 +16,7 @@ const User = () => {
   const [storedMeals, setStoredMeals] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState("");
   const [newMeal, setNewMeal] = useState({ name: "", calories: "", carbs: "", fat: "", protein: "" });
-  const [chartData, setChartData] = useState([]);
-  const [chartOptions, setChartOptions] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
@@ -48,78 +44,14 @@ const User = () => {
     if (weeklyProgress.length > 0) { // Ensure we have data before processing
       const formattedData = weeklyProgress.map(entry => ({
         day: getDayOfWeekAbbr(entry.day_of_week),
-        Calories: {
-          consumed: parseFloat(entry.calories).toFixed(2),
-          goal: parseFloat(goal.calories).toFixed(2)
-        },
-        Carbs: {
-          consumed: parseFloat(entry.carbs).toFixed(2),
-          goal: parseFloat(goal.carbs).toFixed(2)
-        },
-        Fat: {
-          consumed: parseFloat(entry.fat).toFixed(2),
-          goal: parseFloat(goal.fat).toFixed(2)
-        },
-        Protein: {
-          consumed: parseFloat(entry.protein).toFixed(2),
-          goal: parseFloat(goal.protein).toFixed(2)
-        },
+        Calories: parseFloat(entry.calories).toFixed(2),
+        Carbs: parseFloat(entry.carbs).toFixed(2),
+        Fat: parseFloat(entry.fat).toFixed(2),
+        Protein: parseFloat(entry.protein).toFixed(2),
       }));
-      setChartData(formattedData);
-      setChartOptions({
-        responsive: true,
-        plugins: {
-          tooltip: {
-            callbacks: {
-              title: function (tooltipItem) {
-                return tooltipItem[0].label; // Shows the day
-              },
-              label: function (tooltipItem) {
-                const nutrient = tooltipItem.dataset.label; // The nutrient name
-                const consumed = tooltipItem.raw.consumed; // Actual value
-                const goal = tooltipItem.raw.goal; // Goal value
-                return `${nutrient}: ${consumed} / ${goal} ${nutrient === "Calories" ? "kcal" : "g"}`;
-              }
-            }
-          }
-        }
-      });
+      setData(formattedData);
     }
-  }, [weeklyProgress, goal]);
-
-  const chartConfig = {
-    labels: chartData.map((data) => data.day), // X-axis labels (days of the week)
-    datasets: [
-      {
-        label: "Calories",
-        data: chartData.map((data) => data.Calories.consumed),
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1
-      },
-      {
-        label: "Carbs",
-        data: chartData.map((data) => data.Carbs.consumed),
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1
-      },
-      {
-        label: "Fat",
-        data: chartData.map((data) => data.Fat.consumed),
-        backgroundColor: "rgba(255, 159, 64, 0.2)",
-        borderColor: "rgba(255, 159, 64, 1)",
-        borderWidth: 1
-      },
-      {
-        label: "Protein",
-        data: chartData.map((data) => data.Protein.consumed),
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1
-      }
-    ]
-  };
+  }, [weeklyProgress]);
 
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
@@ -405,7 +337,19 @@ const User = () => {
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>
             ) : (
-              <Chart type="bar" data={chartConfig} options={chartOptions} />
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="day" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Calories" fill="#8884d8" />
+                  <Bar dataKey="Carbs" fill="#82ca9d" />
+                  <Bar dataKey="Fat" fill="#ffc658" />
+                  <Bar dataKey="Protein" fill="#ff7300" />
+                </BarChart>
+              </ResponsiveContainer>
             )}
           </div>
         </>
