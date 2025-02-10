@@ -224,6 +224,7 @@ li {
 
 .meal-select {
   cursor: pointer;
+  margin-top: -10px;
 }
 
 .meal-button {
@@ -270,4 +271,6 @@ li {
 
 .food-list {
   border: 2px solid var(--goal-container-border);
+  border-radius: 8px;
+  padding: 10px 20px 20px;
 }
