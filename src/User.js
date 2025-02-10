@@ -226,6 +226,8 @@ const User = () => {
       if (graphSection) {
         graphSection.scrollIntoView({ behavior: "smooth" });
       }
+
+      alert("Added to Weekly Log!");
     } catch (error) {
       console.error("Error adding meal to weekly log:", error);
       alert("Failed to Add to Weekly Log");

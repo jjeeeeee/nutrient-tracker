@@ -231,7 +231,7 @@ li {
   background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -277,4 +277,21 @@ li {
   border: 2px solid var(--goal-container-border);
   border-radius: 8px;
   padding: 10px 20px 20px;
+}
+
+.clear-log-button {
+  background-color: var(--meal-button-bg-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.clear-log-button:hover {
+  background-color: var(--meal-button-hover-bg-color);
 }
