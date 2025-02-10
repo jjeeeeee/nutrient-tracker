@@ -144,7 +144,7 @@ const PersonalTracker = () => {
   };
 
   const handleSaveWeeklyInfo = async () => {
-    const dayOfWeek = new Date().getUTCDay();
+    const dayOfWeek = new Date().getDay();
     const requestBody = { ...nutrients, day_of_week: dayOfWeek };
 
     try {
