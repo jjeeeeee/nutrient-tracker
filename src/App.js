@@ -8,7 +8,6 @@ import Meals from "./Meals"; // Meal display
 import User from "./User";
 import Login from "./Login"; // Login display
 import Register from "./Register";
-import PersonalTracker from "./PersonalTracker"; // Personal Tracker display
 import "./App.css"; // Import your styles
 
 const App = () => {
