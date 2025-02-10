@@ -138,8 +138,8 @@ const PersonalTracker = () => {
       .then(() => {
         setMeals(meals.filter((meal) => meal.id !== mealId));
       })
-    } catch {
-      (error) => console.error("Error removing meal:", error);
+    } catch (error) {
+      console.error("Error removing meal:", error);
     }
   };
 
