@@ -214,7 +214,7 @@ const User = () => {
 
   return (
     <div className="app-container">
-      <h1>{username}'s Weekly Progress</h1>
+      <h1>{username}'s Profile</h1>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!errorMessage && (
         <>
@@ -300,7 +300,7 @@ const User = () => {
             )}
           </div>
           <div className="goal-container">
-            <h2>Update Daily Goals</h2>
+            <h2>Update Goals</h2>
             <form onSubmit={handleGoalSubmit}>
               {Object.keys(tempGoal).map((key, index) => (
                 <input
