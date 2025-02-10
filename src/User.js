@@ -315,7 +315,7 @@ const User = () => {
               <button type="submit">Update Goals</button>
             </form>
           </div>
-          <div className="food-list">
+          <div className="user-log-list">
             <h2>Weekly Log</h2>
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>

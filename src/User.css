@@ -273,7 +273,7 @@ li {
   background: #981724;
 }
 
-.food-list {
+.user-log-list {
   border: 2px solid var(--goal-container-border);
   border-radius: 8px;
   padding: 10px 20px 20px;
