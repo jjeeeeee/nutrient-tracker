@@ -77,4 +77,6 @@ p {
 .search-bar {
   width: 100%;
   box-sizing: border-box;
+  border: 2px solid var(--inner-border);
+  border-radius: 8px;
 }
