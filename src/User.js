@@ -221,7 +221,7 @@ const User = () => {
     }
   }
 
-  const handleResetMeals = async () => {
+  const handleClearLog = async () => {
     try {
       await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/reset-user-meals", {}, { withCredentials: true });
       alert("All meals have been reset to 0!");
