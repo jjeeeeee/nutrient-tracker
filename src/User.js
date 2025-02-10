@@ -35,17 +35,23 @@ const User = () => {
       .get("https://nutrient-tracker-backend-c0o9.onrender.com/user-progress", {withCredentials: true})
       .then((response) => {
         setWeeklyProgress(response.data);
-        data = weeklyProgress.map(entry => ({
-          day: getDayOfWeek(entry.day_of_week),
-          Calories: parseFloat(entry.calories).toFixed(2),
-          Carbs: parseFloat(entry.carbs).toFixed(2),
-          Fat: parseFloat(entry.fat).toFixed(2),
-          Protein: parseFloat(entry.protein).toFixed(2),
-        }));
       })
       .catch((error) => console.error("Error fetching weekly progress:", error))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (weeklyProgress.length > 0) { // Ensure we have data before processing
+      const formattedData = weeklyProgress.map(entry => ({
+        day: getDayOfWeek(entry.day_of_week),
+        Calories: parseFloat(entry.calories).toFixed(2),
+        Carbs: parseFloat(entry.carbs).toFixed(2),
+        Fat: parseFloat(entry.fat).toFixed(2),
+        Protein: parseFloat(entry.protein).toFixed(2),
+      }));
+      setData(formattedData);
+    }
+  }, [weeklyProgress]);
 
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
