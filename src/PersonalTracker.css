@@ -136,7 +136,6 @@ li {
   border: none;
   padding: 12px;
   font-size: 16px;
-  font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
@@ -197,6 +196,7 @@ li {
   cursor: pointer;
   width: 100%;
   border-radius: 5px;
+  font-size: 16px;
   border: none;
   padding: 12px;
 }

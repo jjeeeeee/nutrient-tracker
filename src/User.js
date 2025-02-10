@@ -73,10 +73,10 @@ const User = () => {
             <div key={getDayOfWeek(entry.day_of_week)} className="food-item">
               <h2>{getDayOfWeek(entry.day_of_week)}</h2>
               <ul>
-                <li><strong>Calories:</strong> {entry.calories} kcal</li>
-                <li><strong>Carbs:</strong> {entry.carbs} g</li>
-                <li><strong>Fat:</strong> {entry.fat} g</li>
-                <li><strong>Protein:</strong> {entry.protein} g</li>
+                <li><strong>Calories:</strong> {parseFloat(entry.calories).toFixed(2)} kcal</li>
+                <li><strong>Carbs:</strong> {parseFloat(entry.carbs).toFixed(2)} g</li>
+                <li><strong>Fat:</strong> {parseFloat(entry.fat).toFixed(2)} g</li>
+                <li><strong>Protein:</strong> {parseFloat(entry.protein).toFixed(2)} g</li>
               </ul>
             </div>
           ))
