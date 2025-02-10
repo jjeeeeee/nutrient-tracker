@@ -43,7 +43,7 @@ const User = () => {
   useEffect(() => {
     if (weeklyProgress.length > 0) { // Ensure we have data before processing
       const formattedData = weeklyProgress.map(entry => ({
-        day: getDayOfWeek(entry.day_of_week),
+        day: getDayOfWeekAbbr(entry.day_of_week),
         Calories: parseFloat(entry.calories).toFixed(2),
         Carbs: parseFloat(entry.carbs).toFixed(2),
         Fat: parseFloat(entry.fat).toFixed(2),
@@ -72,8 +72,8 @@ const User = () => {
     }
   };
 
-  const getDayOfWeek = (index) => {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const getDayOfWeekAbbr = (index) => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return days[index];
   };
 
