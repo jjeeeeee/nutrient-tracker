@@ -50,7 +50,7 @@
   background-color: var(--meal-button-bg-color);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -83,7 +83,7 @@ form {
 }
 
 input, button {
-  padding: 10px;
+  padding: 12px;
   border: 2px solid var(--input-border);
   border-radius: 4px;
 }

@@ -221,6 +221,25 @@ const User = () => {
     }
   }
 
+  const handleResetMeals = async () => {
+    try {
+      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/reset-user-meals", {}, { withCredentials: true });
+      alert("All meals have been reset to 0!");
+      setWeeklyProgress(prevProgress =>
+        prevProgress.map(entry => ({
+          ...entry,
+          calories: 0,
+          carbs: 0,
+          fat: 0,
+          protein: 0,
+        }))
+      ); // Reset the data in the state
+    } catch (error) {
+      console.error("Error resetting user meals:", error);
+      alert("Failed to reset user meals");
+    }
+  };
+
   if (loading) {
     return <p>Loading Weekly Progress...</p>;
   }
@@ -337,19 +356,24 @@ const User = () => {
             {weeklyProgress.length === 0 ? (
               <p>No progress data available.</p>
             ) : (
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="day" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Calories" fill="#8884d8" />
-                  <Bar dataKey="Carbs" fill="#82ca9d" />
-                  <Bar dataKey="Fat" fill="#ffc658" />
-                  <Bar dataKey="Protein" fill="#ff7300" />
-                </BarChart>
-              </ResponsiveContainer>
+              <>
+                <ResponsiveContainer width="100%" height={400}>
+                  <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="Calories" fill="#8884d8" />
+                    <Bar dataKey="Carbs" fill="#82ca9d" />
+                    <Bar dataKey="Fat" fill="#ffc658" />
+                    <Bar dataKey="Protein" fill="#ff7300" />
+                  </BarChart>
+                </ResponsiveContainer>
+                <button onClick={handleClearLog} className="clear-log-button">
+                  Clear Log
+                </button>
+              </>
             )}
           </div>
         </>
