@@ -45,7 +45,6 @@ const App = () => {
 
   const fetchUser = async () => {
     try {
-      console.log(`${process.env.REACT_APP_BACKEND_URL}/get-user`);
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-user`, { withCredentials: true });
       setUser(response.data.username);
     } catch (error) {
