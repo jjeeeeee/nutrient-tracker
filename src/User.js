@@ -27,7 +27,7 @@ const User = () => {
 
   useEffect(() => {
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+      .get(process.env.REACT_APP_BACKEND_URL + "/get-user", { withCredentials: true }) 
       .then((response) => {
         setUsername(response.data.username); 
       })
@@ -39,7 +39,7 @@ const User = () => {
       });
 
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/user-progress", {withCredentials: true})
+      .get(process.env.REACT_APP_BACKEND_URL + "/user-progress", {withCredentials: true})
       .then((response) => {
         setWeeklyProgress(response.data);
       })
@@ -69,7 +69,7 @@ const User = () => {
     );
 
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-user-goals", numericGoal, { withCredentials: true });
+      await axios.post(process.env.REACT_APP_BACKEND_URL + "/update-user-goals", numericGoal, { withCredentials: true });
 
       // Clear the form inputs 
       setTempGoal({ calories: "", carbs: "", fats: "", protein: "" }); 
@@ -94,7 +94,7 @@ const User = () => {
 
   useEffect(() => {
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user", { withCredentials: true }) 
+      .get(process.env.REACT_APP_BACKEND_URL + "/get-user", { withCredentials: true }) 
       .then((response) => {
         setUsername(response.data.username); 
       })
@@ -112,7 +112,7 @@ const User = () => {
 
   const fetchUserGoals = async () => {
     try {
-      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-goals", { withCredentials: true });
+      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/get-user-goals", { withCredentials: true });
       setGoal(response.data);
     } catch (error) {
       console.error("Error fetching user goals:", error);
@@ -122,7 +122,7 @@ const User = () => {
 
   const fetchUserMeals = async () => {
     try {
-      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/get-user-meals", { withCredentials: true });
+      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/get-user-meals", { withCredentials: true });
       const fetchedMeals = response.data.meals || [];
       setMeals(fetchedMeals);
 
@@ -144,7 +144,7 @@ const User = () => {
 
   const fetchStoredMeals = async () => {
     try {
-      const response = await axios.get("https://nutrient-tracker-backend-c0o9.onrender.com/meals");
+      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/meals");
       setStoredMeals(response.data);
     } catch (error) {
       console.error("Error fetching stored meals:", error);
@@ -166,7 +166,7 @@ const User = () => {
     );
     try {  
       const response = await axios.post(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/add-user-meals",
+        process.env.REACT_APP_BACKEND_URL + "/add-user-meals",
         numericMeal,
         { withCredentials: true }
       );
@@ -197,7 +197,7 @@ const User = () => {
 
   const handleClearMeals = async () => {
     try {
-      await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/clear-user-meals", { withCredentials: true });
+      await axios.delete(process.env.REACT_APP_BACKEND_URL + "/clear-user-meals", { withCredentials: true });
       setMeals([]);
       setNutrients({ calories: 0, carbs: 0, fat: 0, protein: 0 });
     } catch (error) {
@@ -208,7 +208,7 @@ const User = () => {
 
   const handleRemoveMeal = async (mealId) => {
     try {
-      await axios.delete("https://nutrient-tracker-backend-c0o9.onrender.com/delete-user-meal",
+      await axios.delete(process.env.REACT_APP_BACKEND_URL + "/delete-user-meal",
         {
           data: { mealId },
           withCredentials: true
@@ -226,12 +226,12 @@ const User = () => {
     const requestBody = { ...nutrients, day_of_week: dayOfWeek };
 
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/update-progress", 
+      await axios.post(process.env.REACT_APP_BACKEND_URL + "/update-progress", 
         requestBody,
         { withCredentials: true })
 
       const response = await axios.get(
-        "https://nutrient-tracker-backend-c0o9.onrender.com/user-progress",
+        process.env.REACT_APP_BACKEND_URL + "/user-progress",
         { withCredentials: true }
       );
       setWeeklyProgress(response.data);
@@ -251,7 +251,7 @@ const User = () => {
 
   const handleClearLog = async () => {
     try {
-      await axios.post("https://nutrient-tracker-backend-c0o9.onrender.com/reset-user-meals", {}, { withCredentials: true });
+      await axios.post(process.env.REACT_APP_BACKEND_URL + "/reset-user-meals", {}, { withCredentials: true });
       alert("All meals have been reset!");
       setWeeklyProgress(prevProgress =>
         prevProgress.map(entry => ({

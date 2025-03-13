@@ -9,7 +9,7 @@ const Foods = () => {
   // Fetch all foods
   useEffect(() => {
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/foods")
+      .get(process.env.REACT_APP_BACKEND_URL + "/foods")
       .then((response) => setFoods(response.data))
       .catch((error) => console.error("Error fetching foods:", error))
       .finally(() => {

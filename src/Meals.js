@@ -12,7 +12,7 @@ const Meals = () => {
   // Fetch all meals
   useEffect(() => {
     axios
-      .get("https://nutrient-tracker-backend-c0o9.onrender.com/meals")
+      .get(process.env.REACT_APP_BACKEND_URL + "/meals")
       .then((response) => {
         setMeals(response.data);
         setFilteredMeals(response.data);
