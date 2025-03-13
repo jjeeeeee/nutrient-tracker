@@ -12,7 +12,7 @@ const Meals = () => {
   // Fetch all meals
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/meals")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/meals`)
       .then((response) => {
         setMeals(response.data);
         setFilteredMeals(response.data);

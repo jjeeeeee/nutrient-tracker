@@ -45,7 +45,7 @@ const App = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/get-user", { withCredentials: true });
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/get-user`, { withCredentials: true });
       setUser(response.data.username);
     } catch (error) {
       setUser(null);
@@ -54,7 +54,7 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post(process.env.REACT_APP_BACKEND_URL + "/logout", {}, { withCredentials: true });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/logout`, {}, { withCredentials: true });
       setUser(null);
       window.location.href = "/";
     } catch (error) {

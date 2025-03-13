@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       await axios.post(
-        process.env.REACT_APP_BACKEND_URL + "/login",
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         { username, password },
         { withCredentials: true }
       ); //.finally(setLoading(false));

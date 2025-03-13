@@ -19,17 +19,17 @@ const MealBuilder = () => {
   // Fetch ingredients from the backend
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/foods")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/foods`)
       .then((response) => setIngredients(response.data))
       .catch((error) => console.error("Error fetching ingredients:", error));
 
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/meals")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/meals`)
       .then((response) => setStoredMeals(response.data))
       .catch((error) => console.error("Error fetching meals:", error));
 
     axios
-    .get(process.env.REACT_APP_BACKEND_URL + "/get-user", { withCredentials: true }) 
+    .get(`${process.env.REACT_APP_BACKEND_URL}/get-user`, { withCredentials: true }) 
     .then((response) => {
       setUsername(response.data.username); 
     })
@@ -167,7 +167,7 @@ const MealBuilder = () => {
   const calculateNutrients = async () => {
     try {
       const response = await axios.post(
-        process.env.REACT_APP_BACKEND_URL + "/calculate",
+        `${process.env.REACT_APP_BACKEND_URL}/calculate`,
         { ingredients: meal }
       );
       setTotalNutrients({
@@ -227,7 +227,7 @@ const saveMeal = async () => {
   if (!mealName) return;
 
   axios
-    .post(process.env.REACT_APP_BACKEND_URL + "/meals", {
+    .post(`${process.env.REACT_APP_BACKEND_URL}/meals`, {
       name: mealName,
       ingredients: meal.map((item) => ({
         ingredient_name: item.name,
